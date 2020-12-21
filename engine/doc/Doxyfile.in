@@ -1,0 +1,8 @@
+PROJECT_NAME = "OpenGL Application Template"
+
+OUTPUT_DIRECTORY       = @CMAKE_CURRENT_BINARY_DIR@/doc/
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/../include/engine @CMAKE_CURRENT_SOURCE_DIR@/../doc
+
+GENERATE_LATEX         = NO
+RECURSIVE              = NO
+WARN_IF_UNDOCUMENTED   = NO

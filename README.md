@@ -18,6 +18,22 @@
 
 ## Get started
 
+### Development convention
+
+As a developer working on this project, you will have to respect some conventions.
+
+In order to begin working on a new feature, you will have to checkout the dev branch. Once you are done, you will create a new branch from the dev branch with the following name convention :
+
+```
+$ dev_[feature-name]
+```
+
+When writing code, you will have to follow certain norms :
+
+- Class must have both pragma once and ifdef..define..endif
+- Class names must be written in UpperCamelCase
+- Class members must be protected (encapsulated) and have ("\m_") in front of their names
+
 ### Repository
 
 The template uses submodules for its main libraries.

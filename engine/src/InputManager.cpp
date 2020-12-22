@@ -12,16 +12,16 @@ namespace engine
 		switch (code)
 		{
 		case Up:
-			GLApplication::getInstance().getCamera()->moveFront(GLApplication::getInstance().getCamera()->getSpeed());
+			GLApplication::getInstance().getScene()->player()->moveForward(-1);
 			break;
 		case Down:
-			GLApplication::getInstance().getCamera()->moveFront(-1 * GLApplication::getInstance().getCamera()->getSpeed());
+			GLApplication::getInstance().getScene()->player()->moveForward(1);
 			break;
 		case Left:
-			GLApplication::getInstance().getCamera()->moveLeft(GLApplication::getInstance().getCamera()->getSpeed());
+			GLApplication::getInstance().getScene()->player()->moveLeft(-1);
 			break;
 		case Right:
-			GLApplication::getInstance().getCamera()->moveLeft(-1 * GLApplication::getInstance().getCamera()->getSpeed());
+			GLApplication::getInstance().getScene()->player()->moveLeft(1);
 			break;
 		default:
 			break;
@@ -34,13 +34,17 @@ namespace engine
 		if (GLApplication::getInstance().getCamera() == nullptr)
 			return;
 
-		// // Return if x and y are equal to 0, because we don't need to inform the camera
-		// if (mouseX == 0.0f && mouseY == 0.0f)
-		// 	return;
-
-		// Have our manager send the mouse x and y deltas to our camera to process its rotations
 		GLApplication::getInstance().getCamera()->rotateLeft(mouseX);
 		GLApplication::getInstance().getCamera()->rotateUp(mouseY);
+	}
+
+	void InputManager::wheelMoved(double offsetY)
+	{
+		// Return if we don't have a valid camera assigned
+		if (GLApplication::getInstance().getCamera() == nullptr)
+			return;
+
+		GLApplication::getInstance().getCamera()->moveFront(offsetY * GLApplication::getInstance().getCamera()->getSpeed());
 	}
 
 } // namespace engine

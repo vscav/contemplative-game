@@ -19,6 +19,8 @@ namespace engine
     class TrackballCamera : public Camera
     {
     private:
+        glm::vec3 m_position;
+        
         float m_distance; /*!< The camera distance. */
 
         float m_angleX = 0.0f; /*!< The horizontal angle. */
@@ -26,7 +28,7 @@ namespace engine
 
         float m_zoom; /*!< The camera zoom. */
 
-        float m_sensitivity = 0.01f; /*!< The camera sensitivity. */
+        float m_sensitivity = 0.001f; /*!< The camera sensitivity. */
 
         float m_speed = 0.7f; /*!< The camera speed. */
 

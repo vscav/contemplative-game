@@ -57,16 +57,14 @@ namespace engine
         /// \param other : The entity to copy from.
         Entity(const Entity &other);
 
+        /// \brief Default destructor.
         ~Entity() = default;
 
         /// \brief Returns the transform matrix of the entity.
         virtual const glm::mat4 getMatrix();
 
-        // void moveFront(float dt);
-        // void moveLeft(float dt);
-
         // /// \brief Updates the entity.
-        // void update(float time);
+        void update(const float dt);
 
         /// \brief Renders the entity.
         void render();

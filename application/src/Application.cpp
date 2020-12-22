@@ -20,12 +20,13 @@ Application::Application(std::string title, int width, int height, bool fullScre
 
 void Application::initialize()
 {
-    // Create a new entity object
-    std::unique_ptr<engine::Entity> entity(
-        new engine::Entity(
-            new engine::Model("application/res/models/spaceship/scene.gltf"),
-            new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
-            false));
+    // Create a new player
+    std::unique_ptr<engine::Player> player(
+        new engine::Player(
+            engine::Entity(
+                new engine::Model("application/res/models/spaceship/scene.gltf"),
+                new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
+                false)));
 
     // Create a new skybox (CubeMap object)
     std::unique_ptr<engine::CubeMap> skybox(
@@ -39,8 +40,7 @@ void Application::initialize()
             new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")));
 
     // Add the newly created entity to the application scene
-    m_scene->add(std::move(entity));
-
+    m_scene->add(std::move(player));
     // Add the newly created skybox to the application scene
     m_scene->add(std::move(skybox));
 }
@@ -53,6 +53,8 @@ void Application::loop()
     float dt = m_windowManager->getTimeElapsed();
 
     m_camera->update(dt);
+
+    m_scene->update(dt);
 
     m_scene->render();
 }

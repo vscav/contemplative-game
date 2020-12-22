@@ -46,16 +46,24 @@ namespace engine
 
     glm::mat4 TrackballCamera::getViewMatrix() const
     {
-        glm::mat4 ViewMatrix = glm::mat4(1);
 
-        std::cout << m_position << std::endl;
+
+        glm::vec3 player_position = (GLApplication::getInstance().getScene()->player()->getPosition());
+        glm::mat4 player_MVMatrix = glm::translate(glm::mat4(1), player_position);
+
+
+        //camera badante
+        // player_MVMatrix = glm::rotate(player_MVMatrix, glm::radians(m_angleX), glm::vec3(1, 0, 0));
+        // player_MVMatrix = glm::rotate(player_MVMatrix, glm::radians(m_angleY), glm::vec3(0, 1, 0));
+
 
         // Zoom
-        ViewMatrix = glm::translate(ViewMatrix, m_position);
-
-        // Rotation
-        ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleX), glm::vec3(1, 0, 0));
-        ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleY), glm::vec3(0, 1, 0));
+        glm::mat4 ViewMatrix = glm::inverse(player_MVMatrix);
+        ViewMatrix = glm::translate(ViewMatrix, glm::vec3(0, 0, m_distance));
+        //
+        // // Rotation
+        // ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleX), glm::vec3(1, 0, 0));
+        // ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleY), glm::vec3(0, 1, 0));
 
         return ViewMatrix;
     }
@@ -75,7 +83,8 @@ namespace engine
 
     void TrackballCamera::update(float dt)
     {
-        m_position = (GLApplication::getInstance().getScene()->player()->getPosition());
+// Translation
+
         m_position.z += m_distance;
 
         // Update angles

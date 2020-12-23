@@ -1,0 +1,39 @@
+#include <engine/Entity.hpp>
+
+namespace engine
+{
+
+    constexpr glm::vec3 defaultPlayerPosition = glm::vec3(0.0f, 0.0f, 10.0f);
+    constexpr float defaultPlayerSpeed = 0.25f;
+
+    constexpr float minimumPlayerUp = 1.0f;
+    constexpr float maximumPlayerUp = 10.0f;
+
+    class Player : public Entity
+    {
+    protected:
+        float m_speed = defaultPlayerSpeed; /*!< The player current movement speed. */
+
+        // float m_lerpFactor = 0.9f;
+        // float m_lerpSpeed = 0.0f;
+        // float m_sensitivity = 0.1f;
+
+    public:
+        /// \brief Constructor.
+        /// \param
+        Player(const Entity &playerEntity);
+        /// \brief Default destructor.
+        ~Player() = default;
+
+        /// \brief
+        void moveForward(int delta);
+        /// \brief
+        void moveLeft(int delta);
+        /// \brief
+        void moveUp(int delta);
+
+        /// \brief
+        void update(const float dt);
+    };
+
+} // namespace engine

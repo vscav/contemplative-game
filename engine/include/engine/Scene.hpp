@@ -2,6 +2,7 @@
 #ifndef _Scene_HPP_
 #define _Scene_HPP_
 
+#include <engine/Player.hpp>
 #include <engine/Entity.hpp>
 #include <engine/CubeMap.hpp>
 #include <engine/Shader.hpp>
@@ -15,8 +16,7 @@ namespace engine
     class Scene
     {
     private:
-        // to do : create class Player
-        // std::unique_ptr<Player> m_player;
+        std::unique_ptr<Player> m_player;
 
         std::list<std::unique_ptr<Entity>> m_entities;
 
@@ -32,36 +32,25 @@ namespace engine
         /// \brief Destructor.
         ~Scene() = default;
 
+        inline std::unique_ptr<Player> &player() { return m_player; };
+        inline const std::unique_ptr<Player> &player() const { return m_player; };
+
         inline std::list<std::unique_ptr<Entity>> &entities() { return m_entities; };
         inline const std::list<std::unique_ptr<Entity>> &entities() const { return m_entities; };
 
         inline std::unique_ptr<CubeMap> &skybox() { return m_skybox; };
         inline const std::unique_ptr<CubeMap> &skybox() const { return m_skybox; };
 
+        /// \brief Add the player in the scene.
+        inline void add(std::unique_ptr<Player> player) { m_player = std::move(player); };
         /// \brief Add a renderable entity to the list of entities to be displayed in the scene.
-        void add(std::unique_ptr<Entity> entity) { m_entities.push_back(std::move(entity)); };
+        inline void add(std::unique_ptr<Entity> entity) { m_entities.push_back(std::move(entity)); };
         /// \brief Add a cubemap/skybox to be rendered in the scene.
-        void add(std::unique_ptr<CubeMap> skybox) { m_skybox = std::move(skybox); };
+        inline void add(std::unique_ptr<CubeMap> skybox) { m_skybox = std::move(skybox); };
 
-        void render()
-        {
-            if (skybox() != nullptr)
-            {
-                skybox()->render();
-            }
+        void update(const float dt);
 
-            if (!m_entities.empty())
-            {
-                auto it = m_entities.begin();
-                for (it = m_entities.begin(); it != m_entities.end(); ++it)
-                {
-                    if (it->get() != nullptr)
-                    {
-                        it->get()->render();
-                    }
-                }
-            }
-        };
+        void render();
     };
 
 } // namespace engine

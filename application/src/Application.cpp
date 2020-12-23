@@ -20,7 +20,15 @@ Application::Application(std::string title, int width, int height, bool fullScre
 
 void Application::initialize()
 {
-    // Create a new entity object
+    // Create a new player
+    std::unique_ptr<engine::Player> player(
+        new engine::Player(
+            engine::Entity(
+                new engine::Model("application/res/models/spaceship/scene.gltf"),
+                new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
+                false)));
+
+    // Create a new entity
     std::unique_ptr<engine::Entity> entity(
         new engine::Entity(
             new engine::Model("application/res/models/spaceship/scene.gltf"),
@@ -39,6 +47,9 @@ void Application::initialize()
             new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")));
 
     // Add the newly created entity to the application scene
+    m_scene->add(std::move(player));
+
+    // Add the entity newly created to the application scene
     m_scene->add(std::move(entity));
 
     // Add the newly created skybox to the application scene
@@ -50,9 +61,15 @@ void Application::loop()
     // Print fps in console by passing true
     engine::TimeManager::getInstance().calculateFrameRate(false);
 
+    // Get the total time ellapsed since the application was run
     float dt = m_windowManager->getTimeElapsed();
 
+    // Update the camera
     m_camera->update(dt);
 
+    // Update the scene
+    m_scene->update(dt);
+
+    // Render the entire scene
     m_scene->render();
 }

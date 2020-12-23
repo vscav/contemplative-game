@@ -142,15 +142,22 @@ namespace engine
         glfwSwapBuffers(m_window);
     }
 
+    void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
+    {
+        ((GLFWManager *)glfwGetWindowUserPointer(window))->getInputManager()->wheelMoved(yoffset);
+    }
+
     // This function processes all the application's input
     void GLFWManager::processInput()
     {
+        // Escape key pressed
         if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS || glfwWindowShouldClose(m_window) != 0)
         {
             glfwSetWindowShouldClose(m_window, true);
             GLApplication::getInstance().exit();
         }
 
+        // Key pressed
         if (glfwGetKey(m_window, GLFW_KEY_UP) || glfwGetKey(m_window, GLFW_KEY_W))
             m_inputManager->keyPressed(InputCodes::Up);
         if (glfwGetKey(m_window, GLFW_KEY_DOWN) || glfwGetKey(m_window, GLFW_KEY_S))
@@ -159,7 +166,13 @@ namespace engine
             m_inputManager->keyPressed(InputCodes::Left);
         if (glfwGetKey(m_window, GLFW_KEY_RIGHT) || glfwGetKey(m_window, GLFW_KEY_D))
             m_inputManager->keyPressed(InputCodes::Right);
+        if (glfwGetKey(m_window, GLFW_KEY_SPACE))
+            m_inputManager->keyPressed(InputCodes::Jump);
 
+        // Wheel moved
+        glfwSetScrollCallback(m_window, scroll_callback);
+
+        // Mouse moved
         double xpos, ypos;
         glfwGetCursorPos(m_window, &xpos, &ypos);
 
@@ -207,7 +220,6 @@ namespace engine
         return m_deltaTime;
     }
 
-    // This destroys the window
     void GLFWManager::destroy()
     {
         glfwDestroyWindow(m_window);

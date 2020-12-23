@@ -89,6 +89,10 @@ namespace engine
         /// \brief Returns the camera (pointer) of the GL application.
         /// \return A pointer to the camera of the GL application.
         inline Camera *getCamera() { return m_camera.get(); };
+
+        /// \brief Returns the scene (pointer) of the GL application.
+        /// \return A pointer to the scene of the GL application.
+        inline Scene *getScene() { return m_scene.get(); };
     };
 
 } // namespace engine

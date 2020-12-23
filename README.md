@@ -5,6 +5,7 @@
 ## Table of Contents
 
 * [Get started](#get-started)
+  * [Development convention](#development-convention)
   * [Repository](#repository)
   * [Linux](#linux)
     * [Requirements](#requirements)
@@ -27,12 +28,6 @@ In order to begin working on a new feature, you will have to checkout the dev br
 ```
 $ dev_[feature-name]
 ```
-
-When writing code, you will have to follow certain norms :
-
-- Class must have both pragma once and ifdef..define..endif
-- Class names must be written in UpperCamelCase
-- Class members must be protected (encapsulated) and have ("\m_") in front of their names
 
 ### Repository
 

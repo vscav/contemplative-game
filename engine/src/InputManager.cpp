@@ -23,6 +23,9 @@ namespace engine
 		case Right:
 			GLApplication::getInstance().getScene()->player()->moveLeft(1);
 			break;
+		case Jump:
+			GLApplication::getInstance().getScene()->player()->moveUp(1);
+			break;
 		default:
 			break;
 		}

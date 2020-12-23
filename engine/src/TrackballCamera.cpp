@@ -46,24 +46,17 @@ namespace engine
 
     glm::mat4 TrackballCamera::getViewMatrix() const
     {
+        glm::mat4 ViewMatrix = glm::mat4(1);
 
-
-        glm::vec3 player_position = (GLApplication::getInstance().getScene()->player()->getPosition());
-        glm::mat4 player_MVMatrix = glm::translate(glm::mat4(1), player_position);
-
-
-        //camera badante
-        // player_MVMatrix = glm::rotate(player_MVMatrix, glm::radians(m_angleX), glm::vec3(1, 0, 0));
-        // player_MVMatrix = glm::rotate(player_MVMatrix, glm::radians(m_angleY), glm::vec3(0, 1, 0));
-
-
-        // Zoom
-        glm::mat4 ViewMatrix = glm::inverse(player_MVMatrix);
+        // Translate to be away from the center of rotation
         ViewMatrix = glm::translate(ViewMatrix, glm::vec3(0, 0, m_distance));
-        //
-        // // Rotation
-        // ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleX), glm::vec3(1, 0, 0));
-        // ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleY), glm::vec3(0, 1, 0));
+
+        // Rotation
+        ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleX), glm::vec3(1, 0, 0));
+        ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleY), glm::vec3(0, 1, 0));
+
+        // Translate from its position
+        ViewMatrix = glm::translate(ViewMatrix, -m_position);
 
         return ViewMatrix;
     }
@@ -81,20 +74,21 @@ namespace engine
         return getProjectionMatrix() * getViewMatrix();
     }
 
+    void TrackballCamera::updatePosition(const glm::vec3 position) {
+        m_position = position;
+    }
+
     void TrackballCamera::update(float dt)
     {
-// Translation
-
-        m_position.z += m_distance;
-
         // Update angles
         m_angleX += m_angleXSpeed * dt;
         m_angleY += m_angleYSpeed * dt;
 
+        // Update angles speed
         m_angleXSpeed *= std::pow(m_lerpFactor, dt);
         m_angleYSpeed *= std::pow(m_lerpFactor, dt);
 
-        // Update distance
+        // Update distance based on zoom
         m_distance = glm::mix(m_distance, m_zoom, 1 / 8.0f);
     }
 

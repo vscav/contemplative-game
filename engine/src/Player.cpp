@@ -1,4 +1,5 @@
-#include <engine/Player.hpp>
+// #include <engine/Player.hpp>
+#include <engine/GLApplication.hpp>
 
 namespace engine
 {
@@ -7,33 +8,34 @@ namespace engine
     {
     }
 
-    void Player::update(const float dt)
-    {
-        // updateSpeed(dt);
-        // updatePosition(dt);
-    }
-
-    void Player::updateSpeed(const float dt)
-    {
-    }
-
-    void Player::updatePosition(const float dt)
-    {
-    }
-
     void Player::moveForward(int delta)
     {
-        m_position.z +=  delta * m_speed;
+        // m_lerpSpeed += m_sensitivity * delta;
+        // m_position.z += m_lerpSpeed;
+        m_position.z += m_speed * delta;
     }
 
     void Player::moveLeft(int delta)
     {
-        m_position.x +=  delta * m_speed;
+        // m_lerpSpeed += m_sensitivity * delta;
+        // m_position.x += m_lerpSpeed;
+        m_position.x += m_speed * delta;
     }
 
     void Player::moveUp(int delta)
     {
-        m_position.y +=  delta * m_speed;
+        // m_lerpSpeed += m_sensitivity * delta;
+        // m_position.y += m_lerpSpeed;
+        m_position.y += m_speed * delta;
+    }
+
+    void Player::update(float dt)
+    {
+        // m_speed += m_lerpSpeed * dt;
+        // m_lerpSpeed *= std::pow(m_lerpFactor, dt);
+
+        // When the player is updated, the camera is updated as well
+        GLApplication::getInstance().getCamera()->updatePosition(m_position);
     }
 
 } // namespace engine

@@ -4,8 +4,7 @@ namespace engine
 {
 
     constexpr glm::vec3 defaultPlayerPosition = glm::vec3(0.0f, 0.0f, 10.0f);
-    constexpr glm::vec3 defaultPlayerMaximumSpeed = glm::vec3(2.5f, 14.f, 12.f);
-    constexpr glm::vec3 defaultPlayerAcceleration = glm::vec3(3.f, 7.f, 7.f);
+    constexpr float defaultPlayerSpeed = 0.25f;
 
     constexpr float minimumPlayerUp = 1.0f;
     constexpr float maximumPlayerUp = 10.0f;
@@ -13,12 +12,11 @@ namespace engine
     class Player : public Entity
     {
     protected:
-        /// \brief
-        void updateSpeed(const float dt);
-        /// \brief
-        void updatePosition(const float dt);
+        float m_speed = defaultPlayerSpeed; /*!< The player current movement speed. */
 
-        float m_speed = 0.025; /*!< . */
+        // float m_lerpFactor = 0.9f;
+        // float m_lerpSpeed = 0.0f;
+        // float m_sensitivity = 0.1f;
 
     public:
         /// \brief Constructor.

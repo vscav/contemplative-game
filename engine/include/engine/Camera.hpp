@@ -54,11 +54,11 @@ namespace engine
         /// \return The view projection matrix of the camera.
         virtual glm::mat4 getVPMatrix() const = 0;
 
-        virtual void update(float dt) = 0;
+        /// \brief Updates the camera position.
+        virtual void updatePosition(glm::vec3 const position) = 0;
 
-        // /// \brief Gets the current position of the camera.
-        // /// \return The position of the camera.
-        // virtual glm::vec3 const getPosition() const = 0;
+        /// \brief Updates the camera.
+        virtual void update(float dt) = 0;
     };
 
 } // namespace engine

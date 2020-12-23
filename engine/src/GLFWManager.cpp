@@ -167,7 +167,7 @@ namespace engine
         if (glfwGetKey(m_window, GLFW_KEY_RIGHT) || glfwGetKey(m_window, GLFW_KEY_D))
             m_inputManager->keyPressed(InputCodes::Right);
         if (glfwGetKey(m_window, GLFW_KEY_SPACE))
-            m_inputManager->keyPressed(InputCodes::Space);
+            m_inputManager->keyPressed(InputCodes::Jump);
 
         // Wheel moved
         glfwSetScrollCallback(m_window, scroll_callback);

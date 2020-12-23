@@ -10,7 +10,7 @@ namespace engine
         // Update the projection matrix by using the application camera
         updateProjectionMatrix();
 
-        // If there is a need to remove the translation view (example: skybox object):
+        // If there is a need to remove the translation view (example: skybox object)
         if (removeTranslationView)
             m_view = glm::mat4(glm::mat3(m_view));
 

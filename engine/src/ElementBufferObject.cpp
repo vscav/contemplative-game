@@ -13,7 +13,7 @@ namespace engine
 
     ElementBufferObject::~ElementBufferObject()
     {
-        if(debug) std::cout << "[EBO] Delete EBO with index " << m_index << std::endl;
+        if(applicationDebug) std::cout << "[EBO] Delete EBO with index " << m_index << std::endl;
         glDeleteBuffers(1, &m_index);
     }
 

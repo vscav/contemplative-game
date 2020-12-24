@@ -1,7 +1,13 @@
+#pragma once
+#ifndef _Player_HPP_
+#define _Player_HPP_
+
 #include <engine/Entity.hpp>
+#include <engine/Obstacle.hpp>
 
 namespace engine
 {
+    class Obstacle;
 
     constexpr glm::vec3 defaultPlayerPosition = glm::vec3(0.0f, 0.0f, 10.0f);
     constexpr float defaultPlayerSpeed = 0.25f;
@@ -19,10 +25,9 @@ namespace engine
         // float m_sensitivity = 0.1f;
 
     public:
-        /// \brief Constructor.
-        /// \param
+        /// \brief
         Player(const Entity &playerEntity);
-        /// \brief Default destructor.
+        /// \brief
         ~Player() = default;
 
         /// \brief
@@ -33,7 +38,15 @@ namespace engine
         void moveUp(int delta);
 
         /// \brief
+        void doCollisionWith(Entity &other);
+
+        /// \brief
+        void doCollisionWith(Obstacle &other);
+
+        /// \brief
         void update(const float dt);
     };
 
 } // namespace engine
+
+#endif /* _Player_HPP_ */

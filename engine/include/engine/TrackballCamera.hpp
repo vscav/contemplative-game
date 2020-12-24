@@ -53,7 +53,7 @@ namespace engine
         /// \brief Moves the camera to the right or to the left according to the t value.
         /// \param t : The value used to move the camera on the right or on the left.
         // void moveLeft(float t) override;
-        void moveLeft(float t) override;
+        void moveLeft(float t) override{};
 
         /// \brief Rotates the camera on the horizontal axis.
         /// \param degrees : The value of the rotation in degree.

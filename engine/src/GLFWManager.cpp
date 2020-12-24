@@ -18,7 +18,7 @@ namespace engine
 
     int GLFWManager::initialize()
     {
-        if (debug)
+        if (applicationDebug)
             std::cout << "[GLFWManager] GLFW initialisation" << std::endl;
 
         if (!glfwInit())
@@ -40,7 +40,7 @@ namespace engine
             glfwTerminate();
             throw EngineException(std::string("[GLFWManager] Could initialize GLEW, error = ") + (const char *)glewGetErrorString(err), __FILE__, __LINE__);
         }
-        else if (debug)
+        else if (applicationDebug)
             std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
 
         // Initialize OpenGL debug
@@ -223,7 +223,7 @@ namespace engine
     void GLFWManager::destroy()
     {
         glfwDestroyWindow(m_window);
-        if (debug)
+        if (applicationDebug)
             std::cout << "[GLFWManager] Destroy GLFW window" << std::endl;
 
         glfwTerminate();

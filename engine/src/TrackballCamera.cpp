@@ -10,7 +10,7 @@ namespace engine
     TrackballCamera::TrackballCamera()
         : m_distance(-cameraDistanceToFollowedObject), m_angleX(0.0f), m_angleY(0.0f), m_zoom(-cameraDistanceToFollowedObject)
     {
-        if (debug)
+        if (applicationDebug)
             std::cout << "[Camera] Trackball camera created" << std::endl;
     }
 
@@ -22,10 +22,6 @@ namespace engine
             m_zoom = maximumDistance;
         else if (m_zoom < minimumDistance)
             m_zoom = minimumDistance;
-    }
-
-    void TrackballCamera::moveLeft(const float t)
-    {
     }
 
     void TrackballCamera::rotateLeft(const float degrees)

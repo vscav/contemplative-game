@@ -3,6 +3,7 @@
 #define _Entity_HPP_
 
 #include <engine/Model.hpp>
+#include <engine/utils/common.hpp>
 #include <engine/dependencies/glm.hpp>
 
 #include <memory>
@@ -45,7 +46,7 @@ namespace engine
         /// \brief Parameterized constructor.
         /// \param model : The GLTF model of the entity.
         /// \param shader : The shader to use for the entity.
-        /// \param isStatic : Whether the entity is able to move or not.
+        /// \param isStatic : Whether the entity is able to move.
         /// \param transform : The initial transformation to apply to the entity.
         Entity(
             Model *model,
@@ -60,10 +61,19 @@ namespace engine
         /// \brief Default destructor.
         ~Entity() = default;
 
+        /// \brief
+        bool intersect(Entity &other);
+
+        /// \brief
+        virtual void doCollisionWith(Entity &other){};
+
+        /// \brief
+        // void collideWith(Entity &other);
+
         /// \brief Returns the transform matrix of the entity.
         virtual const glm::mat4 getMatrix();
 
-        // /// \brief Updates the entity.
+        /// \brief Updates the entity.
         void update(const float dt);
 
         /// \brief Renders the entity.
@@ -87,7 +97,7 @@ namespace engine
         /// \brief Gets the model of the entity.
         inline const Model *getModel() const { return m_model.get(); };
 
-        /// \brief Returns a boolean to tell whether the entity is able to move or not.
+        /// \brief Returns a boolean to tell whether the entity is able to move.
         inline const bool &isStatic() const { return m_isStatic; };
     };
 

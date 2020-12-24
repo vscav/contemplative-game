@@ -39,7 +39,7 @@ namespace engine
 
   void GLApplication::exit()
   {
-    if (debug)
+    if (applicationDebug)
       std::cout << "[GLApplication] Application exited successfully" << std::endl;
 
     m_state = stateExit;
@@ -63,7 +63,7 @@ namespace engine
 
   void GLApplication::loop()
   {
-    if (debug)
+    if (applicationDebug)
       std::cout << "[Info] GLApplication main loop" << std::endl;
   }
 

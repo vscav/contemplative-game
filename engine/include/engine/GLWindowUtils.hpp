@@ -12,12 +12,12 @@ namespace engine
     class GLWindowUtils
     {
     private:
-        bool m_cullingBackFace = false;  /*!< A boolean to tell if whether or not the culling back face option is enabled. */
-        bool m_inWireframe = false;      /*!< A boolean to tell if whether or not the wireframe mode is enabled. */
-        bool m_isAlphaBlending = false;  /*!< A boolean to tell if whether or not the alpha blending mode is enabled. */
-        bool m_additiveBlending = false; /*!< A boolean to tell if whether or not the additive blending mode is enabled. */
-        bool m_antialiasing = false;     /*!< A boolean to tell if whether or not the antialiasing option is enabled. */
-        bool m_depthTesting = false;     /*!< A boolean to tell if whether or not the depth testing is enabled. */
+        bool m_cullingBackFace = false;  /*!< A boolean to tell if whether the culling back face option is enabled. */
+        bool m_inWireframe = false;      /*!< A boolean to tell if whether the wireframe mode is enabled. */
+        bool m_isAlphaBlending = false;  /*!< A boolean to tell if whether the alpha blending mode is enabled. */
+        bool m_additiveBlending = false; /*!< A boolean to tell if whether the additive blending mode is enabled. */
+        bool m_antialiasing = false;     /*!< A boolean to tell if whether the antialiasing option is enabled. */
+        bool m_depthTesting = false;     /*!< A boolean to tell if whether the depth testing is enabled. */
 
     public:
         /// \brief Constructor.

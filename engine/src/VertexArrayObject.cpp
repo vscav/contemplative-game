@@ -13,7 +13,7 @@ namespace engine
 
     VertexArrayObject::~VertexArrayObject()
     {
-        if(debug) std::cout << "[VAO] Delete VAO with index " << m_index << std::endl;
+        if(applicationDebug) std::cout << "[VAO] Delete VAO with index " << m_index << std::endl;
         glDeleteVertexArrays(1, &m_index);
     }
 

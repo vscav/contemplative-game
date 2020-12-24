@@ -28,12 +28,14 @@ void Application::initialize()
                 new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
                 false)));
 
-    // Create a new entity
-    std::unique_ptr<engine::Entity> entity(
-        new engine::Entity(
-            new engine::Model("application/res/models/spaceship/scene.gltf"),
-            new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
-            false));
+    // Create a new entity obstacle
+    std::unique_ptr<engine::Entity> obstacle(
+        new engine::Obstacle(
+            engine::Entity(
+                new engine::Model("application/res/models/spaceship/scene.gltf"),
+                new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
+                false,
+                engine::Transform(glm::vec3(8, 0, 2), glm::vec3(1), glm::vec3(0)))));
 
     // Create a new skybox (CubeMap object)
     std::unique_ptr<engine::CubeMap> skybox(
@@ -46,11 +48,11 @@ void Application::initialize()
             "application/res/textures/skybox/space/top.png",
             new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")));
 
-    // Add the newly created entity to the application scene
+    // Add the newly created entity player to the application scene
     m_scene->add(std::move(player));
 
-    // Add the entity newly created to the application scene
-    m_scene->add(std::move(entity));
+    // Add the obstacle newly created to the application scene
+    m_scene->add(std::move(obstacle));
 
     // Add the newly created skybox to the application scene
     m_scene->add(std::move(skybox));

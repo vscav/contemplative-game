@@ -20,7 +20,7 @@ namespace engine
         unsigned char *data = stbi_load(filepath.c_str(), &x, &y, &n, 4);
         if (!data)
         {
-            if(debug) std::cerr << COLOR_RED << "[Texture] ERROR: Loading image " << filepath << ": " << stbi_failure_reason() << COLOR_RESET << std::endl;
+            if(applicationDebug) std::cerr << COLOR_RED << "[Texture] ERROR: Loading image " << filepath << ": " << stbi_failure_reason() << COLOR_RESET << std::endl;
             return std::unique_ptr<Texture>();
         }
         std::unique_ptr<Texture> pImage(new Texture(x, y));

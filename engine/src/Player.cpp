@@ -6,6 +6,8 @@ namespace engine
     Player::Player(const Entity &playerEntity)
         : Entity(playerEntity)
     {
+        if (applicationDebug)
+            std::cout << "[Player] Player created" << std::endl;
     }
 
     void Player::moveForward(int delta)
@@ -28,6 +30,20 @@ namespace engine
         // m_position.y += m_lerpSpeed;
         m_position.y += m_speed * delta;
     }
+
+    /// \brief
+    void Player::doCollisionWith(Entity &other)
+    {
+        if (physicsDebug)
+            std::cout << "[Player] Player collided with an entity" << std::endl;
+    };
+
+    /// \brief
+    void Player::doCollisionWith(Obstacle &other)
+    {
+        if (physicsDebug)
+            std::cout << "[Player] Player collided with an obstacle" << std::endl;
+    };
 
     void Player::update(float dt)
     {

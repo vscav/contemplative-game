@@ -33,7 +33,7 @@ namespace engine
         TimeManager &operator=(TimeManager const &) = delete;
 
         /// \brief Calculates our current scene's frames per second and displays it in the console.
-        /// \param writeToConsole : A boolean to indicate whether or not we display the value in the console.
+        /// \param writeToConsole : A boolean to indicate whether we display the value in the console.
         /// \return The current scene's frames per second.
         double calculateFrameRate(bool writeToConsole);
 

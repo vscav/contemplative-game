@@ -15,7 +15,7 @@ namespace engine
         if (!loadGltfFile(m_model))
             throw EngineException("[GLTF Model] Couldn't load GLTF file", __FILE__, __LINE__);
 
-        if (debug)
+        if (applicationDebug)
             std::cout << "[GLTF Model] GLTF file has been successfully read and loaded" << std::endl;
 
         // m_lightFromCamera = false;
@@ -288,7 +288,7 @@ namespace engine
 
     bool Model::loadGltfFile(tinygltf::Model &model)
     {
-        if (debug)
+        if (applicationDebug)
             std::cout << "[GLTF Model] Loading file " << m_gltfFilePath << std::endl;
 
         tinygltf::TinyGLTF loader;
@@ -489,7 +489,7 @@ namespace engine
 
         glBindVertexArray(0);
 
-        if (debug)
+        if (applicationDebug)
             std::cout << "[GLTF Model] Number of Vertex Array Objects: " << vertexArrayObjects.size() << std::endl;
 
         return vertexArrayObjects;

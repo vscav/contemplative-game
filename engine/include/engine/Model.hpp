@@ -4,11 +4,14 @@
 
 #include <engine/Camera.hpp>
 #include <engine/Shader.hpp>
+#include <engine/Collider.hpp>
 #include <engine/VertexArrayObject.hpp>
 #include <engine/utils/filesystem.hpp>
 #include <engine/dependencies/tiny_gltf.h>
 
 #include <GL/glew.h>
+
+#include <memory>
 
 namespace engine
 {
@@ -16,6 +19,23 @@ namespace engine
     /// \brief Class for instanciating 3D model and using gltf file routine (with tiny gltf library).
     class Model
     {
+    private:
+        tinygltf::Model m_model; /*!< The 3D model. */
+        Collider m_collider; /*!< The collider of the model. */
+
+        fs::path m_gltfFilePath; /*!< The path to the GLTF file which describes the 3D model. */
+
+        std::vector<GLuint> m_textureObjects;     /*!< The vector of texture objects obtained from the model. */
+        std::vector<GLuint> m_bufferObjects;      /*!< The vector of buffer objects obtained from the model. */
+        std::vector<GLuint> m_vertexArrayObjects; /*!< The vector of array objects computed from the model and its meshes. */
+
+        std::vector<VertexArrayObject::VaoRange> m_meshToVertexArrays; /*!< The vector containing the range of VAOs for each mesh. */
+
+        GLuint m_whiteTexture = 0; /*!< This will be used for the base color of objects that have no materials. */
+
+        // bool m_lightFromCamera; /*!< Boolean used to tell whether the directionnal light comes from the camera. */
+        // bool m_applyOcclusion;
+
     public:
         /// \brief Parameterized constructor.
         /// \param gltfFilePath : The path to the GLTF file.
@@ -25,6 +45,11 @@ namespace engine
 
         /// \brief Loads the GLTF file which describes the 3D model.
         bool loadGltfFile(tinygltf::Model &model);
+
+        /// \brief
+        const Collider &collider() const { return m_collider; };
+        /// \brief
+        Collider &collider() { return m_collider; };
 
         /// \brief Computes a vector of texture objects.
         /// Each texture object is filled with an image and sampling parameters from the corresponding texture of the glTF file.
@@ -47,21 +72,6 @@ namespace engine
         /// \brief Renders the model to the screen/window.
         /// \param shader : The shaders associated to the model and to its entity.
         void render(Shader *shader);
-
-    private:
-        tinygltf::Model m_model; /*!< The 3D model. */
-        fs::path m_gltfFilePath; /*!< The path to the GLTF file which describes the 3D model. */
-
-        std::vector<GLuint> m_textureObjects;     /*!< The vector of texture objects obtained from the model. */
-        std::vector<GLuint> m_bufferObjects;      /*!< The vector of buffer objects obtained from the model. */
-        std::vector<GLuint> m_vertexArrayObjects; /*!< The vector of array objects computed from the model and its meshes. */
-
-        std::vector<VertexArrayObject::VaoRange> m_meshToVertexArrays; /*!< The vector containing the range of VAOs for each mesh. */
-
-        GLuint m_whiteTexture = 0; /*!< This will be used for the base color of objects that have no materials. */
-
-        // bool m_lightFromCamera; /*!< Boolean used to tell whether or not the directionnal light comes from the camera. */
-        // bool m_applyOcclusion;
     };
 
 } // namespace engine

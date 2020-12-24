@@ -13,7 +13,7 @@ namespace engine
 
     VertexBufferObject::~VertexBufferObject()
     {
-        if(debug) std::cout << "[VBO] Delete VBO with index " << m_index << std::endl;
+        if(applicationDebug) std::cout << "[VBO] Delete VBO with index " << m_index << std::endl;
         glDeleteBuffers(1, &m_index);
     }
 

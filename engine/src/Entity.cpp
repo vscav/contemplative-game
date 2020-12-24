@@ -20,6 +20,29 @@ namespace engine
     {
     }
 
+    bool Entity::intersect(Entity &other)
+    {
+        float selfScale = (glm::abs(m_scale.x) + glm::abs(m_scale.y) + glm::abs(m_scale.z)) / 3.0f;
+        float otherScale = (glm::abs(other.m_scale.x) + glm::abs(other.m_scale.y) + glm::abs(other.m_scale.z)) / 3.0f;
+
+        return (
+            m_model->collider().intersect(
+                other.m_model->collider(),
+                getMatrix(),
+                selfScale,
+                other.getMatrix(),
+                otherScale));
+    }
+
+    // void Entity::collideWith(Entity &other)
+    // {
+    //     if (intersect(other))
+    //     {
+    //         doCollisionWith(other);
+    //         other.doCollisionWith(*this);
+    //     }
+    // }
+
     const glm::mat4 Entity::getMatrix()
     {
         if (m_isStatic && m_hasMatrix)
@@ -29,11 +52,11 @@ namespace engine
 
         glm::mat4 entityMatrix = glm::mat4(1);
 
-        // entityMatrix = glm::rotate(entityMatrix, m_rotation[0], -glm::vec3(1.0f, 0.0f, 0.0f));
-        // entityMatrix = glm::rotate(entityMatrix, m_rotation[1], -glm::vec3(0.0f, 1.0f, 0.0f));
-        // entityMatrix = glm::rotate(entityMatrix, m_rotation[2], -glm::vec3(0.0f, 0.0f, 1.0f));
-
         entityMatrix = glm::translate(entityMatrix, m_position);
+
+        entityMatrix = glm::rotate(entityMatrix, m_rotation[0], -glm::vec3(1.0f, 0.0f, 0.0f));
+        entityMatrix = glm::rotate(entityMatrix, m_rotation[1], -glm::vec3(0.0f, 1.0f, 0.0f));
+        entityMatrix = glm::rotate(entityMatrix, m_rotation[2], -glm::vec3(0.0f, 0.0f, 1.0f));
 
         if (m_isStatic)
         {

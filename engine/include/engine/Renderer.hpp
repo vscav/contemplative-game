@@ -42,7 +42,7 @@ namespace engine
         /// \brief Sends the matrix uniforms to the dedicated shader.
         /// \param modelMatrix : The model matrix used to compute the view matrix.
         /// \param shader : The shader on which the matrix uniforms will be send.
-        /// \param removeTranslationView : A boolean to tell whether the translation view need to be removed or not.
+        /// \param removeTranslationView : A boolean to tell whether the translation view need to be removed.
         void sendModelMatrixUniforms(const glm::mat4 &modelMatrix, Shader *shader, bool removeTranslationView = false);
 
         /// \brief Sends the blinn phong model uniforms to the dedicated shader.

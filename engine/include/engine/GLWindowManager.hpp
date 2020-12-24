@@ -54,8 +54,8 @@ namespace engine
         /// \brief Returns the window ratio (window width divided by window height).
         /// \return The window ratio (window width divided by window height).
         virtual float getWindowRatio() const = 0;
-        /// \brief Returns a boolean that indicates whether or not the window is in full screen mode.
-        /// \return A boolean that indicates whether or not the window is in full screen mode.
+        /// \brief Returns a boolean that indicates whether the window is in full screen mode.
+        /// \return A boolean that indicates whether the window is in full screen mode.
         virtual bool isFullScreen() const = 0;
 
         /// \brief Returns the total time elapsed since the window was launched.

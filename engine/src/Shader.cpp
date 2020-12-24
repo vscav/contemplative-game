@@ -66,7 +66,7 @@ namespace engine
         if (linkResult == GL_FALSE)
         {
             glDeleteProgram(m_programId);
-            if(debug) std::cerr << COLOR_RED << "[Shader] ERROR: Shader creation aborded (linking doesn't work)"<< COLOR_RESET << std::endl;
+            if(applicationDebug) std::cerr << COLOR_RED << "[Shader] ERROR: Shader creation aborded (linking doesn't work)"<< COLOR_RESET << std::endl;
         }
         else
         {
@@ -91,11 +91,11 @@ namespace engine
         if (id != 0)
         {
             glAttachShader(m_programId, id);
-            if(debug) std::cout << "[Shader] " << shaderName << " shader attached " << std::endl;
+            if(applicationDebug) std::cout << "[Shader] " << shaderName << " shader attached " << std::endl;
         }
         else
         {
-            if(debug) std::cout << COLOR_RED << "[Shader] ERROR: Creation aborded (" << shaderName << " shader not compiled)" << COLOR_RESET << std::endl;
+            if(applicationDebug) std::cout << COLOR_RED << "[Shader] ERROR: Creation aborded (" << shaderName << " shader not compiled)" << COLOR_RESET << std::endl;
             assert(false);
         }
     }
@@ -120,14 +120,14 @@ namespace engine
                 glGetShaderiv(shaderId, GL_INFO_LOG_LENGTH, &infosLength);
                 std::vector<char> message(infosLength);
                 glGetShaderInfoLog(shaderId, infosLength, &infosLength, &message[0]);
-                if(debug) std::cerr << COLOR_RED << "[Shader] ERROR: Error during compiling shader (" << shaderTypeStr(shaderType) << ") :" << std::endl
+                if(applicationDebug) std::cerr << COLOR_RED << "[Shader] ERROR: Error during compiling shader (" << shaderTypeStr(shaderType) << ") :" << std::endl
                           << &message[0] << COLOR_RESET << std::endl;
                 return 0;
             }
         }
         else
         {
-            if(debug) std::cerr << COLOR_RED << "[Shader] ERROR: Failed to assign new shader id (" << shaderTypeStr(shaderType) << " shader)" << COLOR_RESET << std::endl;
+            if(applicationDebug) std::cerr << COLOR_RED << "[Shader] ERROR: Failed to assign new shader id (" << shaderTypeStr(shaderType) << " shader)" << COLOR_RESET << std::endl;
         }
         return shaderId;
     }
@@ -142,7 +142,7 @@ namespace engine
         {
             std::string message = "[Shader] ERROR: Failed to open file: ";
             message += filepath;
-            if(debug) std::cerr << COLOR_RED << message.c_str() << COLOR_RESET << std::endl;
+            if(applicationDebug) std::cerr << COLOR_RED << message.c_str() << COLOR_RESET << std::endl;
         }
 
         std::stringstream stream;
@@ -200,7 +200,7 @@ namespace engine
 
         if (location == -1)
         {
-            if(debug) std::cerr << COLOR_RED << "[Shader] ERROR: uniform \"" << uniformName << "\" doesn't exist" << COLOR_RESET << std::endl;
+            if(applicationDebug) std::cerr << COLOR_RED << "[Shader] ERROR: uniform \"" << uniformName << "\" doesn't exist" << COLOR_RESET << std::endl;
         }
 
         m_uniformLocationCache[uniformName] = location;

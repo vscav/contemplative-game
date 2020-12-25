@@ -13,7 +13,7 @@ Application::Application()
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
-    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), new engine::Scene(), title, width, height, fullScreen)
+    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(title, width, height, fullScreen), new engine::Scene(), title, width, height, fullScreen)
 {
     initialize();
 }
@@ -48,11 +48,26 @@ void Application::initialize()
             "application/res/textures/skybox/space/top.png",
             new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")));
 
+    // Create a point lights object
+    std::unique_ptr<engine::PointLights> pointLights(new engine::PointLights());
+
     // Add the newly created entity player to the application scene
     m_scene->add(std::move(player));
 
     // Add the obstacle newly created to the application scene
     m_scene->add(std::move(obstacle));
+
+    // Add a point lights container to the application scene
+    m_scene->add(std::move(pointLights));
+
+    // Add a point light to the application scene point lights container
+    m_scene->pointLights()->addPointLight(glm::vec3(3.0, 0.0, -4.5),
+                                          glm::vec3(0.2, 0.2, 0.2),
+                                          1.0f,
+                                          0.09f,
+                                          0.032f,
+                                          glm::vec3(1.0) * 0.1f,
+                                          glm::vec3(1.0));
 
     // Add the newly created skybox to the application scene
     m_scene->add(std::move(skybox));

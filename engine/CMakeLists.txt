@@ -13,6 +13,7 @@ add_subdirectory(doc)
 include_directories(../lib/glm)
 include_directories(../lib/glew/include)
 include_directories(../lib/glfw/include)
+include_directories(../lib/openal/include)
 
 # compile engine as library
 add_library(engine ${SRC_FILES} ${HEADER_FILES} src/FilePath.cpp)

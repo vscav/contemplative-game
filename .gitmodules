@@ -7,3 +7,6 @@
 [submodule "lib/glew"]
 	path = lib/glew
 	url = https://github.com/Perlmint/glew-cmake.git
+[submodule "lib/freetype2"]
+	path = lib/freetype2
+	url = https://github.com/freetype/freetype2.git

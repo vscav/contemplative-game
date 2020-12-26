@@ -7,12 +7,6 @@
 namespace audio
 {
 
-    AudioDevice *AudioDevice::getInstance()
-    {
-      std::cout << "Device found" << '\n';
-        static AudioDevice *audioDevice = new AudioDevice();
-        return audioDevice;
-    }
 
     AudioDevice::AudioDevice()
     {
@@ -38,19 +32,11 @@ namespace audio
         std::cout << "[AudioDevice] Opened " << name << std::endl;
     }
 
-    AudioDevice::~AudioDevice() noexcept(false)
+    AudioDevice::~AudioDevice()
     {
         alcMakeContextCurrent(nullptr);
-        if (!alcMakeContextCurrent(nullptr))
-            throw std::runtime_error("[AudioDevice] ERROR: Failed to set context to nullptr");
-
         alcDestroyContext(m_ALCContext);
-        if (m_ALCContext)
-            throw std::runtime_error("[AudioDevice] ERROR: Failed to unset during close");
-
         alcCloseDevice(m_ALCDevice);
-        if (!alcCloseDevice(m_ALCDevice))
-            throw std::runtime_error("[AudioDevice] ERROR: Failed to close audio device");
     }
 
 } // namespace audio

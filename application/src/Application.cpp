@@ -1,5 +1,6 @@
 #include <engine/TrackballCamera.hpp>
 #include <engine/GLFWManager.hpp>
+#include <engine/OpenALManager.hpp>
 #include <engine/Scene.hpp>
 
 #include "../include/Application.hpp"
@@ -7,13 +8,13 @@
 #include <string>
 
 Application::Application()
-    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), new engine::Scene())
+    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), new engine::OpenALManager(), new engine::Scene())
 {
     initialize();
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
-    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), new engine::Scene(), title, width, height, fullScreen)
+    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), new engine::OpenALManager(),new engine::Scene(), title, width, height, fullScreen)
 {
     initialize();
 }

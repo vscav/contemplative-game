@@ -10,30 +10,19 @@ namespace engine
 
     AudioListener::AudioListener()
     {
-      m_listenerPosX=0.0;
-      m_listenerPosY=0.0;
-      m_listenerPosZ=0.0;
-
-      m_listenerVelX=0.0;
-      m_listenerVelY=0.0;
-      m_listenerVelZ=0.0;
-
-      // m_listenerVel={0.0,0.0,0.0};
-      // m_listenerOri={0.0,0.0,-1.0, 0.0,1.0,0.0};
 
       ALenum error;
 
       // Position ...
-      alListener3f(AL_POSITION,m_listenerPosX,m_listenerPosY,m_listenerPosZ);
+      alListenerfv(AL_POSITION,m_listenerPos);
       if ((error = alGetError()) != AL_NO_ERROR)
       {
           std::cerr << "[OPENAL] alListenerfv POSITION :  " << error << " with call for " << std::endl;
           return;
       }
 
-      //
       // Velocity ...
-      alListener3f(AL_VELOCITY,m_listenerVelX,m_listenerVelY,m_listenerVelZ);
+      alListenerfv(AL_VELOCITY,m_listenerVel);
       if ((error = alGetError()) != AL_NO_ERROR)
       {
           std::cerr << "[OPENAL] alListenerfv VELOCITY :  " << error << " with call for " << std::endl;
@@ -41,12 +30,12 @@ namespace engine
       }
       //
       // // Orientation ...
-      // alListenerfv(AL_ORIENTATION,listenerOri);
-      // if ((error = alGetError()) != AL_NO_ERROR)
-      // {
-      //     DisplayALError("alListenerfv ORIENTATION : ", error);
-      //     return;
-      // }
+      alListenerfv(AL_ORIENTATION,m_listenerOri);
+      if ((error = alGetError()) != AL_NO_ERROR)
+      {
+          std::cerr << "[OPENAL] alListenerfv ORIENTATION :  " << error << " with call for " << std::endl;
+          return;
+      }
 
       std::cout << "[Audio Listener] Created listener" << '\n';
     }

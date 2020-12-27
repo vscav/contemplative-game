@@ -15,16 +15,9 @@ namespace engine
     {
     private:
 
-
-     ALfloat m_listenerPosX;
-     ALfloat m_listenerPosY;
-     ALfloat m_listenerPosZ;
-
-     ALfloat m_listenerVelX;
-     ALfloat m_listenerVelY;
-     ALfloat m_listenerVelZ;
-
-    // ALfloat m_listenerOri[];
+      ALfloat m_listenerPos[3]={0.0, 0.0, 0.0};
+      ALfloat m_listenerVel[3]={0.0, 0.0, 0.0};
+      ALfloat m_listenerOri[6]={0.0,0.0,-1.0, 0.0,1.0,0.0};
 
 
     public:

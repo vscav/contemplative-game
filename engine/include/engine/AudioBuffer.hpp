@@ -6,27 +6,26 @@
 
 #include <vector>
 
-namespace audio
+namespace engine
 {
     /// \class AudioBuffer
-    /// \brief Class (singleton) that instanciates an audio buffer and avoid the creation of multiple audio buffers.
+    /// \brief Class that instanciates an audio buffer and avoid the creation of multiple audio buffers.
     class AudioBuffer
     {
     private:
+
+        std::vector<ALuint> m_audioEffectBuffers;
+
+    public:
         /// \brief Constructor
         AudioBuffer();
         /// \brief Destructor
         ~AudioBuffer();
 
-        std::vector<ALuint> m_audioEffectBuffers;
-
-    public:
-        static AudioBuffer *getInstance();
-
         ALuint addAudioEffect(const char *filename);
         bool removeAudioEffect(const ALuint &buffer);
     };
 
-} // namespace audio
+} // namespace engine
 
 #endif /* _AudioBuffer_HPP_ */

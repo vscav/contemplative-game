@@ -4,7 +4,7 @@
 
 #include <AL/al.h>
 
-namespace audio
+namespace engine
 {
 
     class AudioSource
@@ -25,6 +25,6 @@ namespace audio
         void play(const ALuint bufferToPlay);
     };
 
-} // namespace audio
+} // namespace engine
 
 #endif /* _AudioSource_HPP_ */

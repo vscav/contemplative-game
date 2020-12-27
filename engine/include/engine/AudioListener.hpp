@@ -1,23 +1,20 @@
 #pragma once
-#ifndef _AudioDevice_HPP_
-#define _AudioDevice_HPP_
+#ifndef _AudioListener_HPP_
+#define _AudioListener_HPP_
 
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <vector>
 
-namespace audio
+namespace engine
 {
 
     /// \class AudioDevice
-    /// \brief Class (singleton) that instanciates an audio device and avoid the creation of multiple devices.
+    /// \brief Class that instanciates an audio device and avoid the creation of multiple devices.
     class AudioListener
     {
     private:
-      /// \brief Constructor.
 
-      /// \brief Destructor.
-      ~AudioListener() noexcept(false);
 
      ALfloat m_listenerPosX;
      ALfloat m_listenerPosY;
@@ -31,20 +28,14 @@ namespace audio
 
 
     public:
-        /// \brief The function to get the instance of the audio device.
-        static AudioListener *getInstance();
 
+        /// \brief Constructor.
         AudioListener();
+
+        /// \brief Destructor.
+        ~AudioListener() noexcept(false);
     };
 
-} // namespace audio
+} // namespace engine
 
 #endif /* _AudioDevice_HPP_ */
-
-// alec(alListener3f(AL_POSITION, 0.f, 0.f, 0.f));
-// 	alec(alListener3f(AL_VELOCITY, 0.f, 0.f, 0.f));
-// 	ALfloat forwardAndUpVectors[] = {
-// 		/*forward = */ 1.f, 0.f, 0.f,
-// 		/* up = */ 0.f, 1.f, 0.f
-// 	};
-// 	alec(alListenerfv(AL_ORIENTATION, forwardAndUpVectors));

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace audio
+namespace engine
 {
 
     AudioSource::AudioSource()
@@ -39,4 +39,4 @@ namespace audio
         }
     }
 
-} // namespace audio
+} // namespace engine

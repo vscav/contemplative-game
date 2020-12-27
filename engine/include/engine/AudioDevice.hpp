@@ -4,7 +4,7 @@
 
 #include <AL/alc.h>
 
-namespace audio
+namespace engine
 {
 
     /// \class AudioDevice

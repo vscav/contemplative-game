@@ -8,14 +8,9 @@
 #include <stdlib.h>
 #include <limits.h>
 
-namespace audio
+namespace engine
 {
 
-    AudioBuffer *AudioBuffer::getInstance()
-    {
-        static AudioBuffer *sndbuf = new AudioBuffer();
-        return sndbuf;
-    }
 
     ALuint AudioBuffer::addAudioEffect(const char *filename)
     {
@@ -137,4 +132,4 @@ namespace audio
         m_audioEffectBuffers.clear();
     }
 
-} // namespace audio
+} // namespace engine

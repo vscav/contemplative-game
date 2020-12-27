@@ -4,6 +4,9 @@
 
 #include <engine/GLAudioManager.hpp>
 #include <engine/AudioDevice.hpp>
+#include <engine/AudioListener.hpp>
+#include <engine/AudioSource.hpp>
+//#include <engine/AudioBuffer.hpp>
 
 
 #include <iostream>
@@ -21,7 +24,10 @@ namespace engine
     class OpenALManager final : public GLAudioManager
     {
     protected:
-        std::unique_ptr<audio::AudioDevice> m_audioDevice;
+        std::unique_ptr<AudioDevice> m_audioDevice;
+        std::unique_ptr<AudioListener> m_audioListener;
+        std::unique_ptr<AudioSource> m_audioSource;
+        //std::unique_ptr<AudioBuffer> m_audioBuffer;
 
 
     public:

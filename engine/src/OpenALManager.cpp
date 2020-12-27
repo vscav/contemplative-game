@@ -5,7 +5,7 @@
 namespace engine
 {
 
-    OpenALManager::OpenALManager():m_audioDevice(new audio::AudioDevice())
+    OpenALManager::OpenALManager():m_audioDevice(new AudioDevice()),m_audioListener(new AudioListener()),m_audioSource(new AudioSource())
     {
         initialize();
     }
@@ -27,7 +27,7 @@ namespace engine
     // This destroys the window
     void OpenALManager::destroy()
     {
-      
+
     }
 
 } // namespace engine

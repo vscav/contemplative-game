@@ -5,14 +5,8 @@
 
 #include <iostream>
 
-namespace audio
+namespace engine
 {
-
-    AudioListener *AudioListener::getInstance()
-    {
-        static AudioListener *audioListener = new AudioListener();
-        return audioListener;
-    }
 
     AudioListener::AudioListener()
     {
@@ -53,6 +47,8 @@ namespace audio
       //     DisplayALError("alListenerfv ORIENTATION : ", error);
       //     return;
       // }
+
+      std::cout << "[Audio Listener] Created listener" << '\n';
     }
 
     AudioListener::~AudioListener() noexcept(false)
@@ -60,4 +56,4 @@ namespace audio
 
     }
 
-} // namespace audio
+} // namespace engine

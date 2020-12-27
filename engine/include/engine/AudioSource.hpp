@@ -23,6 +23,7 @@ namespace engine
         ALuint m_source;
 
         void play(const ALuint bufferToPlay);
+        void stop();
     };
 
 } // namespace engine

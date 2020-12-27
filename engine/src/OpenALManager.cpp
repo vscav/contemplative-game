@@ -12,7 +12,7 @@ namespace engine
 
     int OpenALManager::initialize()
     {
-      m_audioBuffer->addAudioEffect("application/res/sounds/la_vibrato.wav");
+      m_audioBuffer->addAudioEffect("application/res/sounds/hwh.wav");
         // Return success
         return 0;
     }
@@ -36,7 +36,8 @@ namespace engine
     // This destroys the window
     void OpenALManager::destroy()
     {
-
+      m_audioSource->stop();
+      m_isPlaying=AL_STOPPED;
     }
 
 } // namespace engine

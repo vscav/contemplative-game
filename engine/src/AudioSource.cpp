@@ -18,8 +18,6 @@ namespace engine
 
     AudioSource::~AudioSource()
     {
-        alSourceStop(m_source);
-        alSourcei(m_source, AL_BUFFER, 0);
         std::cout << "[AudioSource] Delete the following audio source: " << m_source << std::endl;
         alDeleteSources(1, &m_source);
     }
@@ -35,6 +33,11 @@ namespace engine
 
         alSourcePlay(m_source);
 
+    }
+
+    void AudioSource::stop(){
+      alSourceStop(m_source);
+      alSourcei(m_source, AL_BUFFER, 0);
     }
 
 } // namespace engine

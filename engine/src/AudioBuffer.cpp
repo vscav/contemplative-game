@@ -62,6 +62,7 @@ namespace engine
             sf_close(sndfile);
             return 0;
         }
+        std::cout << "[AudioBuffer] Format of this sound is : "  << format << '\n';
 
         // decode the whole audio file to a buffer
         membuf = static_cast<short *>(malloc((size_t)(sfinfo.frames * sfinfo.channels) * sizeof(short)));

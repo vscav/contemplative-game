@@ -7,6 +7,7 @@
 #include <inttypes.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <cstring>
 
 namespace engine
 {
@@ -23,8 +24,11 @@ namespace engine
         sf_count_t num_frames;
         ALsizei num_bytes;
 
+        memset(&sfinfo, 0, sizeof(SF_INFO));
+
         // open the audio file and check that it's usable.
         sndfile = sf_open(filename, SFM_READ, &sfinfo);
+        sf_perror(sndfile);
         if (!sndfile)
         {
             std::cerr << "Could not open audio in " << filename << std::endl;

@@ -26,17 +26,13 @@ namespace engine
     {
         if (buffer_to_play != m_buffer)
         {
+          std::cout << "New buffer" << '\n';
             m_buffer = buffer_to_play;
             alSourcei(m_source, AL_BUFFER, (ALint)m_buffer);
         }
 
         alSourcePlay(m_source);
 
-        ALint state = AL_PLAYING;
-        while (state == AL_PLAYING && alGetError() == AL_NO_ERROR)
-        {
-            alGetSourcei(m_source, AL_SOURCE_STATE, &state);
-        }
     }
 
 } // namespace engine

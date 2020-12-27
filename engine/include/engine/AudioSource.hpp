@@ -10,7 +10,6 @@ namespace engine
     class AudioSource
     {
     private:
-        ALuint m_source;
         float m_pitch = 1.f;
         float m_gain = 1.f;
         float m_position[3] = {0, 0, 0};
@@ -21,6 +20,7 @@ namespace engine
     public:
         AudioSource();
         ~AudioSource();
+        ALuint m_source;
 
         void play(const ALuint bufferToPlay);
     };

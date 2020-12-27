@@ -5,14 +5,14 @@
 namespace engine
 {
 
-    OpenALManager::OpenALManager():m_audioDevice(new AudioDevice()),m_audioListener(new AudioListener()),m_audioSource(new AudioSource())
+    OpenALManager::OpenALManager():m_audioDevice(new AudioDevice()),m_audioListener(new AudioListener()),m_audioSource(new AudioSource()), m_audioBuffer(new AudioBuffer())
     {
         initialize();
     }
 
     int OpenALManager::initialize()
     {
-
+      m_audioBuffer->addAudioEffect("application/res/sounds/la_vibrato.wav");
         // Return success
         return 0;
     }
@@ -20,6 +20,15 @@ namespace engine
 
     void OpenALManager::update()
     {
+      //std::cout << "Testing Calling play sound" << '\n';
+      alGetSourcei(m_audioSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
+      //std::cout << m_isPlaying << '\n';
+
+      if (m_isPlaying != AL_PLAYING || alGetError() != AL_NO_ERROR)
+      {
+          std::cout << "Callign play function" << '\n';
+          m_audioSource->play(m_audioBuffer.get()->m_audioEffectBuffers[0]);
+      }
 
     }
 

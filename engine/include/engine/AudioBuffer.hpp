@@ -14,7 +14,7 @@ namespace engine
     {
     private:
 
-        std::vector<ALuint> m_audioEffectBuffers;
+
 
     public:
         /// \brief Constructor
@@ -24,6 +24,7 @@ namespace engine
 
         ALuint addAudioEffect(const char *filename);
         bool removeAudioEffect(const ALuint &buffer);
+        std::vector<ALuint> m_audioEffectBuffers;
     };
 
 } // namespace engine

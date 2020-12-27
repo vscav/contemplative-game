@@ -53,11 +53,13 @@ namespace engine
 
     while (m_state == stateRun)
     {
+      m_audioManager->update();
       getWindowManager()->update();
 
       getWindowManager()->processInput();
 
       loop();
+
 
       getWindowManager()->swapBuffers();
     }

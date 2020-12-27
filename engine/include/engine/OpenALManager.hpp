@@ -6,7 +6,8 @@
 #include <engine/AudioDevice.hpp>
 #include <engine/AudioListener.hpp>
 #include <engine/AudioSource.hpp>
-//#include <engine/AudioBuffer.hpp>
+#include <engine/AudioBuffer.hpp>
+#include <AL/al.h>
 
 
 #include <iostream>
@@ -27,7 +28,8 @@ namespace engine
         std::unique_ptr<AudioDevice> m_audioDevice;
         std::unique_ptr<AudioListener> m_audioListener;
         std::unique_ptr<AudioSource> m_audioSource;
-        //std::unique_ptr<AudioBuffer> m_audioBuffer;
+        std::unique_ptr<AudioBuffer> m_audioBuffer;
+        ALint m_isPlaying=AL_STOPPED;
 
 
     public:

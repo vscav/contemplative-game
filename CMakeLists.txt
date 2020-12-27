@@ -21,11 +21,14 @@ add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
 # openal library subdirectory
 add_subdirectory(lib/openal EXCLUDE_FROM_ALL)
 
+# sndfile library subdirectory
+add_subdirectory(lib/sndfile EXCLUDE_FROM_ALL)
+
 # engine library subdirectory
 add_subdirectory(engine)
 
 # set all libraries
-set(ALL_LIBRARIES engine libglew_static glfw OpenAL)
+set(ALL_LIBRARIES engine libglew_static glfw OpenAL sndfile)
 
 # change executable files directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})

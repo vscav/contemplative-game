@@ -7,3 +7,9 @@
 [submodule "lib/glew"]
 	path = lib/glew
 	url = https://github.com/Perlmint/glew-cmake.git
+[submodule "lib/openal"]
+	path = lib/openal
+	url = https://github.com/kcat/openal-soft.git
+[submodule "lib/sndfile"]
+	path = lib/sndfile
+	url = https://github.com/libsndfile/libsndfile.git

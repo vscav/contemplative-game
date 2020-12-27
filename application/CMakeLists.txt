@@ -11,6 +11,7 @@ file(GLOB_RECURSE GEOM_SHADER_FILES *.geom)
 include_directories(../lib/glm)
 include_directories(../lib/glew/include)
 include_directories(../lib/glfw/include)
+include_directories(../lib/openal/include)
 
 # include engine
 include_directories(../engine/include)
@@ -30,3 +31,5 @@ file(COPY res/shaders DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)
 file(COPY res/textures/skybox/space DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/textures/skybox)
 # copy gltf file and its texture images to the build directory
 file(COPY res/models DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)
+# copy sound files to the build directory
+file(COPY res/sounds DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)

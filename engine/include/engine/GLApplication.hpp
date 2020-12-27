@@ -4,6 +4,7 @@
 
 #include <engine/TimeManager.hpp>
 #include <engine/GLWindowManager.hpp>
+#include <engine/GLAudioManager.hpp>
 #include <engine/Camera.hpp>
 #include <engine/Scene.hpp>
 
@@ -38,7 +39,7 @@ namespace engine
         std::unique_ptr<GLWindowManager> m_windowManager; /*!< A unique pointer to the window manager of the application. */
         std::shared_ptr<Camera> m_camera;                 /*!< A shared pointer to the camera used by the application and shared with the renderer. */
         std::unique_ptr<Scene> m_scene;                   /*!< A unique pointer to the scene (collection of graphical objects to display). */
-
+        std::unique_ptr<GLAudioManager> m_audioManager;
         /// \brief The GL application loop (run until the user asks to quit).
         virtual void loop();
 
@@ -47,7 +48,7 @@ namespace engine
         /// \param camera : The camera which will be used by the application.
         /// \param manager : The window manager which will be used by the application.
         /// \param scene : The scene which will be displayed by the application.
-        GLApplication(Camera *camera, GLWindowManager *manager, Scene *scene);
+        GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager, Scene *scene);
 
         /// \brief Detailed parameterized constructor.
         /// \param camera : The camera which will be used by the application.
@@ -57,7 +58,7 @@ namespace engine
         /// \param width : The GL application width value.
         /// \param height : The GL application height value.
         /// \param fullScreen : A boolean to determine if the GL application window is in full screen mode.
-        explicit GLApplication(Camera *camera, GLWindowManager *manager, Scene *scene,
+        explicit GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager, Scene *scene,
                                std::string title, int width, int height, bool fullScreen);
 
         /// \brief Copy constructor.

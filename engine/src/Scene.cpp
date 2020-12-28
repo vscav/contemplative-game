@@ -22,6 +22,8 @@ namespace engine
 
         updateObstaclesList(m_obstacles, dt);
 
+        directionalLight()->update(dt);
+
         pointLights()->update(dt);
     }
 

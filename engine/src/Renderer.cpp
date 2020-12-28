@@ -53,6 +53,7 @@ namespace engine
 
         const auto lightDirectionInViewSpace = glm::normalize(glm::vec3(m_view * glm::vec4(m_scene->directionalLight()->direction(), 0.0f)));
         const auto lightIntensity = m_scene->directionalLight()->intensity();
+        const auto lightColor = m_scene->directionalLight()->color();
 
         shader->setVec3f("uLightDirection",
                          lightDirectionInViewSpace[0],
@@ -64,7 +65,10 @@ namespace engine
                          lightIntensity[1],
                          lightIntensity[2]);
 
-        // To do : color
+        shader->setVec3f("uLightColor",
+                         lightColor[0],
+                         lightColor[1],
+                         lightColor[2]);
 
         shader->unbind();
     }

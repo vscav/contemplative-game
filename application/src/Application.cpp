@@ -49,7 +49,9 @@ void Application::initialize()
             new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")));
 
     // Create a directional light object
-    std::unique_ptr<engine::DirectionalLight> directionalLight(new engine::DirectionalLight());
+    std::unique_ptr<engine::DirectionalLight> directionalLight(new engine::DirectionalLight(glm::vec3(1.0f),
+                                                                                            glm::vec3(0.5f, 0.65f, 1.0f),
+                                                                                            glm::vec3(1.0f)));
 
     // Create a point lights object
     std::unique_ptr<engine::PointLights> pointLights(new engine::PointLights());

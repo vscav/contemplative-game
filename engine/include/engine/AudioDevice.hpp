@@ -8,11 +8,10 @@ namespace engine
 {
 
     /// \class AudioDevice
-    /// \brief Class that instanciates an audio device and avoid the creation of multiple devices.
+    /// \brief Class that instanciates an audio device
     class AudioDevice
     {
     private:
-
 
         ALCdevice *m_ALCDevice;   /*!< A pointer to the default user audio device. */
         ALCcontext *m_ALCContext; /*!< A pointer to the audio context. */

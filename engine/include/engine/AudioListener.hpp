@@ -10,14 +10,14 @@ namespace engine
 {
 
     /// \class AudioDevice
-    /// \brief Class that instanciates an audio device and avoid the creation of multiple devices.
+    /// \brief Class that instanciates.
     class AudioListener
     {
     private:
 
-      ALfloat m_listenerPos[3]={0.0, 0.0, 0.0};
-      ALfloat m_listenerVel[3]={0.0, 0.0, 0.0};
-      ALfloat m_listenerOri[6]={0.0,0.0,-1.0, 0.0,1.0,0.0};
+      ALfloat m_listenerPos[3]={0.0, 0.0, 0.0}; /*!< An array that represent the position of the listener */
+      ALfloat m_listenerVel[3]={0.0, 0.0, 0.0}; /*!< An array that represent the velocity of the listener */
+      ALfloat m_listenerOri[6]={0.0,0.0,-1.0, 0.0,1.0,0.0}; /*!< An array that represent the orientation of the listener */
 
 
     public:

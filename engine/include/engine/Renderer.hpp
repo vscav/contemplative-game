@@ -3,6 +3,7 @@
 #define _Renderer_HPP_
 
 #include <engine/Camera.hpp>
+#include <engine/Scene.hpp>
 #include <engine/Shader.hpp>
 #include <engine/dependencies/glm.hpp>
 
@@ -21,6 +22,7 @@ namespace engine
         ~Renderer() = default;
 
         std::shared_ptr<Camera> m_camera; /*!< A shared pointer to the camera of the application. */
+         std::shared_ptr<Scene> m_scene; /*!< A shared pointer to the scene of the application. */
 
         glm::mat4 m_view;       /*!< The current view matrix. */
         glm::mat4 m_projection; /*!< The current projection matrix. */
@@ -49,6 +51,10 @@ namespace engine
         /// \param shader : The shader on which the blinn phong uniforms will be send.
         void sendBlinnPhongUniforms(Shader *shader) const;
 
+        /// \brief Sends the directional light uniforms to the dedicated shader.
+        /// \param shader : The shader on which the directional uniforms will be send.
+        void sendDirectionalLightUniforms(Shader *shader) const;
+
         /// \brief Updates the renderer view matrix based on the current camera.
         inline void updateViewMatrix() { m_view = m_camera->getViewMatrix(); };
 
@@ -58,6 +64,10 @@ namespace engine
         /// \brief Sets the camera of the renderer.
         /// \param camera : The camera to be set as the renderer camera.
         inline void setCamera(std::shared_ptr<Camera> camera) { m_camera = std::move(camera); };
+
+        /// \brief Sets the camera of the renderer.
+        /// \param camera : The camera to be set as the renderer camera.
+        inline void setScene(std::shared_ptr<Scene> scene) { m_scene = std::move(scene); };
 
         /// \brief Returns the view matrix of the renderer (based on the camera).
         /// \return The view matrix.

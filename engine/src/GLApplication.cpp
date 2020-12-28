@@ -24,6 +24,8 @@ namespace engine
         m_scene(scene)
   {
     Renderer::getInstance().setCamera(m_camera);
+    Renderer::getInstance().setScene(m_scene);
+
     currentGLApplication = this;
   }
 
@@ -36,6 +38,8 @@ namespace engine
         m_scene(scene)
   {
     Renderer::getInstance().setCamera(m_camera);
+    Renderer::getInstance().setScene(m_scene);
+
     currentGLApplication = this;
   }
 

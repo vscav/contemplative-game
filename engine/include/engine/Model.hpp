@@ -21,7 +21,7 @@ namespace engine
     {
     private:
         tinygltf::Model m_model; /*!< The 3D model. */
-        Collider m_collider; /*!< The collider of the model. */
+        Collider m_collider;     /*!< The collider of the model. */
 
         fs::path m_gltfFilePath; /*!< The path to the GLTF file which describes the 3D model. */
 
@@ -32,9 +32,6 @@ namespace engine
         std::vector<VertexArrayObject::VaoRange> m_meshToVertexArrays; /*!< The vector containing the range of VAOs for each mesh. */
 
         GLuint m_whiteTexture = 0; /*!< This will be used for the base color of objects that have no materials. */
-
-        // bool m_lightFromCamera; /*!< Boolean used to tell whether the directionnal light comes from the camera. */
-        // bool m_applyOcclusion;
 
     public:
         /// \brief Parameterized constructor.
@@ -68,6 +65,9 @@ namespace engine
         std::vector<GLuint> createVertexArrayObjects(const tinygltf::Model &model,
                                                      const std::vector<GLuint> &bufferObjects,
                                                      std::vector<VertexArrayObject::VaoRange> &meshToVertexArrays);
+
+        /// \brief
+        void createDefaultTexture();
 
         /// \brief Renders the model to the screen/window.
         /// \param shader : The shaders associated to the model and to its entity.

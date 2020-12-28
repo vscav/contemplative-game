@@ -7,7 +7,6 @@
 #include <engine/VertexBufferObject.hpp>
 #include <engine/VertexArrayObject.hpp>
 #include <engine/Shader.hpp>
-#include <engine/Container.hpp>
 #include <engine/dependencies/glm.hpp>
 
 #include <cmath>
@@ -29,10 +28,10 @@ namespace engine
         void build(GLfloat radius, GLsizei discLat, GLsizei discLong);
 
     private:
-        Container<ShapeVertex> m_vertices; /*!< Vertices of the sphere. */
+        std::vector<ShapeVertex> m_vertices; /*!< Vertices of the sphere. */
         GLsizei m_nVertexCount;            /*!< Number of vertices. */
 
-        std::shared_ptr<Shader> m_shader; /*!< The shader to use for the sphere. */
+        // std::shared_ptr<Shader> m_shader; /*!< The shader to use for the sphere. */
 
         VertexArrayObject m_vao;  /*!< Vertex Array Object of the sphere. */
         VertexBufferObject m_vbo; /*!< Vertex Buffer Object of the sphere. */
@@ -48,12 +47,13 @@ namespace engine
         /// \param radius : The radius of the sphere.
         /// \param discLat : The number of segments to discretize the latitude of the sphere.
         /// \param discLong : The number of segments to discretize the longitude of the sphere.
-        Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong, Shader *shader);
+        // Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong, Shader *shader);
+        Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong);
         ~Sphere() = default;
 
         /// \brief Returns the data (vertices) of the sphere.
         /// \return The data (vertices) of the sphere.
-        inline Container<ShapeVertex> getVertices() const { return m_vertices; };
+        inline std::vector<ShapeVertex> getVertices() const { return m_vertices; };
 
         /// \brief Returns the number of vertices of the sphere.
         /// \return The number of vertices of the sphere.

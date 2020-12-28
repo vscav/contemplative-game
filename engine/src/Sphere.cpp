@@ -5,7 +5,8 @@
 namespace engine
 {
 
-    Sphere::Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong, Shader *shader) : m_nVertexCount(0), m_shader(shader)
+    //Sphere::Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong, Shader *shader) : m_nVertexCount(0), m_shader(shader)
+    Sphere::Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong) : m_nVertexCount(0)
     {
         build(radius, discLat, discLong);
 
@@ -45,8 +46,8 @@ namespace engine
 
     void Sphere::render()
     {
-        Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), m_shader.get());
-        Renderer::getInstance().sendBlinnPhongUniforms(m_shader.get());
+        // Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), m_shader.get());
+        // Renderer::getInstance().sendBlinnPhongUniforms(m_shader.get());
 
         m_vao.bind();
 
@@ -54,7 +55,7 @@ namespace engine
 
         m_vao.unbind();
 
-        m_shader->unbind();
+        // m_shader->unbind();
     }
 
     void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong)
@@ -62,7 +63,7 @@ namespace engine
         GLfloat rcpLat = 1.f / discLat, rcpLong = 1.f / discLong;
         GLfloat dPhi = 2 * glm::pi<float>() * rcpLat, dTheta = glm::pi<float>() * rcpLong;
 
-        Container<ShapeVertex> data;
+        std::vector<ShapeVertex> data;
 
         for (GLsizei j = 0; j <= discLong; ++j)
         {
@@ -82,7 +83,7 @@ namespace engine
 
                 vertex.position = r * vertex.normal;
 
-                data.add(vertex);
+                data.push_back(vertex);
             }
         }
 
@@ -93,12 +94,12 @@ namespace engine
             GLsizei offset = j * (discLat + 1);
             for (GLsizei i = 0; i < discLat; ++i)
             {
-                m_vertices.add(data.at(offset + i));
-                m_vertices.add(data.at(offset + (i + 1)));
-                m_vertices.add(data.at(offset + discLat + 1 + (i + 1)));
-                m_vertices.add(data.at(offset + i));
-                m_vertices.add(data.at(offset + discLat + 1 + (i + 1)));
-                m_vertices.add(data.at(offset + i + discLat + 1));
+                m_vertices.push_back(data.at(offset + i));
+                m_vertices.push_back(data.at(offset + (i + 1)));
+                m_vertices.push_back(data.at(offset + discLat + 1 + (i + 1)));
+                m_vertices.push_back(data.at(offset + i));
+                m_vertices.push_back(data.at(offset + discLat + 1 + (i + 1)));
+                m_vertices.push_back(data.at(offset + i + discLat + 1));
             }
         }
     }

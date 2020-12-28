@@ -6,6 +6,7 @@ in vec3 vViewSpaceNormal;
 in vec3 vViewSpacePosition;
 in vec2 vTexCoords;
 
+uniform vec3 uLightColor;
 uniform vec3 uLightDirection;
 uniform vec3 uLightIntensity;
 uniform vec4 uBaseColorFactor;
@@ -93,7 +94,7 @@ void main()
   vec3 f_diffuse = (1.0 - F) * diffuse;
   vec3 f_specular = F * Vis * D;
 
-  vec3 nonOccludedColor = (f_diffuse + f_specular) * uLightIntensity * NdotL;
+  vec3 nonOccludedColor = (f_diffuse + f_specular) * uLightIntensity * NdotL * uLightColor;
   vec3 occludedColor = mix(nonOccludedColor, nonOccludedColor * occlusion, uOcclusionStrength);
 
   fColor = LINEARtoSRGB(occludedColor + emissive);

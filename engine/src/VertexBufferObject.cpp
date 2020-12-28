@@ -13,7 +13,8 @@ namespace engine
 
     VertexBufferObject::~VertexBufferObject()
     {
-        if(applicationDebug) std::cout << "[VBO] Delete VBO with index " << m_index << std::endl;
+        if (applicationDebug)
+            std::cout << "[VBO] Delete VBO with index " << m_index << std::endl;
         glDeleteBuffers(1, &m_index);
     }
 
@@ -37,6 +38,11 @@ namespace engine
             GL_FALSE,
             stride,
             (const GLvoid *)(intptr_t)(offset));
+    }
+
+    void VertexBufferObject::setAttribDivisor(const GLuint &index, const GLubyte &divisor)
+    {
+        glVertexAttribDivisor(index, divisor);
     }
 
 } // namespace engine

@@ -26,7 +26,6 @@ namespace engine
 
       if (m_isPlaying != AL_PLAYING || alGetError() != AL_NO_ERROR)
       {
-          std::cout << "Callign play function" << '\n';
           m_audioSource->play(m_audioBuffer.get()->m_audioEffectBuffers[0]);
       }
 

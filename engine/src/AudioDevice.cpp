@@ -1,4 +1,6 @@
 #include <engine/AudioDevice.hpp>
+#include <engine/utils/common.hpp>
+#include <engine/utils/cout_colors.hpp>
 
 #include <AL/al.h>
 
@@ -29,7 +31,7 @@ namespace engine
             name = alcGetString(m_ALCDevice, ALC_ALL_DEVICES_SPECIFIER);
         if (!name || alcGetError(m_ALCDevice) != AL_NO_ERROR)
             name = alcGetString(m_ALCDevice, ALC_DEVICE_SPECIFIER);
-        std::cout << "[AudioDevice] Opened " << name << std::endl;
+        if(applicationDebug) std::cout << COLOR_CYAN << "[AudioDevice]" << COLOR_RESET << " Opened " << name << std::endl;
     }
 
     AudioDevice::~AudioDevice()

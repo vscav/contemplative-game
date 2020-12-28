@@ -5,7 +5,7 @@
 #include <AL/alext.h>
 
 #include <iostream>
-#include <engine/sndfile.h>
+#include <engine/dependencies/sndfile.h>
 #include <inttypes.h>
 #include <stdlib.h>
 #include <limits.h>

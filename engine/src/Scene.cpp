@@ -27,23 +27,19 @@ namespace engine
 
     void Scene::updateObstaclesList(std::list<std::unique_ptr<Entity>> &obstaclesList, const float dt)
     {
-        // Player &player(dynamic_cast<Player &>(*m_player));
         for (typename std::list<std::unique_ptr<Entity>>::iterator it = obstaclesList.begin(); it != obstaclesList.end(); ++it)
         {
             Obstacle &currentEntity(dynamic_cast<Obstacle &>(**it));
 
-            currentEntity.update(dt);
-            handleCollision(*m_player.get(), currentEntity);
-
-            // if (glm::abs(currentEntity.getPosition()[0] - m_player->getPosition()[0]) < m_maxCollideDistance)
-            // {
-            //     currentEntity.update(dt);
-            //     handleCollision(*m_player.get(), currentEntity);
-            // }
-            // else if ((*it)->getPosition()[0] > m_player->getPosition()[0])
-            // {
-            //     break;
-            // }
+            if (glm::abs(currentEntity.getPosition()[0] - m_player->getPosition()[0]) < m_maxCollideDistance)
+            {
+                currentEntity.update(dt);
+                handleCollision(*m_player.get(), currentEntity);
+            }
+            else if ((*it)->getPosition()[0] > m_player->getPosition()[0])
+            {
+                break;
+            }
         }
     }
 

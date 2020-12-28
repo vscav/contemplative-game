@@ -48,6 +48,9 @@ void Application::initialize()
             "application/res/textures/skybox/space/top.png",
             new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")));
 
+    // Create a directional light object
+    std::unique_ptr<engine::DirectionalLight> directionalLight(new engine::DirectionalLight());
+
     // Create a point lights object
     std::unique_ptr<engine::PointLights> pointLights(new engine::PointLights());
 
@@ -56,6 +59,9 @@ void Application::initialize()
 
     // Add the obstacle newly created to the application scene
     m_scene->add(std::move(obstacle));
+
+    // Add a directional light to the application scene
+    m_scene->add(std::move(directionalLight));
 
     // Add a point lights container to the application scene
     m_scene->add(std::move(pointLights));

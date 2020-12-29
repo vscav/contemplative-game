@@ -9,8 +9,10 @@ namespace engine
 {
     class Obstacle;
 
-    constexpr glm::vec3 defaultPlayerPosition = glm::vec3(0.0f, 0.0f, 10.0f);
-    constexpr float defaultPlayerSpeed = 0.25f;
+    constexpr glm::vec3 defaultPlayerPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+
+    constexpr float runSpeed = 0.25f;
+    constexpr float turnSpeed = 0.05f;
 
     constexpr float minimumPlayerUp = 1.0f;
     constexpr float maximumPlayerUp = 10.0f;
@@ -18,7 +20,8 @@ namespace engine
     class Player : public Entity
     {
     protected:
-        float m_speed = defaultPlayerSpeed; /*!< The player current movement speed. */
+        float m_currentSpeed = 0.0f; /*!< The player current movement speed. */
+        float m_currentTurnSpeed = 0.0f;
 
         // float m_lerpFactor = 0.9f;
         // float m_lerpSpeed = 0.0f;
@@ -36,6 +39,8 @@ namespace engine
         void moveLeft(int delta);
         /// \brief
         void moveUp(int delta);
+
+        void move(const float dt);
 
         /// \brief
         void doCollisionWith(Entity &other);

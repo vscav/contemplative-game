@@ -29,8 +29,10 @@ namespace engine
         void setBuffer(const ALuint buffer_to_play);
 
         /// \brief Method to make the source start playing the sound
-        /// \param bufferToPlay : the buffer we want the source to play
         void play();
+
+        /// \brief Method to pause the source playing the sound
+        void pause();
 
         /// \brief Method to stop the source
         void stop();

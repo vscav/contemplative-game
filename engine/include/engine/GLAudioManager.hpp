@@ -23,12 +23,15 @@ namespace engine
         /// \return An integer acting as a boolean for success/fail information.
         virtual int initialize() = 0;
 
-
         /// \brief Updates the audio (should be called every frame).
         virtual void update() = 0;
 
+        /// \brief Pauses the audio.
+        virtual void pause() = 0;
+
         /// \brief Destroys the audio context.
         virtual void destroy() = 0;
+
 
 
     };

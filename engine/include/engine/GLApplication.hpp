@@ -102,6 +102,10 @@ namespace engine
         /// \brief Returns the scene (pointer) of the GL application.
         /// \return A pointer to the scene of the GL application.
         inline Scene *getScene() { return m_scene.get(); };
+
+        /// \brief Returns the audio manager (pointer) of the application.
+        /// \return A pointer to the audio manager of the application.
+        inline GLAudioManager *getAudioManager() { return m_audioManager.get(); };
     };
 
 } // namespace engine

@@ -28,6 +28,7 @@ namespace engine
 			break;
 		case Pause:
 			GLApplication::getInstance().pause();
+			GLApplication::getInstance().getAudioManager()->pause();
 				break;
 		default:
 			break;

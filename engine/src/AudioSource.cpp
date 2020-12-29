@@ -15,7 +15,7 @@ namespace engine
         alSource3f(m_source, AL_POSITION, m_position[0], m_position[1], m_position[2]);
         alSource3f(m_source, AL_VELOCITY, m_velocity[0], m_velocity[1], m_velocity[2]);
         //alSourcei(m_source, AL_LOOPING, m_loopAudio);
-        alSourcei(m_source, AL_BUFFER, m_buffer);
+        //alSourcei(m_source, AL_BUFFER, m_buffer);
     }
 
     AudioSource::~AudioSource()
@@ -24,16 +24,22 @@ namespace engine
         alDeleteSources(1, &m_source);
     }
 
-    void AudioSource::play(const ALuint buffer_to_play)
-    {
-        if (buffer_to_play != m_buffer)
+    void AudioSource::setBuffer(const ALuint buffer_to_play){
+        alSourcei(m_source, AL_BUFFER, (ALint)buffer_to_play);
+        if ((alGetError()) != AL_NO_ERROR)
         {
-            m_buffer = buffer_to_play;
-            alSourcei(m_source, AL_BUFFER, (ALint)m_buffer);
+            std::cerr << COLOR_RED <<"[AudioBuffer] Error while setting the buffer" << COLOR_RESET << std::endl;
         }
+    }
 
+    void AudioSource::play()
+    {
         alSourcePlay(m_source);
+    }
 
+    void AudioSource::pause()
+    {
+      alSourcePause(m_source);
     }
 
     void AudioSource::stop(){

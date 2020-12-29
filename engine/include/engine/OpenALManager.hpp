@@ -46,6 +46,9 @@ namespace engine
         /// \brief Updates the context (should be called every frame).
         void update() override;
 
+        /// \brief Pause the sound.
+        void pause();
+
         /// \brief Destroys the OpenAL context.
         void destroy() override;
 

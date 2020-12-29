@@ -26,9 +26,11 @@ namespace engine
         /// \brief Destructor.
         ~AudioSource();
 
+        void setBuffer(const ALuint buffer_to_play);
+
         /// \brief Method to make the source start playing the sound
         /// \param bufferToPlay : the buffer we want the source to play
-        void play(const ALuint bufferToPlay);
+        void play();
 
         /// \brief Method to stop the source
         void stop();

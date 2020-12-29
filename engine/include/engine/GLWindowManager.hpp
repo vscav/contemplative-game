@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _WindowManager_HPP_
-#define _WindowManager_HPP_
+#ifndef _GLWindowManager_HPP_
+#define _GLWindowManager_HPP_
 
 #include <engine/InputManager.hpp>
 #include <engine/GLWindowUtils.hpp>

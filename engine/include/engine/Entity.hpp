@@ -67,9 +67,6 @@ namespace engine
         /// \brief
         virtual void doCollisionWith(Entity &other){};
 
-        /// \brief
-        // void collideWith(Entity &other);
-
         /// \brief Returns the transform matrix of the entity.
         virtual const glm::mat4 getMatrix();
 

@@ -14,7 +14,7 @@ Application::Application()
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
-    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), new engine::OpenALManager(),new engine::Scene(), title, width, height, fullScreen)
+    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), new engine::OpenALManager(), new engine::Scene(), title, width, height, fullScreen)
 {
     initialize();
 }
@@ -57,6 +57,11 @@ void Application::initialize()
     // Create a point lights object
     std::unique_ptr<engine::PointLights> pointLights(new engine::PointLights());
 
+    // Create a particles system
+    std::unique_ptr<engine::ParticleSystem> particleSystem(
+        new engine::ParticleSystem(
+            new engine::Shader("application/res/shaders/particle.vert", "application/res/shaders/particle.frag")));
+
     // Add the newly created entity player to the application scene
     m_scene->add(std::move(player));
 
@@ -80,6 +85,9 @@ void Application::initialize()
 
     // Add the newly created skybox to the application scene
     m_scene->add(std::move(skybox));
+
+    // Add the particle system to the application scene
+    m_scene->add(std::move(particleSystem));
 }
 
 void Application::loop()
@@ -88,7 +96,9 @@ void Application::loop()
     engine::TimeManager::getInstance().calculateFrameRate(false);
 
     // Get the total time ellapsed since the application was run
-    float dt = m_windowManager->getTimeElapsed();
+    float dt = m_windowManager->getFrameDeltaTime();
+
+    m_windowManager->getTimeElapsed();
 
     // Update the camera
     m_camera->update(dt);
@@ -98,4 +108,6 @@ void Application::loop()
 
     // Render the entire scene
     m_scene->render();
+
+    // GLFW sleep to call
 }

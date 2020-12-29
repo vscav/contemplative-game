@@ -88,6 +88,9 @@ namespace engine
 
         /// \brief Updates the camera position.
         void updatePosition(glm::vec3 const position) override;
+        /// \brief Gets the position of the camera.
+        /// \return The position of the camera.
+        glm::vec3 getPosition() const override { return m_position; };
 
         /// \brief Updates the camera.
         void update(float dt) override;

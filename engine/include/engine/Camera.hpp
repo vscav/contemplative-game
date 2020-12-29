@@ -56,6 +56,9 @@ namespace engine
 
         /// \brief Updates the camera position.
         virtual void updatePosition(glm::vec3 const position) = 0;
+        /// \brief Gets the position of the camera.
+        /// \return The position of the camera.
+        virtual glm::vec3 getPosition() const = 0;
 
         /// \brief Updates the camera.
         virtual void update(float dt) = 0;

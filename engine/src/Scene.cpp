@@ -1,4 +1,5 @@
 #include <engine/Scene.hpp>
+#include <engine/Renderer.hpp>
 
 namespace engine
 {
@@ -25,6 +26,12 @@ namespace engine
         directionalLight()->update(dt);
 
         pointLights()->update(dt);
+
+        m_particle.position = {0.0f, 0.0f, 0.0f};
+
+        m_particleSystem->emit(m_particle);
+
+        particleSystem()->update(dt);
     }
 
     void Scene::updateObstaclesList(std::list<std::unique_ptr<Entity>> &obstaclesList, const float dt)
@@ -47,15 +54,9 @@ namespace engine
 
     void Scene::render()
     {
-        if (skybox() != nullptr)
-        {
-            skybox()->render();
-        }
+        skybox()->render();
 
-        if (player() != nullptr)
-        {
-            player()->render();
-        }
+        player()->render();
 
         if (!m_obstacles.empty())
         {
@@ -69,10 +70,9 @@ namespace engine
             }
         }
 
-        if (pointLights() != nullptr)
-        {
-            pointLights()->render();
-        }
+        pointLights()->render();
+
+        particleSystem()->render();
     }
 
 } // namespace engine

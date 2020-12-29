@@ -33,7 +33,6 @@ namespace engine
 
 	void InputManager::mouseMoved(float mouseX, float mouseY)
 	{
-		// Return if we don't have a valid camera assigned
 		if (GLApplication::getInstance().getCamera() == nullptr)
 			return;
 
@@ -43,7 +42,6 @@ namespace engine
 
 	void InputManager::wheelMoved(double offsetY)
 	{
-		// Return if we don't have a valid camera assigned
 		if (GLApplication::getInstance().getCamera() == nullptr)
 			return;
 

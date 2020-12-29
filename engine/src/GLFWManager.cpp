@@ -215,7 +215,7 @@ namespace engine
 
     float const GLFWManager::getFrameDeltaTime()
     {
-        m_deltaTime = getTimeElapsed() - m_time;
+        m_deltaTime = (float)glfwGetTime() - m_time;
 
         return m_deltaTime;
     }

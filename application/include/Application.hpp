@@ -4,6 +4,8 @@
 
 #include <engine/GLApplication.hpp>
 
+#include <engine/ParticleSystem.hpp>
+
 /// \class Application
 /// \brief Class which inherites from the global GLApplication class.
 class Application : public engine::GLApplication

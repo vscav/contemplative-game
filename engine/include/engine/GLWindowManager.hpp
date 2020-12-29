@@ -42,6 +42,9 @@ namespace engine
         /// \brief Destroys the window and the OpenGL context.
         virtual void destroy() = 0;
 
+        /// 
+        virtual void setKeyCallback() = 0;
+
         /// \brief Returns the window/application title.
         /// \return The title of the window/application.
         virtual std::string getTitle() const = 0;

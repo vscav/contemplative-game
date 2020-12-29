@@ -80,9 +80,16 @@ namespace engine
         /// \brief Runs the GL application by changing the current state and starting the GL application main loop.
         void run();
 
+        /// \brief Pause the GL application by changing the current state
+        void pause();
+
         /// \brief Returns the current state of the GL application (ready, running, paused, exited).
         /// \return The current state of the GL application (ready, running, paused, exited).
         inline State getState() const { return m_state; }
+
+        /// \brief Setter for the state of the application
+        /// \param newState : The state that we want to set the application to
+        void setState(State newState);
 
         /// \brief Returns the window manager (pointer) of the GL application.
         /// \return A pointer to the window manager of the GL application.

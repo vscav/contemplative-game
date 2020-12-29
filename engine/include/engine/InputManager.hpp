@@ -19,7 +19,8 @@ namespace engine
 		Left,
 		Right,
 		Up,
-		Jump
+		Jump,
+		Pause
 	};
 
 	/// \class InputManager

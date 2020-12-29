@@ -55,17 +55,25 @@ namespace engine
   {
     m_state = stateRun;
 
-    while (m_state == stateRun)
+    while (m_state == stateRun || m_state == statePause)
     {
-      m_audioManager->update();
-      getWindowManager()->update();
-
-      getWindowManager()->processInput();
-
-      loop();
-
-
+      if(m_state == stateRun){
+        m_audioManager->update();
+        getWindowManager()->update();
+        loop();
+        getWindowManager()->processInput();
+      }
       getWindowManager()->swapBuffers();
+      getWindowManager()->setKeyCallback();
+    }
+  }
+
+  void GLApplication::pause(){
+    if(m_state == stateRun){
+      m_state = statePause;
+    }
+    else{
+      m_state = stateRun;
     }
   }
 
@@ -73,6 +81,10 @@ namespace engine
   {
     if (applicationDebug)
       std::cout << "[Info] GLApplication main loop" << std::endl;
+  }
+
+  void GLApplication::setState(State newState){
+    m_state=newState;
   }
 
 } // namespace engine

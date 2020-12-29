@@ -16,6 +16,25 @@ namespace engine
         initialize();
     }
 
+    void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+    {
+      if (key == GLFW_KEY_P && action == GLFW_PRESS){
+        std::cout << "P was pressed" << '\n';
+        ((GLFWManager *)glfwGetWindowUserPointer(window))->getInputManager()->keyPressed(InputCodes::Pause);
+      }
+    }
+
+
+    void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
+    {
+        ((GLFWManager *)glfwGetWindowUserPointer(window))->getInputManager()->wheelMoved(yoffset);
+    }
+
+    void GLFWManager::setKeyCallback(){
+        glfwSetKeyCallback(m_window, key_callback);
+        glfwPollEvents();
+    }
+
     int GLFWManager::initialize()
     {
         if (applicationDebug)
@@ -57,6 +76,13 @@ namespace engine
 
         // opengl configuration : antialiasing
         m_windowUtils->antialias(true);
+
+        //setting key_callback
+        glfwSetKeyCallback(m_window, key_callback);
+
+        //setting scroll callback
+        glfwSetScrollCallback(m_window, scroll_callback);
+
 
         // Return success
         return 0;
@@ -142,10 +168,6 @@ namespace engine
         glfwSwapBuffers(m_window);
     }
 
-    void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
-    {
-        ((GLFWManager *)glfwGetWindowUserPointer(window))->getInputManager()->wheelMoved(yoffset);
-    }
 
     // This function processes all the application's input
     void GLFWManager::processInput()
@@ -169,8 +191,6 @@ namespace engine
         if (glfwGetKey(m_window, GLFW_KEY_SPACE))
             m_inputManager->keyPressed(InputCodes::Jump);
 
-        // Wheel moved
-        glfwSetScrollCallback(m_window, scroll_callback);
 
         // Mouse moved
         double xpos, ypos;

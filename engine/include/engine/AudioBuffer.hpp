@@ -9,11 +9,10 @@
 namespace engine
 {
     /// \class AudioBuffer
-    /// \brief Class that instanciates an audio buffer and avoid the creation of multiple audio buffers.
+    /// \brief Class that instanciates an audio buffer
     class AudioBuffer
     {
     private:
-
 
 
     public:
@@ -22,9 +21,18 @@ namespace engine
         /// \brief Destructor
         ~AudioBuffer();
 
+        std::vector<ALuint> m_audioEffectBuffers; /*!< The audio buffer */
+
+        /// \brief Method that load a sound file and put it into a buffer
+        /// \param filename : the path of the sound file
+        /// \return The buffer created
         ALuint addAudioEffect(const char *filename);
+
+        /// \brief Method that unload a buffer
+        /// \param buffer : the buffer to unload
+        /// \return A bolean for the success (or not) of the operation
         bool removeAudioEffect(const ALuint &buffer);
-        std::vector<ALuint> m_audioEffectBuffers;
+
     };
 
 } // namespace engine

@@ -1,9 +1,11 @@
 #include <engine/AudioBuffer.hpp>
+#include <engine/utils/common.hpp>
+#include <engine/utils/cout_colors.hpp>
 
 #include <AL/alext.h>
 
 #include <iostream>
-#include <engine/sndfile.h>
+#include <engine/dependencies/sndfile.h>
 #include <inttypes.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -28,15 +30,15 @@ namespace engine
 
         // open the audio file and check that it's usable.
         sndfile = sf_open(filename, SFM_READ, &sfinfo);
-        sf_perror(sndfile);
+        //f_perror(sndfile); To get a verbose error from sndfile
         if (!sndfile)
         {
-            std::cerr << "Could not open audio in " << filename << std::endl;
+            std::cerr << COLOR_RED << "[AudioBuffer] sndfile : Could not open audio in " << filename << COLOR_RESET <<std::endl;
             return 0;
         }
         if (sfinfo.frames < 1 || sfinfo.frames > (sf_count_t)(INT_MAX / sizeof(short)) / sfinfo.channels)
         {
-            std::cerr << "Bad sample count in " << filename << std::endl;
+            std::cerr << "[AudioBuffer] sndfile : Bad sample count in " << filename << COLOR_RESET << std::endl;
             return 0;
         }
 
@@ -58,11 +60,10 @@ namespace engine
         }
         if (!format)
         {
-            std::cerr << "Unsupported channel count: " << sfinfo.channels << std::endl;
+            std::cerr << COLOR_RED <<"[AudioBuffer] Unsupported channel count: " << sfinfo.channels << COLOR_RESET << std::endl;
             sf_close(sndfile);
             return 0;
         }
-        std::cout << "[AudioBuffer] Format of this sound is : "  << format << '\n';
 
         // decode the whole audio file to a buffer
         membuf = static_cast<short *>(malloc((size_t)(sfinfo.frames * sfinfo.channels) * sizeof(short)));
@@ -72,7 +73,7 @@ namespace engine
         {
             free(membuf);
             sf_close(sndfile);
-            std::cerr << "Failed to read samples in " << filename << std::endl;
+            std::cerr << COLOR_RED << "[AudioBuffer] Failed to read samples in " << filename << COLOR_RESET << std::endl;
             return 0;
         }
         num_bytes = (ALsizei)(num_frames * sfinfo.channels) * (ALsizei)sizeof(short);
@@ -89,7 +90,7 @@ namespace engine
         err = alGetError();
         if (err != AL_NO_ERROR)
         {
-            std::cerr << "OpenAL Error: " << alGetString(err) << std::endl;
+            std::cerr << COLOR_RED << "[OpenAL] Error: " << alGetString(err) << COLOR_RESET <<std::endl;
             if (buffer && alIsBuffer(buffer))
                 alDeleteBuffers(1, &buffer);
             return 0;
@@ -130,7 +131,7 @@ namespace engine
 
     AudioBuffer::~AudioBuffer()
     {
-        std::cout << "[AudioBuffer] Delete the main audio buffer" << std::endl;
+        if(applicationDebug) std::cout << COLOR_CYAN << "[AudioBuffer]" << COLOR_RESET << " Delete the main audio buffer" << std::endl;
 
         alDeleteBuffers(m_audioEffectBuffers.size(), m_audioEffectBuffers.data());
 

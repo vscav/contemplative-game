@@ -10,9 +10,8 @@
 namespace engine
 {
     /// \class GLAudioManager
-    /// \brief Class for managing the creation of the window, input and the
-    /// creating of the OpenGL context. This class should be inherited from to create
-    /// specific implementations like OPENAL or IrrKlang.
+    /// \brief Class for managing the creation of the sound context, inputs
+    /// This class should be inherited from to create specific implementations like OPENAL or IrrKlang.
     class GLAudioManager
     {
 
@@ -28,7 +27,7 @@ namespace engine
         /// \brief Updates the audio (should be called every frame).
         virtual void update() = 0;
 
-        /// \brief Destroys the window and the OpenGL context.
+        /// \brief Destroys the audio context.
         virtual void destroy() = 0;
 
 

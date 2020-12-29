@@ -1,4 +1,6 @@
 #include <engine/AudioSource.hpp>
+#include <engine/utils/common.hpp>
+#include <engine/utils/cout_colors.hpp>
 
 #include <iostream>
 
@@ -18,7 +20,7 @@ namespace engine
 
     AudioSource::~AudioSource()
     {
-        std::cout << "[AudioSource] Delete the following audio source: " << m_source << std::endl;
+        if(applicationDebug) std::cout << COLOR_CYAN << "[AudioSource]" << COLOR_RESET <<" Delete the following audio source: " << m_source << std::endl;
         alDeleteSources(1, &m_source);
     }
 
@@ -26,7 +28,6 @@ namespace engine
     {
         if (buffer_to_play != m_buffer)
         {
-          std::cout << "New buffer" << '\n';
             m_buffer = buffer_to_play;
             alSourcei(m_source, AL_BUFFER, (ALint)m_buffer);
         }

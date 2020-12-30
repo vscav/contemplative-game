@@ -13,6 +13,7 @@ namespace engine
 
     constexpr float runSpeed = 0.25f;
     constexpr float turnSpeed = 0.05f;
+    constexpr float upSpeed = 0.15f;
 
     constexpr float minimumPlayerUp = 1.0f;
     constexpr float maximumPlayerUp = 10.0f;
@@ -20,12 +21,9 @@ namespace engine
     class Player : public Entity
     {
     protected:
-        float m_currentSpeed = 0.0f; /*!< The player current movement speed. */
+        float m_currentSpeed = 0.0f; /*!< */
         float m_currentTurnSpeed = 0.0f;
-
-        // float m_lerpFactor = 0.9f;
-        // float m_lerpSpeed = 0.0f;
-        // float m_sensitivity = 0.1f;
+        float m_currentUpspeed = 0.0f;
 
     public:
         /// \brief

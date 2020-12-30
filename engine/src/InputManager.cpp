@@ -11,20 +11,26 @@ namespace engine
 
 		switch (code)
 		{
-		case Up:
+		case Forward:
 			GLApplication::getInstance().getScene()->player()->moveForward(-1);
 			break;
-		case Down:
+		case Backward:
 			GLApplication::getInstance().getScene()->player()->moveForward(1);
 			break;
 		case Left:
-			GLApplication::getInstance().getScene()->player()->moveLeft(1);
+			GLApplication::getInstance().getScene()->player()->moveLeft(-1);
 			break;
 		case Right:
-			GLApplication::getInstance().getScene()->player()->moveLeft(-1);
+			GLApplication::getInstance().getScene()->player()->moveLeft(1);
 			break;
 		case Jump:
 			GLApplication::getInstance().getScene()->player()->moveUp(1);
+			break;
+		case Up:
+			GLApplication::getInstance().getScene()->player()->moveUp(1);
+			break;
+		case Down:
+			GLApplication::getInstance().getScene()->player()->moveUp(-1);
 			break;
 		case Pause:
 			GLApplication::getInstance().pause();

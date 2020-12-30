@@ -16,21 +16,22 @@ namespace engine
         initialize();
     }
 
-    void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+    void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
     {
-      if (key == GLFW_KEY_P && action == GLFW_PRESS){
-        std::cout << "P was pressed" << '\n';
-        ((GLFWManager *)glfwGetWindowUserPointer(window))->getInputManager()->keyPressed(InputCodes::Pause);
-      }
+        if (key == GLFW_KEY_P && action == GLFW_PRESS)
+        {
+            std::cout << "P was pressed" << '\n';
+            ((GLFWManager *)glfwGetWindowUserPointer(window))->getInputManager()->keyPressed(InputCodes::Pause);
+        }
     }
-
 
     void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
     {
         ((GLFWManager *)glfwGetWindowUserPointer(window))->getInputManager()->wheelMoved(yoffset);
     }
 
-    void GLFWManager::setKeyCallback(){
+    void GLFWManager::setKeyCallback()
+    {
         glfwSetKeyCallback(m_window, key_callback);
         glfwPollEvents();
     }
@@ -82,7 +83,6 @@ namespace engine
 
         //setting scroll callback
         glfwSetScrollCallback(m_window, scroll_callback);
-
 
         // Return success
         return 0;
@@ -168,7 +168,6 @@ namespace engine
         glfwSwapBuffers(m_window);
     }
 
-
     // This function processes all the application's input
     void GLFWManager::processInput()
     {
@@ -181,16 +180,17 @@ namespace engine
 
         // Key pressed
         if (glfwGetKey(m_window, GLFW_KEY_UP) || glfwGetKey(m_window, GLFW_KEY_W))
-            m_inputManager->keyPressed(InputCodes::Up);
+            m_inputManager->keyPressed(InputCodes::Forward);
         if (glfwGetKey(m_window, GLFW_KEY_DOWN) || glfwGetKey(m_window, GLFW_KEY_S))
-            m_inputManager->keyPressed(InputCodes::Down);
+            m_inputManager->keyPressed(InputCodes::Backward);
         if (glfwGetKey(m_window, GLFW_KEY_LEFT) || glfwGetKey(m_window, GLFW_KEY_A))
             m_inputManager->keyPressed(InputCodes::Left);
         if (glfwGetKey(m_window, GLFW_KEY_RIGHT) || glfwGetKey(m_window, GLFW_KEY_D))
             m_inputManager->keyPressed(InputCodes::Right);
-        if (glfwGetKey(m_window, GLFW_KEY_SPACE))
-            m_inputManager->keyPressed(InputCodes::Jump);
-
+        if (glfwGetKey(m_window, GLFW_KEY_E))
+            m_inputManager->keyPressed(InputCodes::Up);
+        if (glfwGetKey(m_window, GLFW_KEY_Q))
+            m_inputManager->keyPressed(InputCodes::Down);
 
         // Mouse moved
         double xpos, ypos;
@@ -243,6 +243,7 @@ namespace engine
     void GLFWManager::destroy()
     {
         glfwDestroyWindow(m_window);
+
         if (applicationDebug)
             std::cout << "[GLFWManager] Destroy GLFW window" << std::endl;
 

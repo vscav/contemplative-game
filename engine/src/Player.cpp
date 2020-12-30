@@ -14,10 +14,10 @@ namespace engine
     {
         m_currentSpeed = delta * runSpeed;
 
-        float dx = (float)(m_currentSpeed * glm::sin(m_rotation.y));
-        float dz = (float)(m_currentSpeed * glm::cos(m_rotation.y));
+        float dx = (float)(m_currentSpeed * glm::cos(m_rotation.y));
+        float dz = (float)(m_currentSpeed * glm::sin(m_rotation.y));
 
-        setPosition(glm::vec3(m_position.x + dx, 0.0, m_position.z + dz));
+        setPosition(glm::vec3(m_position.x + dx, m_position.y, m_position.z + dz));
     }
 
     void Player::moveLeft(int delta)
@@ -29,16 +29,22 @@ namespace engine
 
     void Player::moveUp(int delta)
     {
+        m_currentUpspeed = delta * upSpeed;
+
+        if (m_currentUpspeed > maximumPlayerUp)
+            m_currentUpspeed = maximumPlayerUp;
+        else if (m_currentUpspeed < minimumPlayerUp)
+            m_currentUpspeed = minimumPlayerUp;
+
+        setPosition(glm::vec3(m_position.x, m_currentUpspeed + m_position.y, m_position.z));
     }
 
-    /// \brief
     void Player::doCollisionWith(Entity &other)
     {
         if (physicsDebug)
             std::cout << "[Player] Player collided with an entity" << std::endl;
     };
 
-    /// \brief
     void Player::doCollisionWith(Obstacle &other)
     {
         if (physicsDebug)
@@ -47,14 +53,6 @@ namespace engine
 
     void Player::update(float dt)
     {
-        // // Update angles
-        // m_angleX += m_angleXSpeed * dt;
-        // m_angleY += m_angleYSpeed * dt;
-
-        // // Update angles speed
-        // m_angleXSpeed *= std::pow(m_lerpFactor, dt);
-        // m_angleYSpeed *= std::pow(m_lerpFactor, dt);
-
         GLApplication::getInstance().getCamera()->updatePosition(m_position);
     }
 

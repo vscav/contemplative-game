@@ -12,15 +12,16 @@
 namespace engine
 {
 
-	/// \brief A standardized enum to code for keyboard inputs.
+	/// \brief An enum for keyboard action inputs.
 	enum InputCodes
 	{
+		Backward,
 		Down,
+		Forward,
 		Left,
+		Pause,
 		Right,
-		Up,
-		Jump,
-		Pause
+		Up
 	};
 
 	/// \class InputManager

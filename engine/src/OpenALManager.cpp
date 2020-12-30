@@ -14,6 +14,8 @@ namespace engine
 
     int OpenALManager::initialize()
     {
+      alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
+
       m_audioBuffer->addAudioEffect("application/res/sounds/hwh.wav");
       m_audioSource->setBuffer(m_audioBuffer.get()->m_audioEffectBuffers[0]);
         // Return success

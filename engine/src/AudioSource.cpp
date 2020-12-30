@@ -15,7 +15,9 @@ namespace engine
         alSource3f(m_source, AL_POSITION, m_position[0], m_position[1], m_position[2]);
         alSource3f(m_source, AL_VELOCITY, m_velocity[0], m_velocity[1], m_velocity[2]);
 
-        //alSourcef(m_source, AL_)
+        alSourcef(m_source, AL_REFERENCE_DISTANCE, 2.5);
+        alSourcef(m_source, AL_ROLLOFF_FACTOR, 1.0);
+        //alSourcef(m_source, AL_MAX_DISTANCE, 15.0);
         //alSourcei(m_source, AL_LOOPING, m_loopAudio);
         //alSourcei(m_source, AL_BUFFER, m_buffer);
     }

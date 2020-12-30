@@ -2,8 +2,6 @@
 #ifndef _GLAudioManager_HPP_
 #define _GLAudioManager_HPP_
 
-
-
 #include <string>
 #include <fstream>
 

@@ -74,6 +74,11 @@ namespace engine
         m_position = position;
     }
 
+    glm::vec3 TrackballCamera::getPosition() const 
+    {
+      return m_position;
+    }
+
     void TrackballCamera::update(float dt)
     {
         // Update angles

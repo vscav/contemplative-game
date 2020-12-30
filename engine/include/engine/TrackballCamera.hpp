@@ -86,6 +86,9 @@ namespace engine
         /// \return The view projection matrix of the camera.
         glm::mat4 getVPMatrix() const override;
 
+        /// \brief Returns the position of the camera
+        glm::vec3 getPosition() const override;
+
         /// \brief Updates the camera position.
         void updatePosition(glm::vec3 const position) override;
 

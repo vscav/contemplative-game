@@ -7,8 +7,8 @@
 #include <engine/AudioListener.hpp>
 #include <engine/AudioSource.hpp>
 #include <engine/AudioBuffer.hpp>
-#include <AL/al.h>
 
+#include <AL/al.h>
 
 #include <iostream>
 #include <string>

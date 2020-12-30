@@ -1,4 +1,6 @@
 #include <engine/OpenALManager.hpp>
+#include <engine/GLApplication.hpp>
+#include <engine/dependencies/glm.hpp>
 
 #include <iostream>
 
@@ -30,7 +32,8 @@ namespace engine
 
     void OpenALManager::update()
     {
-
+      glm::vec3 cameraPosition = GLApplication::getInstance().getCamera()->getPosition();
+      m_audioListener->updatePosition(cameraPosition);
     }
 
     void OpenALManager::pause(){

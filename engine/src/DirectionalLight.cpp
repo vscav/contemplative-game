@@ -1,4 +1,5 @@
 #include <engine/DirectionalLight.hpp>
+#include <engine/utils/common.hpp>
 #include <engine/dependencies/glm.hpp>
 
 #include <iostream>
@@ -12,6 +13,8 @@ namespace engine
                                        const bool isStatic)
         : m_intensity(intensity), m_color(color), m_direction(direction), m_isStatic(isStatic)
     {
+        if (applicationDebug)
+            std::cout << "[DirectionalLight] Directional light created" << std::endl;
     }
 
     void DirectionalLight::update(float const dt)

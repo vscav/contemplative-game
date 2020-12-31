@@ -66,5 +66,32 @@
             1.0
         ],
         "isStatic": false
-    }
+    },
+    "pointLights": [
+        {
+            "position": [
+                3.0,
+                0.75,
+                3.0
+            ],
+            "scale": [
+                0.1,
+                0.1,
+                0.1
+            ],
+            "ambient": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "constant": 1.0,
+            "linear": 0.01,
+            "quadratic": 0.03
+        }
+    ]
 }

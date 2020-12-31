@@ -3,6 +3,7 @@
 #define _Serializer_HPP_
 
 #include <engine/Scene.hpp>
+#include <engine/utils/common.hpp>
 
 #include <json.hpp>
 
@@ -38,7 +39,8 @@ namespace engine
 
         std::shared_ptr<Scene> load(std::string sceneFilePath)
         {
-            std::cout << "[Serializer] Serializer is loading the scene" << std::endl;
+            if (applicationDebug)
+                std::cout << "[Serializer] Serializer is loading the scene" << std::endl;
 
             auto res = std::shared_ptr<Scene>(new Scene());
 
@@ -53,40 +55,45 @@ namespace engine
             if (data.find("directionalLight") != nullptr)
                 deserializeDirectionalLight(data.at("directionalLight"), res->directionalLight());
 
-            // if (data.find("pointLights") != nullptr)
-            // {
-            //     auto pointLights = std::unique_ptr<PointLights>(new PointLights());
-            //     deserializePointLights(data.at("pointLights"), pointLights);
-            // }
+            if (data.find("pointLights") != nullptr)
+            {
+                res->pointLights() = std::unique_ptr<PointLights>(new PointLights());
+                deserializePointLights(data.at("pointLights"), res->pointLights());
+            }
 
-            std::cout << "[Serializer] Serializer is done loading the scene" << std::endl;
+            if (applicationDebug)
+                std::cout << "[Serializer] Serializer is done loading the scene" << std::endl;
 
             return res;
         }
 
-        // void deserializePointLights(const tao::json::value &data, std::unique_ptr<PointLights> &destination)
-        // {
-        //     std::vector<tao::json::value> pointLights = data.get_array();
+        void deserializePointLights(const tao::json::value &data, std::unique_ptr<PointLights> &destination)
+        {
+            std::vector<tao::json::value> pointLights = data.get_array();
 
-        //     auto it = pointLights.begin();
-        //     while (it != pointLights.end())
-        //     {
-        //         try
-        //         {
-        //             destination.addPointLight(deserializePointLight(*it));
-        //         }
-        //         catch (std::exception &e)
-        //         {
-        //             std::cerr << e.what() << std::endl;
-        //             std::cerr << "Light will be ignored" << std::endl;
-        //         }
+            auto it = pointLights.begin();
+            while (it != pointLights.end())
+            {
+                glm::vec3 position = ((*it).find("position") != nullptr) ? deserializeVector3((*it).at("position")) : glm::vec3(0.0f);
+                glm::vec3 scale = ((*it).find("scale") != nullptr) ? deserializeVector3((*it).at("scale")) : glm::vec3(0.25f);
+                glm::vec3 ambient = ((*it).find("ambient") != nullptr) ? deserializeVector3((*it).at("ambient")) : glm::vec3(1.0f);
+                glm::vec3 diffuse = ((*it).find("diffuse") != nullptr) ? deserializeVector3((*it).at("diffuse")) : glm::vec3(1.0f);
 
-        //         ++it;
-        //     }
-        // }
+                float constant = ((*it).find("constant") != nullptr) ? deserializeFloat((*it).at("constant")) : 1.0f;
+                float linear = ((*it).find("linear") != nullptr) ? deserializeFloat((*it).at("linear")) : 0.01f;
+                float quadratic = ((*it).find("quadratic") != nullptr) ? deserializeFloat((*it).at("quadratic")) : 0.025f;
 
-        //  void deserializePointLight(const tao::json::value &data, std::unique_ptr<Player> &destination)
-        // {}
+                destination->addPointLight(position,
+                                           scale,
+                                           constant,
+                                           linear,
+                                           quadratic,
+                                           ambient,
+                                           diffuse);
+
+                ++it;
+            }
+        }
 
         void deserializeArrayIntoList(
             const tao::json::value &data,
@@ -112,7 +119,7 @@ namespace engine
 
         void deserializePlayer(const tao::json::value &data, std::unique_ptr<Player> &destination)
         {
-            std::string modelName = format(data.at("model").get_string());
+            std::string modelName = deserializeString(data.at("model"));
 
             destination = std::make_unique<Player>(Player(
                 Entity(
@@ -127,7 +134,7 @@ namespace engine
             glm::vec3 color = (data.find("color") != nullptr) ? deserializeVector3(data.at("color")) : glm::vec3(1.0f);
             glm::vec3 direction = (data.find("direction") != nullptr) ? deserializeVector3(data.at("direction")) : glm::vec3(1.0f);
 
-            bool isStatic = (data.find("isStatic") != nullptr) ? data.at("isStatic").get_boolean() : true;
+            bool isStatic = (data.find("isStatic") != nullptr) ? deserializeBoolean(data.at("isStatic")) : true;
 
             destination = std::make_unique<DirectionalLight>(DirectionalLight(intensity,
                                                                               color,
@@ -139,7 +146,7 @@ namespace engine
         {
             Entity *res;
 
-            std::string type = format(data.at("type").get_string());
+            std::string type = deserializeString(data.at("type"));
 
             if (type == "obstacle")
                 res = &deserializeObstacle(data);
@@ -153,9 +160,9 @@ namespace engine
 
         Obstacle &deserializeObstacle(const tao::json::value &data)
         {
-            std::string modelName = format(data.at("model").get_string());
+            std::string modelName = deserializeString(data.at("model"));
 
-            bool isStatic = (nullptr != data.find("isStatic")) ? data.at("isStatic").get_boolean() : true;
+            bool isStatic = (nullptr != data.find("isStatic")) ? deserializeBoolean(data.at("isStatic")) : true;
 
             return *new Obstacle(
                 Entity(
@@ -167,7 +174,6 @@ namespace engine
 
         // Collectable &deserializeCollectable(const tao::json::value &data)
         // {
-        //     return *new Collectable();
         // }
 
         Transform &deserializeTransform(const tao::json::value &data)
@@ -185,6 +191,21 @@ namespace engine
                 data.at(0).as<float>(),
                 data.at(1).as<float>(),
                 data.at(2).as<float>());
+        }
+
+        float deserializeFloat(const tao::json::value &data)
+        {
+            return data.as<float>();
+        }
+
+        bool deserializeBoolean(const tao::json::value &data)
+        {
+            return data.get_boolean();
+        }
+
+        std::string deserializeString(const tao::json::value &data)
+        {
+            return format(data.get_string());
         }
     };
 

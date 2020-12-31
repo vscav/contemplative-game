@@ -1,4 +1,9 @@
 {
+    "player": {
+        "model": "spaceship",
+        "shader": "pbr",
+        "isStatic": false
+    },
     "entities": [
         {
             "type": "obstacle",
@@ -45,51 +50,24 @@
                     0.0
                 ]
             }
-        },
-        {
-            "type": "collectable",
-            "model": "piece",
-            "shader": "pbr",
-            "static": true,
-            "transform": {
-                "position": [
-                    -6.0,
-                    1.5,
-                    5.0
-                ],
-                "scale": [
-                    1.0,
-                    1.0,
-                    1.0
-                ],
-                "rotation": [
-                    0.0,
-                    0.0,
-                    0.0
-                ]
-            }
         }
     ],
-    "directionalLight": [
-        {
-            "props": {
-                "intensity": [
-                    1.0,
-                    1.0,
-                    1.0
-                ],
-                "color": [
-                    0.5,
-                    0.65,
-                    1.0
-                ],
-                "direction": [
-                    1.0,
-                    1.0,
-                    1.0
-                ]
-            },
-            "isStatic": false
-        }
-    ]
+    "directionalLight": {
+        "intensity": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "color": [
+            0.5,
+            0.65,
+            1.0
+        ],
+        "direction": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "isStatic": false
+    }
 }

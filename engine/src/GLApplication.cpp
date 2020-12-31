@@ -43,14 +43,6 @@ namespace engine
     Renderer::getInstance().setCamera(m_camera);
     Renderer::getInstance().setScene(m_scene);
 
-    // Create a new player
-    std::unique_ptr<engine::Player> player(
-        new engine::Player(
-            engine::Entity(
-                new engine::Model("application/res/models/spaceship/scene.gltf"),
-                new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
-                false)));
-
     // Create a new skybox (CubeMap object)
     std::unique_ptr<engine::CubeMap> skybox(
         new engine::CubeMap(
@@ -61,9 +53,6 @@ namespace engine
             "application/res/textures/skybox/space/right.png",
             "application/res/textures/skybox/space/top.png",
             new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")));
-
-    // Add the newly created entity player to the application scene
-    m_scene->add(std::move(player));
 
     // Add the newly created skybox to the application scene
     m_scene->add(std::move(skybox));

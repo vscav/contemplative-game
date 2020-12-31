@@ -41,7 +41,9 @@ namespace engine
         ~PointLights() = default;
 
         void addPointLight(const glm::vec3 &position, const glm::vec3 &scale, const float &constant, const float &linear, const float &quadratic, const glm::vec3 &ambientColor, const glm::vec3 &diffuseColor);
+
         void resetPointLights();
+
         void deletePointLight(const glm::vec3 &position);
 
         inline std::vector<PointLight> getLights() { return m_lights; };

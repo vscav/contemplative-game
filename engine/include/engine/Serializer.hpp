@@ -27,8 +27,6 @@ namespace engine
         ~Serializer() = default;
 
     public:
-        tao::json::value m_data;
-
         static Serializer &getInstance()
         {
             static Serializer instance;
@@ -46,49 +44,94 @@ namespace engine
 
             tao::json::value data = tao::json::parse_file(sceneFilePath);
 
-            if (nullptr != data.find("directionalLight"))
+            if (data.find("entities") != nullptr)
+                deserializeArrayIntoList(data.at("entities"), res->obstacles());
+
+            if (data.find("player") != nullptr)
+                deserializePlayer(data.at("player"), res->player());
+
+            if (data.find("directionalLight") != nullptr)
                 deserializeDirectionalLight(data.at("directionalLight"), res->directionalLight());
 
-            if (nullptr != data.find("entities"))
-                deserializeArrayIntoList<Entity>(data.at("entities"), res->obstacles());
+            // if (data.find("pointLights") != nullptr)
+            // {
+            //     auto pointLights = std::unique_ptr<PointLights>(new PointLights());
+            //     deserializePointLights(data.at("pointLights"), pointLights);
+            // }
 
             std::cout << "[Serializer] Serializer is done loading the scene" << std::endl;
 
             return res;
         }
 
-        template <typename T>
+        // void deserializePointLights(const tao::json::value &data, std::unique_ptr<PointLights> &destination)
+        // {
+        //     std::vector<tao::json::value> pointLights = data.get_array();
+
+        //     auto it = pointLights.begin();
+        //     while (it != pointLights.end())
+        //     {
+        //         try
+        //         {
+        //             destination.addPointLight(deserializePointLight(*it));
+        //         }
+        //         catch (std::exception &e)
+        //         {
+        //             std::cerr << e.what() << std::endl;
+        //             std::cerr << "Light will be ignored" << std::endl;
+        //         }
+
+        //         ++it;
+        //     }
+        // }
+
+        //  void deserializePointLight(const tao::json::value &data, std::unique_ptr<Player> &destination)
+        // {}
+
         void deserializeArrayIntoList(
             const tao::json::value &data,
-            std::list<std::unique_ptr<T>> &destinationList)
+            std::list<std::unique_ptr<Entity>> &destinationList)
         {
-            std::vector<tao::json::value> objects = data.get_array();
+            std::vector<tao::json::value> entities = data.get_array();
 
-            auto it = objects.begin();
-            while (it != objects.end())
+            auto it = entities.begin();
+            while (it != entities.end())
             {
                 try
                 {
-                    destinationList.push_back(static_cast<std::unique_ptr<T>>(&deserializeEntity(*it)));
+                    destinationList.push_back(static_cast<std::unique_ptr<Entity>>(&deserializeEntity(*it)));
                 }
                 catch (std::exception &e)
                 {
                     std::cerr << e.what() << std::endl;
-                    std::cerr << "Object will be ignored" << std::endl;
+                    std::cerr << "Entity will be ignored" << std::endl;
                 }
 
                 ++it;
             }
         }
 
+        void deserializePlayer(const tao::json::value &data, std::unique_ptr<Player> &destination)
+        {
+            destination = std::make_unique<Player>(Player(
+                Entity(
+                    new Model("application/res/models/spaceship/scene.gltf"),
+                    new Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
+                    false)));
+        }
+
         void deserializeDirectionalLight(const tao::json::value &data, std::unique_ptr<DirectionalLight> &destination)
         {
-            // use array to call on lights in json and verify types (directional or point light)
-            // bool isStatic = (nullptr != data.find("isStatic")) ? data.at("isStatic").get_boolean() : true;
-            // use 
-            destination = std::make_unique<DirectionalLight>(DirectionalLight(glm::vec3(1.0f),
-                                                                              glm::vec3(0.5f, 0.65f, 1.0f),
-                                                                              glm::vec3(1.0f)));
+            glm::vec3 intensity = (data.find("intensity") != nullptr) ? deserializeVector3(data.at("intensity")) : glm::vec3(1.0f);
+            glm::vec3 color = (data.find("color") != nullptr) ? deserializeVector3(data.at("color")) : glm::vec3(1.0f);
+            glm::vec3 direction = (data.find("direction") != nullptr) ? deserializeVector3(data.at("direction")) : glm::vec3(1.0f);
+            
+            bool isStatic = (data.find("isStatic") != nullptr) ? data.at("isStatic").get_boolean() : true;
+
+            destination = std::make_unique<DirectionalLight>(DirectionalLight(intensity,
+                                                                              color,
+                                                                              direction,
+                                                                              isStatic));
         }
 
         Entity &deserializeEntity(const tao::json::value &data)
@@ -111,6 +154,7 @@ namespace engine
         {
             std::string modelName = format(data.at("model").get_string());
             std::string fragShaderName = format(data.at("shader").get_string());
+            
             bool isStatic = (nullptr != data.find("isStatic")) ? data.at("isStatic").get_boolean() : true;
 
             return *new Obstacle(
@@ -128,14 +172,14 @@ namespace engine
 
         Transform &deserializeTransform(const tao::json::value &data)
         {
-            glm::vec3 position = (nullptr != data.find("position")) ? deserializeVec3(data.at("position")) : glm::vec3(0.0f);
-            glm::vec3 rotation = (nullptr != data.find("rotation")) ? deserializeVec3(data.at("rotation")) : glm::vec3(0.0f);
-            glm::vec3 scale = (nullptr != data.find("scale")) ? deserializeVec3(data.at("scale")) : glm::vec3(1.0f);
+            glm::vec3 position = (nullptr != data.find("position")) ? deserializeVector3(data.at("position")) : glm::vec3(0.0f);
+            glm::vec3 rotation = (nullptr != data.find("rotation")) ? deserializeVector3(data.at("rotation")) : glm::vec3(0.0f);
+            glm::vec3 scale = (nullptr != data.find("scale")) ? deserializeVector3(data.at("scale")) : glm::vec3(1.0f);
 
             return *new Transform(position, scale, rotation);
         }
 
-        glm::vec3 deserializeVec3(const tao::json::value &data)
+        glm::vec3 deserializeVector3(const tao::json::value &data)
         {
             return glm::vec3(
                 data.at(0).as<float>(),

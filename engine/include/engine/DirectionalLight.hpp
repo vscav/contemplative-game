@@ -15,12 +15,14 @@ namespace engine
         glm::vec3 m_intensity;
         glm::vec3 m_color;
         glm::vec3 m_direction;
+        bool m_isStatic;
         float m_speed = defaultLightCycleSpeed;
 
     public:
         DirectionalLight(const glm::vec3 &intensity = glm::vec3(1.0f),
                          const glm::vec3 &color = glm::vec3(1.0f),
-                         const glm::vec3 &direction = glm::vec3(1.0f));
+                         const glm::vec3 &direction = glm::vec3(1.0f),
+                         const bool isStatic = true);
 
         ~DirectionalLight() = default;
 

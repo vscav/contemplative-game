@@ -12,27 +12,42 @@ namespace engine
 		switch (code)
 		{
 		case Up:
-			GLApplication::getInstance().getScene()->player()->moveForward(-1);
+			if (GLApplication::getInstance().getScene()->player() != nullptr)
+			{
+				GLApplication::getInstance().getScene()->player()->moveForward(-1);
+			}
 			break;
 		case Down:
-			GLApplication::getInstance().getScene()->player()->moveForward(1);
+			if (GLApplication::getInstance().getScene()->player() != nullptr)
+			{
+				GLApplication::getInstance().getScene()->player()->moveForward(1);
+			}
 			break;
 		case Left:
-			GLApplication::getInstance().getScene()->player()->moveLeft(-1);
+			if (GLApplication::getInstance().getScene()->player() != nullptr)
+			{
+				GLApplication::getInstance().getScene()->player()->moveLeft(-1);
+			}
 			break;
 		case Right:
-			GLApplication::getInstance().getScene()->player()->moveLeft(1);
+			if (GLApplication::getInstance().getScene()->player() != nullptr)
+			{
+				GLApplication::getInstance().getScene()->player()->moveLeft(1);
+			}
 			break;
 		case Jump:
-			GLApplication::getInstance().getScene()->player()->moveUp(1);
+			if (GLApplication::getInstance().getScene()->player() != nullptr)
+			{
+				GLApplication::getInstance().getScene()->player()->moveUp(1);
+			}
 			break;
 		case Pause:
 			GLApplication::getInstance().pause();
-				break;
+			break;
 		default:
 			break;
 		}
-	}
+	} // namespace engine
 
 	void InputManager::mouseMoved(float mouseX, float mouseY)
 	{

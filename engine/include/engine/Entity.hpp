@@ -15,13 +15,13 @@ namespace engine
     struct Transform
     {
     public:
-        const glm::vec3 &m_position = glm::vec3(0);
-        const glm::vec3 &m_scale = glm::vec3(1);
-        const glm::vec3 &m_rotation = glm::vec3(0);
+        const glm::vec3 &m_position;
+        const glm::vec3 &m_scale;
+        const glm::vec3 &m_rotation;
         Transform(
-            const glm::vec3 &position = glm::vec3(0),
-            const glm::vec3 &scale = glm::vec3(1),
-            const glm::vec3 &rotation = glm::vec3(0))
+            const glm::vec3 &position = glm::vec3(0.0f),
+            const glm::vec3 &scale = glm::vec3(1.0f),
+            const glm::vec3 &rotation = glm::vec3(0.0f))
             : m_position(position), m_scale(scale), m_rotation(rotation){};
     };
 

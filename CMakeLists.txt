@@ -24,6 +24,8 @@ add_subdirectory(lib/openal EXCLUDE_FROM_ALL)
 # sndfile library subdirectory
 add_subdirectory(lib/sndfile EXCLUDE_FROM_ALL)
 
+include_directories(lib/tao)
+
 # engine library subdirectory
 add_subdirectory(engine)
 

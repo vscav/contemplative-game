@@ -86,6 +86,8 @@ namespace engine
 
         /// \brief
         void render();
+
+        // TO DO: meyhod: clear the scene
     };
 
 } // namespace engine

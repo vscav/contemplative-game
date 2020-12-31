@@ -34,15 +34,6 @@ namespace engine
                 otherScale));
     }
 
-    // void Entity::collideWith(Entity &other)
-    // {
-    //     if (intersect(other))
-    //     {
-    //         doCollisionWith(other);
-    //         other.doCollisionWith(*this);
-    //     }
-    // }
-
     const glm::mat4 Entity::getMatrix()
     {
         if (m_isStatic && m_hasMatrix)

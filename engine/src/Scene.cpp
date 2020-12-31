@@ -20,11 +20,20 @@ namespace engine
             player()->update(dt);
         }
 
-        updateObstaclesList(m_obstacles, dt);
+        if (directionalLight() != nullptr)
+        {
+            directionalLight()->update(dt);
+        }
 
-        directionalLight()->update(dt);
+        if (pointLights() != nullptr)
+        {
+            pointLights()->update(dt);
+        }
 
-        pointLights()->update(dt);
+        if (!m_obstacles.empty())
+        {
+            updateObstaclesList(m_obstacles, dt);
+        }
     }
 
     void Scene::updateObstaclesList(std::list<std::unique_ptr<Entity>> &obstaclesList, const float dt)

@@ -104,7 +104,6 @@ namespace engine
                 catch (std::exception &e)
                 {
                     std::cerr << e.what() << std::endl;
-                    std::cerr << "Entity will be ignored" << std::endl;
                 }
 
                 ++it;
@@ -113,9 +112,11 @@ namespace engine
 
         void deserializePlayer(const tao::json::value &data, std::unique_ptr<Player> &destination)
         {
+            std::string modelName = format(data.at("model").get_string());
+
             destination = std::make_unique<Player>(Player(
                 Entity(
-                    new Model("application/res/models/spaceship/scene.gltf"),
+                    new Model("application/res/models/" + modelName + "/scene.gltf"),
                     new Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
                     false)));
         }
@@ -125,7 +126,7 @@ namespace engine
             glm::vec3 intensity = (data.find("intensity") != nullptr) ? deserializeVector3(data.at("intensity")) : glm::vec3(1.0f);
             glm::vec3 color = (data.find("color") != nullptr) ? deserializeVector3(data.at("color")) : glm::vec3(1.0f);
             glm::vec3 direction = (data.find("direction") != nullptr) ? deserializeVector3(data.at("direction")) : glm::vec3(1.0f);
-            
+
             bool isStatic = (data.find("isStatic") != nullptr) ? data.at("isStatic").get_boolean() : true;
 
             destination = std::make_unique<DirectionalLight>(DirectionalLight(intensity,
@@ -153,8 +154,7 @@ namespace engine
         Obstacle &deserializeObstacle(const tao::json::value &data)
         {
             std::string modelName = format(data.at("model").get_string());
-            std::string fragShaderName = format(data.at("shader").get_string());
-            
+
             bool isStatic = (nullptr != data.find("isStatic")) ? data.at("isStatic").get_boolean() : true;
 
             return *new Obstacle(

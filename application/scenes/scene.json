@@ -1,14 +1,11 @@
 {
     "player": {
-        "model": "spaceship",
-        "shader": "pbr",
-        "isStatic": false
+        "model": "spaceship"
     },
     "entities": [
         {
             "type": "obstacle",
             "model": "spaceship",
-            "shader": "pbr",
             "static": true,
             "transform": {
                 "position": [

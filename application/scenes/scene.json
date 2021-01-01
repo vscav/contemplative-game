@@ -1,11 +1,11 @@
 {
     "player": {
-        "model": "spaceship"
+        "model": "astrovan2"
     },
     "entities": [
         {
             "type": "obstacle",
-            "model": "spaceship",
+            "model": "astrovan2",
             "static": true,
             "transform": {
                 "position": [
@@ -27,7 +27,7 @@
         },
         {
             "type": "obstacle",
-            "model": "spaceship",
+            "model": "astrovan2",
             "shader": "pbr",
             "static": true,
             "transform": {

@@ -23,6 +23,8 @@ public:
   explicit Application(std::string title, int width, int height, bool fullScreen);
   /// \brief Destructor.
   virtual ~Application() = default;
+
+  void initialize();
 };
 
 #endif /* _Application_HPP_ */

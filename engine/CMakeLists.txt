@@ -13,6 +13,7 @@ add_subdirectory(doc)
 include_directories(../lib/glm)
 include_directories(../lib/glew/include)
 include_directories(../lib/glfw/include)
+include_directories(../lib/freetype2/include)
 
 # compile engine as library
 add_library(engine ${SRC_FILES} ${HEADER_FILES} src/FilePath.cpp)
@@ -23,4 +24,3 @@ target_compile_options(engine PRIVATE -Wall -O2)
 
 # engine include directory
 target_include_directories(engine PRIVATE "include")
-

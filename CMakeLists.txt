@@ -33,7 +33,7 @@ include_directories(lib/tao)
 add_subdirectory(engine)
 
 # set all libraries
-set(ALL_LIBRARIES engine libglew_static glfw OpenAL sndfile)
+set(ALL_LIBRARIES engine libglew_static glfw OpenAL sndfile freetype)
 
 # change executable files directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})

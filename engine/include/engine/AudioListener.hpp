@@ -2,9 +2,12 @@
 #ifndef _AudioListener_HPP_
 #define _AudioListener_HPP_
 
+#include <engine/dependencies/glm.hpp>
+
 #include <AL/al.h>
 #include <AL/alc.h>
 #include <vector>
+
 
 namespace engine
 {
@@ -27,6 +30,9 @@ namespace engine
 
         /// \brief Destructor.
         ~AudioListener() noexcept(false);
+
+        ///
+        void updatePosition(const glm::vec3 newPosition);
     };
 
 } // namespace engine

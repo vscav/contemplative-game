@@ -1,6 +1,7 @@
 #include <engine/AudioDevice.hpp>
 #include <engine/utils/common.hpp>
 #include <engine/utils/cout_colors.hpp>
+#include <engine/EngineException.hpp>
 
 #include <AL/al.h>
 
@@ -15,16 +16,16 @@ namespace engine
         // nullptr = get default device
         m_ALCDevice = alcOpenDevice(nullptr);
         if (!m_ALCDevice)
-            throw std::runtime_error("[AudioDevice] ERROR: Failed to get audio device");
+            throw EngineException("[AudioDevice] ERROR: Failed to get audio device", __FILE__, __LINE__);
 
         // create context
         m_ALCContext = alcCreateContext(m_ALCDevice, nullptr);
         if (!m_ALCContext)
-            throw std::runtime_error("[AudioDevice] ERROR: Failed to set audio context");
+            throw EngineException("[AudioDevice] ERROR: Failed to set audio context", __FILE__, __LINE__);
 
         // make context current
         if (!alcMakeContextCurrent(m_ALCContext))
-            throw std::runtime_error("[AudioDevice] ERROR: Failed to make context current");
+            throw EngineException("[AudioDevice] ERROR: Failed to make context current", __FILE__, __LINE__);
 
         const ALCchar *name = nullptr;
         if (alcIsExtensionPresent(m_ALCDevice, "ALC_ENUMERATE_ALL_EXT"))

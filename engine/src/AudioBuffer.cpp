@@ -1,11 +1,11 @@
 #include <engine/AudioBuffer.hpp>
 #include <engine/utils/common.hpp>
 #include <engine/utils/cout_colors.hpp>
+#include <engine/dependencies/sndfile.h>
 
 #include <AL/alext.h>
 
 #include <iostream>
-#include <engine/dependencies/sndfile.h>
 #include <inttypes.h>
 #include <stdlib.h>
 #include <limits.h>

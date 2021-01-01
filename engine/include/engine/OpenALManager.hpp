@@ -7,8 +7,8 @@
 #include <engine/AudioListener.hpp>
 #include <engine/AudioSource.hpp>
 #include <engine/AudioBuffer.hpp>
-#include <AL/al.h>
 
+#include <AL/al.h>
 
 #include <iostream>
 #include <string>
@@ -45,6 +45,9 @@ namespace engine
 
         /// \brief Updates the context (should be called every frame).
         void update() override;
+
+        /// \brief Pause the sound.
+        void pause();
 
         /// \brief Destroys the OpenAL context.
         void destroy() override;

@@ -25,7 +25,7 @@ void Application::initialize()
     std::unique_ptr<engine::Player> player(
         new engine::Player(
             engine::Entity(
-                new engine::Model("application/res/models/spaceship/scene.gltf"),
+                new engine::Model("application/res/models/astrovan2/astrovan.gltf"),
                 new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
                 false)));
 
@@ -33,7 +33,7 @@ void Application::initialize()
     std::unique_ptr<engine::Entity> obstacle(
         new engine::Obstacle(
             engine::Entity(
-                new engine::Model("application/res/models/spaceship/scene.gltf"),
+                new engine::Model("application/res/models/astrovan2/astrovan.gltf"),
                 new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
                 false,
                 engine::Transform(glm::vec3(8, 0, 2), glm::vec3(1), glm::vec3(0)))));

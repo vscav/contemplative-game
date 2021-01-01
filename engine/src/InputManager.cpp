@@ -11,10 +11,10 @@ namespace engine
 
 		switch (code)
 		{
-		case Up:
+		case Forward:
 			GLApplication::getInstance().getScene()->player()->moveForward(-1);
 			break;
-		case Down:
+		case Backward:
 			GLApplication::getInstance().getScene()->player()->moveForward(1);
 			break;
 		case Left:
@@ -26,10 +26,16 @@ namespace engine
 		case Jump:
 			GLApplication::getInstance().getScene()->player()->moveUp(1);
 			break;
+		case Up:
+			GLApplication::getInstance().getScene()->player()->moveUp(1);
+			break;
+		case Down:
+			GLApplication::getInstance().getScene()->player()->moveUp(-1);
+			break;
 		case Pause:
 			GLApplication::getInstance().pause();
 			GLApplication::getInstance().getAudioManager()->pause();
-				break;
+			break;
 		default:
 			break;
 		}

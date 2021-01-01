@@ -11,22 +11,23 @@ namespace engine
 
     class Player;
 
-    /// \brief
+    /// \class Obstacle
+    /// \brief Class that represents an obstacle in the application.
     class Obstacle : public Entity
     {
     public:
-        /// \brief
+        /// \brief Constructor.
         Obstacle(const Entity &obstacleEntity);
-        /// \brief
+        /// \brief Destructor.
         ~Obstacle() = default;
 
-        /// \brief
+        /// \brief Implements the collision behavior when colliding with an entity.
         void doCollisionWith(Entity &other);
 
-        /// \brief
+        /// \brief Implements the collision behavior when colliding with the player.
         void doCollisionWith(Player &other);
 
-        /// \brief
+        /// \brief Updates the obstacle.
         void update(const float dt);
     };
 

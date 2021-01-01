@@ -35,6 +35,11 @@ namespace engine
         {
             updateObstaclesList(m_obstacles, dt);
         }
+
+        if (!m_collectables.empty())
+        {
+            updateCollectablesList(m_collectables, dt);
+        }
     }
 
     void Scene::updateObstaclesList(std::list<std::unique_ptr<Entity>> &obstaclesList, const float dt)
@@ -58,6 +63,35 @@ namespace engine
         }
     }
 
+    void Scene::updateCollectablesList(std::list<std::unique_ptr<Entity>> &collectablesList, const float dt)
+    {
+        std::list<std::unique_ptr<Entity>>::iterator it = collectablesList.begin();
+
+        while (it != collectablesList.end())
+        {
+            Collectable &currentCollectableEntity(dynamic_cast<Collectable &>(**it));
+
+            if (glm::abs(currentCollectableEntity.getPosition()[0] - m_player->getPosition()[0]) < m_maxCollideDistance)
+            {
+                currentCollectableEntity.update(dt);
+                handleCollision(*m_player.get(), currentCollectableEntity);
+            }
+            else if (currentCollectableEntity.getPosition()[0] > m_player->getPosition()[0])
+            {
+                break;
+            }
+
+            if (currentCollectableEntity.isHidden())
+            {
+                collectablesList.erase(it++);
+            }
+            else
+            {
+                ++it;
+            }
+        }
+    }
+
     void Scene::render()
     {
         skybox()->render();
@@ -66,8 +100,26 @@ namespace engine
 
         if (!m_obstacles.empty())
         {
-            auto it = m_obstacles.begin();
-            for (it = m_obstacles.begin(); it != m_obstacles.end(); ++it)
+            renderEntitiesList(m_obstacles);
+        }
+
+        if (!m_collectables.empty())
+        {
+            renderEntitiesList(m_collectables);
+        }
+
+        if (pointLights() != nullptr)
+        {
+            pointLights()->render();
+        }
+    }
+
+    void Scene::renderEntitiesList(const std::list<std::unique_ptr<Entity>> &entitiesList)
+    {
+        if (!entitiesList.empty())
+        {
+            auto it = entitiesList.begin();
+            for (it = entitiesList.begin(); it != entitiesList.end(); ++it)
             {
                 if (it->get() != nullptr)
                 {
@@ -75,10 +127,6 @@ namespace engine
                 }
             }
         }
-
-        pointLights()->render();
-
-        particleSystem()->render();
     }
 
 } // namespace engine

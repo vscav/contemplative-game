@@ -4,7 +4,8 @@
 namespace engine
 {
     Player::Player(const Entity &playerEntity)
-        : Entity(playerEntity)
+        : Entity(playerEntity),
+          m_score(0)
     {
         if (applicationDebug)
             std::cout << "[Player] Player created" << std::endl;
@@ -48,7 +49,18 @@ namespace engine
     void Player::doCollisionWith(Obstacle &other)
     {
         if (physicsDebug)
-            std::cout << "[Player] Player collided with an obstacle" << std::endl;
+            std::cout << "[Player] Player collided with an obstacle entity" << std::endl;
+    };
+
+    void Player::doCollisionWith(Collectable &other)
+    {
+        if (physicsDebug)
+            std::cout << "[Player] Player collided with a collectable entity" << std::endl;
+
+        if (!other.isTaken())
+        {
+            m_score += 1;
+        }
     };
 
     void Player::update(float dt)

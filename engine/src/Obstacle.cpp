@@ -10,14 +10,16 @@ namespace engine
             std::cout << "[Obstacle] Obstacle created" << std::endl;
     }
 
-    /// \brief
-    void Obstacle::doCollisionWith(Entity &other){
-        if (physicsDebug) std::cout << "[Obstacle] Obstacle collision with entity" << std::endl;
+    void Obstacle::doCollisionWith(Entity &other)
+    {
+        if (physicsDebug)
+            std::cout << "[Obstacle] Obstacle collision with entity" << std::endl;
     };
 
-    /// \brief
-    void Obstacle::doCollisionWith(Player &other){
-        if (physicsDebug) std::cout << "[Obstacle] Obstacle collision with player" << std::endl;
+    void Obstacle::doCollisionWith(Player &other)
+    {
+        if (physicsDebug)
+            std::cout << "[Obstacle] Obstacle collision with player" << std::endl;
     };
 
     void Obstacle::update(const float dt)

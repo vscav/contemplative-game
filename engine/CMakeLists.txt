@@ -16,6 +16,8 @@ include_directories(../lib/glew/include)
 include_directories(../lib/glfw/include)
 include_directories(../lib/openal/include)
 include_directories(../lib/sndfile/include)
+include_directories(../lib/freetype2/include)
+
 
 # compile engine as library
 add_library(engine ${SRC_FILES} ${HEADER_FILES})

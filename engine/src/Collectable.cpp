@@ -5,7 +5,9 @@ namespace engine
 {
 
     Collectable::Collectable(const Entity &collectableEntity)
-        : Entity(collectableEntity), m_isTaken(false), m_isHidden(false){};
+        : Entity(collectableEntity), m_isTaken(false), m_isHidden(false)
+    {
+    }
 
     void Collectable::doCollisionWith(Entity &other)
     {

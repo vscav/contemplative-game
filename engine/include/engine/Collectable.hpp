@@ -3,6 +3,7 @@
 #define _Collectable_HPP_
 
 #include <engine/Entity.hpp>
+#include <engine/ParticleSystem.hpp>
 
 const float collectableRotationSpeed = 2.f;
 

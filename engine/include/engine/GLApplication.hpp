@@ -97,6 +97,9 @@ namespace engine
         /// \return A pointer to the window manager of the GL application.
         inline GLWindowManager *getWindowManager() const { return m_windowManager.get(); }
 
+
+        inline UI *getUI() const { return m_UI.get(); }
+
         /// \brief Returns the camera (pointer) of the GL application.
         /// \return A pointer to the camera of the GL application.
         inline Camera *getCamera() { return m_camera.get(); };

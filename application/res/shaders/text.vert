@@ -2,14 +2,13 @@
 
 precision mediump float;
 
-layout (location = 0) in vec4 aVertexPosition;
+layout (location = 0) in vec4 vertex; // <vec2 pos, vec2 tex>
+out vec2 TexCoords;
 
-out vec2 vTexCoords;
-
-uniform mat4 uModelViewProjMatrix;
+uniform mat4 uProjection;
 
 void main()
 {
-    gl_Position = uModelViewProjMatrix * vec4(aVertexPosition.xy, 0.0, 1.0);
-    vTexCoords = aVertexPosition.zw;
-}
+    gl_Position = uProjection * vec4(vertex.xy, 0.0, 1.0);
+    TexCoords = vertex.zw;
+}  

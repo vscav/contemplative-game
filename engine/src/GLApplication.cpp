@@ -69,6 +69,7 @@ namespace engine
         loop();
         getWindowManager()->processInput();
       }
+      getUI()->render();
       getWindowManager()->swapBuffers();
       getWindowManager()->setKeyCallback();
     }

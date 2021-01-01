@@ -22,6 +22,7 @@ Application::Application(std::string title, int width, int height, bool fullScre
 void Application::initialize()
 {
   m_UI->initializeText();
+  m_UI->initialization();
 }
 
 void Application::loop()
@@ -40,4 +41,5 @@ void Application::loop()
 
     // Render the entire scene
     m_scene->render();
+
 }

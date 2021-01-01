@@ -79,27 +79,35 @@ namespace engine
         glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
+
+        mProj=glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
     }
 
-    void UI::update(){
-      glEnable(GL_BLEND);
-      glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    void UI::render(){
 
-      RenderText("This is sample text", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f));
-      RenderText("(C) LearnOpenGL.com", 540.0f, 570.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
+      RenderText("coucou sa va", 0.0, 0.0, 1.0, glm::vec3(0.0, 0.0, 0.0));
 
-      glDisable(GL_BLEND);
     }
 
     void UI::RenderText(std::string text, float x, float y, float scale, glm::vec3 color)
     {
+      m_textShader.bind();
       glEnable(GL_BLEND);
       glEnable(GL_DEPTH_TEST);
-      m_textShader.bind();
-      m_textShader.setMat4("uModelViewProjMatrix",mProj);
+      glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-      // activate corresponding render state
-      m_textShader.setVec3f("uTextColor",color);
+
+
+
+      // m_textShader.setMat4("uModelViewProjMatrix",mProj);
+      // m_textShader.setVec3f("uTextColor",color);
+
+
+      glUniformMatrix4fv(glGetUniformLocation(m_textShader.getID(), "uModelViewProjMatrix"), 1, GL_FALSE, glm::value_ptr(mProj));
+
+       // activate corresponding render state
+       glUniform3fv(glGetUniformLocation(m_textShader.getID(), "uTextColor"), 1, glm::value_ptr(color));
+
       glActiveTexture(GL_TEXTURE0);
       glBindVertexArray(mVao);
 
@@ -137,6 +145,8 @@ namespace engine
       }
       glBindVertexArray(0);
       glBindTexture(GL_TEXTURE_2D, 0);
+
+      m_textShader.unbind();
 
       glDisable(GL_DEPTH_TEST);
       glDisable(GL_BLEND);

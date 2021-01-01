@@ -38,7 +38,7 @@ namespace engine
         ~UI() = default;
 
         void RenderText(std::string text, float x, float y, float scale, glm::vec3 color);
-        void update();
+        void render();
         void initialization();
         void initializeText();
 

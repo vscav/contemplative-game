@@ -2,9 +2,8 @@
     "player": {
         "model": "spaceship"
     },
-    "entities": [
+    "obstacles": [
         {
-            "type": "obstacle",
             "model": "spaceship",
             "static": true,
             "transform": {
@@ -26,7 +25,6 @@
             }
         },
         {
-            "type": "obstacle",
             "model": "spaceship",
             "shader": "pbr",
             "static": true,
@@ -40,6 +38,29 @@
                     0.75,
                     0.75,
                     0.75
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        }
+    ],
+    "collectables": [
+        {
+            "model": "spaceship",
+            "static": false,
+            "transform": {
+                "position": [
+                    0.0,
+                    0.0,
+                    -10.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
                 ],
                 "rotation": [
                     0.0,
@@ -67,33 +88,6 @@
         ],
         "isStatic": false
     },
-    "pointLights": [
-        {
-            "position": [
-                2.0,
-                0.0,
-                0.0
-            ],
-            "scale": [
-                0.1,
-                0.1,
-                0.1
-            ],
-            "ambient": [
-                1.0,
-                1.0,
-                1.0
-            ],
-            "diffuse": [
-                1.0,
-                1.0,
-                1.0
-            ],
-            "constant": 1.0,
-            "linear": 0.01,
-            "quadratic": 0.03
-        }
-    ],
     "cubemap": {
         "type": "space"
     }

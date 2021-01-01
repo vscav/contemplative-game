@@ -11,19 +11,24 @@ namespace engine
 
     class Player;
 
-    /// \brief Represents a Collectable Gameobject
+    /// \class Collectable
+    /// \brief
     class Collectable : public Entity
     {
     private:
-        bool m_isTaken;
-        bool m_isHidden;
+        bool m_isTaken;  /*!< */
+        bool m_isHidden; /*!< */
 
     public:
-        /// \brief
+        /// \brief Constructor.
         Collectable(const Entity &collectableEntity);
 
-        /// \brief
-        virtual ~Collectable(){};
+        /// \brief Destructor.
+        virtual ~Collectable()
+        {
+            if (applicationDebug)
+                std::cout << "[Collectable] Delete collectable" << std::endl;
+        };
 
         /// \brief
         void doCollisionWith(Entity &other);

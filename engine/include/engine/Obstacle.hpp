@@ -11,13 +11,14 @@ namespace engine
 
     class Player;
 
+    /// \class Obstacle
     /// \brief
     class Obstacle : public Entity
     {
     public:
-        /// \brief
+        /// \brief Constructor.
         Obstacle(const Entity &obstacleEntity);
-        /// \brief
+        /// \brief Destructor.
         ~Obstacle() = default;
 
         /// \brief

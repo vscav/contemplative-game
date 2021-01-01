@@ -66,7 +66,7 @@ namespace engine
                                                      const std::vector<GLuint> &bufferObjects,
                                                      std::vector<VertexArrayObject::VaoRange> &meshToVertexArrays);
 
-        /// \brief
+        /// \brief Create the default texture to apply in case there are no other textures.
         void createDefaultTexture();
 
         /// \brief Renders the model to the screen/window.

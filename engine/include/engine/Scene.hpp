@@ -4,6 +4,7 @@
 
 #include <engine/Player.hpp>
 #include <engine/Obstacle.hpp>
+#include <engine/Collectable.hpp>
 #include <engine/CubeMap.hpp>
 #include <engine/Shader.hpp>
 #include <engine/DirectionalLight.hpp>
@@ -23,6 +24,8 @@ namespace engine
         std::unique_ptr<Player> m_player;
 
         std::list<std::unique_ptr<Entity>> m_obstacles;
+
+        std::list<std::unique_ptr<Entity>> m_collectables;
 
         std::unique_ptr<DirectionalLight> m_directionalLight;
 
@@ -59,6 +62,11 @@ namespace engine
         inline const std::list<std::unique_ptr<Entity>> &obstacles() const { return m_obstacles; };
 
         /// \brief
+        inline std::list<std::unique_ptr<Entity>> &collectables() { return m_collectables; };
+        /// \brief
+        inline const std::list<std::unique_ptr<Entity>> &collectables() const { return m_collectables; };
+
+        /// \brief
         inline std::unique_ptr<CubeMap> &skybox() { return m_skybox; };
         /// \brief
         inline const std::unique_ptr<CubeMap> &skybox() const { return m_skybox; };
@@ -68,7 +76,9 @@ namespace engine
         /// \brief Add point lights to be rendered in the scene.
         inline void add(std::unique_ptr<CubeMap> skybox) { m_skybox = std::move(skybox); };
         /// \brief Add a renderable entity to the list of entities to be displayed in the scene.
-        inline void add(std::unique_ptr<Entity> obstacle) { m_obstacles.push_back(std::move(obstacle)); };
+        inline void add(std::unique_ptr<Obstacle> obstacle) { m_obstacles.push_back(std::move(obstacle)); };
+        /// \brief Add a renderable entity to the list of entities to be displayed in the scene.
+        inline void add(std::unique_ptr<Collectable> collectable) { m_collectables.push_back(std::move(collectable)); };
         /// \brief Add a directional light to the scene.
         inline void add(std::unique_ptr<DirectionalLight> directionalLight) { m_directionalLight = std::move(directionalLight); };
         /// \brief Add a point lights container to the scene. The point ligths that it contains will then be rendered.
@@ -85,7 +95,13 @@ namespace engine
         void updateObstaclesList(std::list<std::unique_ptr<Entity>> &obstaclesList, const float dt);
 
         /// \brief
+        void updateCollectablesList(std::list<std::unique_ptr<Entity>> &collectablesList, const float dt);
+
+        /// \brief
         void render();
+
+        /// \brief 
+        void renderEntitiesList(const std::list<std::unique_ptr<Entity>> &entitiesList);
 
         // TO DO: method: clear the scene
     };

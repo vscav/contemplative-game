@@ -1,0 +1,100 @@
+{
+    "player": {
+        "model": "spaceship"
+    },
+    "entities": [
+        {
+            "type": "obstacle",
+            "model": "spaceship",
+            "static": true,
+            "transform": {
+                "position": [
+                    8.0,
+                    0.0,
+                    2.0
+                ],
+                "scale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "type": "obstacle",
+            "model": "spaceship",
+            "shader": "pbr",
+            "static": true,
+            "transform": {
+                "position": [
+                    -5.0,
+                    1.0,
+                    -3.25
+                ],
+                "scale": [
+                    0.75,
+                    0.75,
+                    0.75
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        }
+    ],
+    "directionalLight": {
+        "intensity": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "color": [
+            0.5,
+            0.65,
+            1.0
+        ],
+        "direction": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "isStatic": false
+    },
+    "pointLights": [
+        {
+            "position": [
+                2.0,
+                0.0,
+                0.0
+            ],
+            "scale": [
+                0.1,
+                0.1,
+                0.1
+            ],
+            "ambient": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "diffuse": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "constant": 1.0,
+            "linear": 0.01,
+            "quadratic": 0.03
+        }
+    ],
+    "cubemap": {
+        "type": "space"
+    }
+}

@@ -74,7 +74,7 @@ namespace engine
                          GL_FLOAT,
                          sideTexture->getPixels());
 
-            i++;
+            ++i;
         }
 
         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

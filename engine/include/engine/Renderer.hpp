@@ -65,8 +65,8 @@ namespace engine
         /// \param camera : The camera to be set as the renderer camera.
         inline void setCamera(std::shared_ptr<Camera> camera) { m_camera = std::move(camera); };
 
-        /// \brief Sets the camera of the renderer.
-        /// \param camera : The camera to be set as the renderer camera.
+        /// \brief Sets the scene of the renderer.
+        /// \param camera : The scene to be set as the renderer scene.
         inline void setScene(std::shared_ptr<Scene> scene) { m_scene = std::move(scene); };
 
         /// \brief Returns the view matrix of the renderer (based on the camera).

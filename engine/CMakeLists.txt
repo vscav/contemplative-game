@@ -11,13 +11,14 @@ add_subdirectory(doc)
 
 # include external libraries
 include_directories(../lib/glm)
+include_directories(../lib/tao)
 include_directories(../lib/glew/include)
 include_directories(../lib/glfw/include)
 include_directories(../lib/openal/include)
 include_directories(../lib/sndfile/include)
 
 # compile engine as library
-add_library(engine ${SRC_FILES} ${HEADER_FILES} src/FilePath.cpp)
+add_library(engine ${SRC_FILES} ${HEADER_FILES})
 
 # set compilation flags
 target_compile_features(engine PRIVATE cxx_std_17)

@@ -52,13 +52,13 @@ namespace engine
         /// \brief Constructor.
         Shader() = default;
         /// \brief Copy constructor.
-        explicit Shader(const Shader &s);
+        Shader(const Shader &s);
         /// \brief Parameterized Constructor.
         /// \param vertexShader : The path to the vertex shader.
         /// \param fragmentShader : The path to the fragment shader.
         /// \param geometryShader : The path to the geometry shader.
         /// \param fromFile : A boolean to indicate if the shaders are from specific files.
-        explicit Shader(const char *vertexShader, const char *fragmentShader, const char *geometryShader = nullptr, const bool &fromFile = true);
+        Shader(const char *vertexShader, const char *fragmentShader, const char *geometryShader = nullptr, const bool &fromFile = true);
         ~Shader();
 
         /// \brief Installs the program object as part of the current rendering state.

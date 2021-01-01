@@ -2,6 +2,7 @@
 #include <engine/Renderer.hpp>
 #include <engine/EngineException.hpp>
 #include <engine/utils/common.hpp>
+#include <engine/Serializer.hpp>
 
 namespace engine
 {
@@ -16,27 +17,29 @@ namespace engine
       throw EngineException("[GLApplication] There is no current GLApplication", __FILE__, __LINE__);
   }
 
-  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *audioManager, Scene *scene)
+  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager)
       : m_state(stateReady),
         m_windowManager(manager),
-        m_audioManager(audioManager),
-        m_camera(camera),
-        m_scene(scene)
+        m_audioManager(a_manager),
+        m_camera(camera)
   {
+    setScene(Serializer::getInstance().load("application/scenes/scene.json"));
+
     Renderer::getInstance().setCamera(m_camera);
     Renderer::getInstance().setScene(m_scene);
 
     currentGLApplication = this;
   }
 
-  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *audioManager, Scene *scene,
+  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager,
                                std::string title, int width, int height, bool fullScreen)
       : m_state(stateReady),
         m_windowManager(manager),
-        m_audioManager(audioManager),
-        m_camera(camera),
-        m_scene(scene)
+        m_audioManager(a_manager),
+        m_camera(camera)
   {
+    setScene(Serializer::getInstance().load("application/scenes/scene.json"));
+
     Renderer::getInstance().setCamera(m_camera);
     Renderer::getInstance().setScene(m_scene);
 
@@ -57,7 +60,8 @@ namespace engine
 
     while (m_state == stateRun || m_state == statePause)
     {
-      if(m_state == stateRun){
+      if (m_state == stateRun)
+      {
         m_audioManager->update();
         getWindowManager()->update();
         loop();
@@ -68,11 +72,14 @@ namespace engine
     }
   }
 
-  void GLApplication::pause(){
-    if(m_state == stateRun){
+  void GLApplication::pause()
+  {
+    if (m_state == stateRun)
+    {
       m_state = statePause;
     }
-    else{
+    else
+    {
       m_state = stateRun;
     }
   }
@@ -83,8 +90,9 @@ namespace engine
       std::cout << "[Info] GLApplication main loop" << std::endl;
   }
 
-  void GLApplication::setState(State newState){
-    m_state=newState;
+  void GLApplication::setState(State newState)
+  {
+    m_state = newState;
   }
 
 } // namespace engine

@@ -28,7 +28,7 @@ namespace engine
 
         std::unique_ptr<PointLights> m_pointLigths;
 
-        std::unique_ptr<CubeMap> m_skybox = nullptr;
+        std::unique_ptr<CubeMap> m_skybox;
 
         float m_maxCollideDistance = endlessMaximumCollideDistance;
 
@@ -86,6 +86,8 @@ namespace engine
 
         /// \brief
         void render();
+
+        // TO DO: method: clear the scene
     };
 
 } // namespace engine

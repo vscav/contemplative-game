@@ -33,3 +33,5 @@ file(COPY res/textures/skybox/space DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/
 file(COPY res/models DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)
 # copy sound files to the build directory
 file(COPY res/sounds DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)
+# copy scene json files to the build directory
+file(COPY scenes DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

@@ -1,5 +1,6 @@
 #include <engine/PointLight.hpp>
 #include <engine/Renderer.hpp>
+#include <engine/utils/common.hpp>
 
 #include <algorithm>
 
@@ -10,6 +11,8 @@ namespace engine
         : m_shader(new Shader("application/res/shaders/forward.vert", "application/res/shaders/pointlight.frag")),
           m_sphere(new Sphere(1, 64, 32))
     {
+        if (applicationDebug)
+            std::cout << "[PointLight] Point light created" << std::endl;
     }
 
     void PointLights::addPointLight(const glm::vec3 &position, const glm::vec3 &scale, const float &constant, const float &linear, const float &quadratic, const glm::vec3 &ambientColor, const glm::vec3 &diffuseColor)
@@ -39,7 +42,7 @@ namespace engine
     {
         m_shader->bind();
 
-        for (GLuint i = 0; i < m_lights.size(); i++)
+        for (GLuint i = 0; i < m_lights.size(); ++i)
         {
             glm::mat4 modelMatrix = glm::mat4(1.0f);
             modelMatrix = glm::translate(modelMatrix, m_lights[i].position);

@@ -410,7 +410,7 @@ namespace engine
         }
         glBindVertexArray(0);
 
-        std::clog << "Number of VAOs: " << vertexArrayObjects.size() << std::endl;
+        std::cout << "Number of VAOs: " << vertexArrayObjects.size() << std::endl;
 
         return vertexArrayObjects;
     }

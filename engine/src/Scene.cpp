@@ -20,27 +20,39 @@ namespace engine
             player()->update(dt);
         }
 
-        updateObstaclesList(m_obstacles, dt);
+        if (directionalLight() != nullptr)
+        {
+            directionalLight()->update(dt);
+        }
 
-        directionalLight()->update(dt);
+        if (pointLights() != nullptr)
+        {
+            pointLights()->update(dt);
+        }
 
-        pointLights()->update(dt);
+        if (!m_obstacles.empty())
+        {
+            updateObstaclesList(m_obstacles, dt);
+        }
     }
 
     void Scene::updateObstaclesList(std::list<std::unique_ptr<Entity>> &obstaclesList, const float dt)
     {
-        for (typename std::list<std::unique_ptr<Entity>>::iterator it = obstaclesList.begin(); it != obstaclesList.end(); ++it)
+        if (player() != nullptr)
         {
-            Obstacle &currentEntity(dynamic_cast<Obstacle &>(**it));
+            for (typename std::list<std::unique_ptr<Entity>>::iterator it = obstaclesList.begin(); it != obstaclesList.end(); ++it)
+            {
+                Obstacle &currentEntity(dynamic_cast<Obstacle &>(**it));
 
-            if (glm::abs(currentEntity.getPosition()[0] - m_player->getPosition()[0]) < m_maxCollideDistance)
-            {
-                currentEntity.update(dt);
-                handleCollision(*m_player.get(), currentEntity);
-            }
-            else if ((*it)->getPosition()[0] > m_player->getPosition()[0])
-            {
-                break;
+                if (glm::abs(currentEntity.getPosition()[0] - m_player->getPosition()[0]) < m_maxCollideDistance)
+                {
+                    currentEntity.update(dt);
+                    handleCollision(*m_player.get(), currentEntity);
+                }
+                else if ((*it)->getPosition()[0] > m_player->getPosition()[0])
+                {
+                    break;
+                }
             }
         }
     }

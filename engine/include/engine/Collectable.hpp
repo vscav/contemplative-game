@@ -12,12 +12,12 @@ namespace engine
     class Player;
 
     /// \class Collectable
-    /// \brief
+    /// \brief Class that represents an obstacle in the application, an interactive entity.
     class Collectable : public Entity
     {
     private:
-        bool m_isTaken;  /*!< */
-        bool m_isHidden; /*!< */
+        bool m_isTaken;  /*!< A boolean to tell whether the collectable has been taken by the player. */
+        bool m_isHidden; /*!< A boolean to tell whether the collectable was taken and if it has to be rendered to the screen. */
 
     public:
         /// \brief Constructor.
@@ -30,16 +30,18 @@ namespace engine
                 std::cout << "[Collectable] Delete collectable" << std::endl;
         };
 
-        /// \brief
+        /// \brief Implements the collision behavior when colliding an entity.
         void doCollisionWith(Entity &other);
 
-        /// \brief
+        /// \brief Implements the collision behavior when colliding the player.
+        /// \param other : The player entity.
         void doCollisionWith(Player &other);
 
-        /// \brief
+        /// \brief Updates the collectable entity.
+        /// \param dt : .
         void update(const float dt);
 
-        /// \brief
+        /// \brief Implements the collision behavior when colliding an entity.
         inline const bool isTaken() const { return m_isTaken; }
 
         /// \brief

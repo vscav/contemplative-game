@@ -31,10 +31,10 @@ namespace engine
         {
             tao::json::value data = tao::json::parse_file(sceneFilePath);
 
-            if (data.find("obstacles") != nullptr)
-            {
-                deserializeObstacles(data.at("obstacles"), res->obstacles());
-            }
+            // if (data.find("obstacles") != nullptr)
+            // {
+            //     deserializeObstacles(data.at("obstacles"), res->obstacles());
+            // }
 
             // if (data.find("collectables") != nullptr)
             // {

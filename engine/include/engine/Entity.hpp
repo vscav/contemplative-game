@@ -64,11 +64,8 @@ namespace engine
         /// \brief
         bool intersect(Entity &other);
 
-        /// \brief
+        /// \brief Implements the collision behavior when colliding an other entity.
         virtual void doCollisionWith(Entity &other){};
-
-        /// \brief
-        // void collideWith(Entity &other);
 
         /// \brief Returns the transform matrix of the entity.
         virtual const glm::mat4 getMatrix();

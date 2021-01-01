@@ -12,10 +12,16 @@ namespace engine
 		switch (code)
 		{
 		case Forward:
-			GLApplication::getInstance().getScene()->player()->moveForward(-1);
+			if (GLApplication::getInstance().getScene()->player() != nullptr)
+			{
+				GLApplication::getInstance().getScene()->player()->moveForward(-1);
+			}
 			break;
 		case Backward:
-			GLApplication::getInstance().getScene()->player()->moveForward(1);
+			if (GLApplication::getInstance().getScene()->player() != nullptr)
+			{
+				GLApplication::getInstance().getScene()->player()->moveForward(1);
+			}
 			break;
 		case Left:
 			if (GLApplication::getInstance().getScene()->player() != nullptr)
@@ -27,12 +33,6 @@ namespace engine
 			if (GLApplication::getInstance().getScene()->player() != nullptr)
 			{
 				GLApplication::getInstance().getScene()->player()->moveLeft(1);
-			}
-			break;
-		case Jump:
-			if (GLApplication::getInstance().getScene()->player() != nullptr)
-			{
-				GLApplication::getInstance().getScene()->player()->moveUp(1);
 			}
 			break;
 		case Up:

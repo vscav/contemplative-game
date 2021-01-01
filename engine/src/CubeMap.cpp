@@ -70,6 +70,8 @@ namespace engine
         m_faces.push_back(cubeBack);
 
         m_cubeMapTexture = ResourceManager::getInstance().loadCubeMapTexture(m_faces);
+
+        std::cout << "cube map created" << std::endl;
     }
 
     void CubeMap::buildVBO()

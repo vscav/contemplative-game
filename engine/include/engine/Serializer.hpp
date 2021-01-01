@@ -38,13 +38,13 @@ namespace engine
 
         std::shared_ptr<Scene> load(std::string sceneFilePath);
 
-        void deserializePointLights(const tao::json::value &data, std::unique_ptr<PointLights> &destination);
-
         void deserializeArrayIntoList(const tao::json::value &data, std::list<std::unique_ptr<Entity>> &destinationList);
 
         void deserializePlayer(const tao::json::value &data, std::unique_ptr<Player> &destination);
 
         void deserializeDirectionalLight(const tao::json::value &data, std::unique_ptr<DirectionalLight> &destination);
+
+        void deserializePointLights(const tao::json::value &data, std::unique_ptr<PointLights> &destination);
 
         Entity &deserializeEntity(const tao::json::value &data);
 
@@ -53,6 +53,9 @@ namespace engine
         // Collectable &deserializeCollectable(const tao::json::value &data)
         // {
         // }
+
+        // void deserializeCubeMap(const tao::json::value &data, std::unique_ptr<CubeMap> &destination);
+        void deserializeCubeMap(const tao::json::value &data, std::shared_ptr<Scene> &destination);
 
         Transform &deserializeTransform(const tao::json::value &data)
         {

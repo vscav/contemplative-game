@@ -43,20 +43,6 @@ namespace engine
     Renderer::getInstance().setCamera(m_camera);
     Renderer::getInstance().setScene(m_scene);
 
-    // Create a new skybox (CubeMap object)
-    std::unique_ptr<engine::CubeMap> skybox(
-        new engine::CubeMap(
-            "application/res/textures/skybox/space/front.png",
-            "application/res/textures/skybox/space/left.png",
-            "application/res/textures/skybox/space/back.png",
-            "application/res/textures/skybox/space/bottom.png",
-            "application/res/textures/skybox/space/right.png",
-            "application/res/textures/skybox/space/top.png",
-            new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")));
-
-    // Add the newly created skybox to the application scene
-    m_scene->add(std::move(skybox));
-
     currentGLApplication = this;
   }
 

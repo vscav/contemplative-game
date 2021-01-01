@@ -70,9 +70,9 @@
     "pointLights": [
         {
             "position": [
-                3.0,
-                0.75,
-                3.0
+                2.0,
+                0.0,
+                0.0
             ],
             "scale": [
                 0.1,
@@ -93,5 +93,8 @@
             "linear": 0.01,
             "quadratic": 0.03
         }
-    ]
+    ],
+    "cubemap": {
+        "type": "space"
+    }
 }

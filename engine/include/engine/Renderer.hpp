@@ -22,7 +22,7 @@ namespace engine
         ~Renderer() = default;
 
         std::shared_ptr<Camera> m_camera; /*!< A shared pointer to the camera of the application. */
-         std::shared_ptr<Scene> m_scene; /*!< A shared pointer to the scene of the application. */
+        std::shared_ptr<Scene> m_scene;   /*!< A shared pointer to the scene of the application. */
 
         glm::mat4 m_view;       /*!< The current view matrix. */
         glm::mat4 m_projection; /*!< The current projection matrix. */
@@ -76,6 +76,10 @@ namespace engine
         /// \brief Returns the projection matrix of the renderer (based on the camera).
         /// \return The projection matrix.
         inline glm::mat4 getProjectionMatrix() { return m_camera->getProjectionMatrix(); };
+
+        /// \brief Returns the camera of the renderer.
+        /// \return The application renderer camera.
+        inline Camera *getCamera() { return m_camera.get(); };
     };
 
 } // namespace engine

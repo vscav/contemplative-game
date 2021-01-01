@@ -1,4 +1,5 @@
 #include <engine/Scene.hpp>
+#include <engine/Renderer.hpp>
 
 namespace engine
 {
@@ -59,15 +60,9 @@ namespace engine
 
     void Scene::render()
     {
-        if (skybox() != nullptr)
-        {
-            skybox()->render();
-        }
+        skybox()->render();
 
-        if (player() != nullptr)
-        {
-            player()->render();
-        }
+        player()->render();
 
         if (!m_obstacles.empty())
         {
@@ -81,10 +76,9 @@ namespace engine
             }
         }
 
-        if (pointLights() != nullptr)
-        {
-            pointLights()->render();
-        }
+        pointLights()->render();
+
+        particleSystem()->render();
     }
 
 } // namespace engine

@@ -82,12 +82,12 @@ namespace engine
     void TrackballCamera::update(float dt)
     {
         // Update angles
-        m_angleX += m_angleXSpeed * dt;
-        m_angleY += m_angleYSpeed * dt;
+        m_angleX += m_angleXSpeed * dt * 100;
+        m_angleY += m_angleYSpeed * dt * 100;
 
         // Update angles speed
-        m_angleXSpeed *= std::pow(m_lerpFactor, dt);
-        m_angleYSpeed *= std::pow(m_lerpFactor, dt);
+        m_angleXSpeed *= std::pow(m_lerpFactor, dt * 100);
+        m_angleYSpeed *= std::pow(m_lerpFactor, dt * 100);
 
         // Update distance based on zoom
         m_distance = glm::mix(m_distance, m_zoom, 1 / 8.0f);

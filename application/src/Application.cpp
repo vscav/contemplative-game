@@ -33,6 +33,8 @@ void Application::loop()
     // Get the total time ellapsed since the application was run
     float dt = m_windowManager->getTimeElapsed();
 
+
+
     // Update the camera
     m_camera->update(dt);
 
@@ -41,5 +43,7 @@ void Application::loop()
 
     // Render the entire scene
     m_scene->render();
+
+
 
 }

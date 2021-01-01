@@ -26,7 +26,7 @@ namespace engine
       FT_Library m_ft;
       FT_Face m_face;
       std::map<char, Character> Characters;
-      Shader m_textShader;
+      Shader *m_textShader;
 
       GLuint mVbo,mVao;
 	    glm::mat4 mProj;

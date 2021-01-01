@@ -2,19 +2,19 @@
 
 precision mediump float;
 
-//#define MAX_LIGHTS 128
+#define MAX_LIGHTS 128
 
 uniform vec3 pointsLightsAmbiantColor[MAX_LIGHTS];
 
 out vec4 FragColor;
 
-// flat in int InstanceID;
-//
-// float max3 (vec3 v) {
-//   return max (max (v.x, v.y), v.z);
-// }
+flat in int InstanceID;
+
+float max3 (vec3 v) {
+  return max (max (v.x, v.y), v.z);
+}
 
 void main() {
 
-    FragColor = vec4(1.0,0,0,1.0);
+    FragColor = vec4(pointsLightsAmbiantColor[InstanceID] / max3(pointsLightsAmbiantColor[InstanceID]), 1.0);
 }

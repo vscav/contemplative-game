@@ -14,7 +14,7 @@ namespace engine
 
     void UI::initializeText(){
 
-      m_textShader = Shader("application/res/shaders/text.vert", "application/res/shaders/text.frag");
+      m_textShader = new Shader("application/res/shaders/text.vert", "application/res/shaders/text.frag");
 
       if (FT_Init_FreeType(&m_ft))
       {
@@ -27,7 +27,7 @@ namespace engine
       }
 
       else {
-          FT_Set_Pixel_Sizes(m_face, 0, 48);
+          FT_Set_Pixel_Sizes(m_face, 0, 60);
           glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // disable byte-alignment restriction
 
           for (unsigned char c = 0; c < 128; c++)
@@ -85,13 +85,14 @@ namespace engine
 
     void UI::render(){
 
-      RenderText("coucou sa va", 0.0, 0.0, 1.0, glm::vec3(0.0, 0.0, 0.0));
+      RenderText("Looking for internship. I can do coffee", 0.0, 0.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
 
     }
 
     void UI::RenderText(std::string text, float x, float y, float scale, glm::vec3 color)
     {
-      m_textShader.bind();
+      m_textShader->unbind();
+      m_textShader->bind();
       glEnable(GL_BLEND);
       glEnable(GL_DEPTH_TEST);
       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -99,14 +100,14 @@ namespace engine
 
 
 
-      // m_textShader.setMat4("uModelViewProjMatrix",mProj);
-      // m_textShader.setVec3f("uTextColor",color);
+      m_textShader->setMat4("uProjection",mProj);
+      m_textShader->setVec3f("uTextColor",color);
 
 
-      glUniformMatrix4fv(glGetUniformLocation(m_textShader.getID(), "uModelViewProjMatrix"), 1, GL_FALSE, glm::value_ptr(mProj));
-
-       // activate corresponding render state
-       glUniform3fv(glGetUniformLocation(m_textShader.getID(), "uTextColor"), 1, glm::value_ptr(color));
+      // glUniformMatrix4fv(glGetUniformLocation(m_textShader->getID(), "uModelViewProjMatrix"), 1, GL_FALSE, glm::value_ptr(mProj));
+      //
+      //  // activate corresponding render state
+      //  glUniform3fv(glGetUniformLocation(m_textShader->getID(), "uTextColor"), 1, glm::value_ptr(color));
 
       glActiveTexture(GL_TEXTURE0);
       glBindVertexArray(mVao);
@@ -146,7 +147,7 @@ namespace engine
       glBindVertexArray(0);
       glBindTexture(GL_TEXTURE_2D, 0);
 
-      m_textShader.unbind();
+      m_textShader->unbind();
 
       glDisable(GL_DEPTH_TEST);
       glDisable(GL_BLEND);

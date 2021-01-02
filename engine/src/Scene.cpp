@@ -42,13 +42,13 @@ namespace engine
         }
     }
 
-    void Scene::updateObstaclesList(std::list<std::unique_ptr<Entity>> &obstaclesList, const float dt)
+    void Scene::updateObstaclesList(std::list<std::unique_ptr<Obstacle>> &obstaclesList, const float dt)
     {
         if (player() != nullptr)
         {
-            for (typename std::list<std::unique_ptr<Entity>>::iterator it = obstaclesList.begin(); it != obstaclesList.end(); ++it)
+            for (typename std::list<std::unique_ptr<Obstacle>>::iterator it = obstaclesList.begin(); it != obstaclesList.end(); ++it)
             {
-                Obstacle &currentEntity(dynamic_cast<Obstacle &>(**it));
+                Obstacle &currentEntity(**it);
 
                 if (glm::abs(currentEntity.getPosition()[0] - m_player->getPosition()[0]) < m_maxCollideDistance)
                 {
@@ -63,13 +63,13 @@ namespace engine
         }
     }
 
-    void Scene::updateCollectablesList(std::list<std::unique_ptr<Entity>> &collectablesList, const float dt)
+    void Scene::updateCollectablesList(std::list<std::unique_ptr<Collectable>> &collectablesList, const float dt)
     {
-        std::list<std::unique_ptr<Entity>>::iterator it = collectablesList.begin();
+        std::list<std::unique_ptr<Collectable>>::iterator it = collectablesList.begin();
 
         while (it != collectablesList.end())
         {
-            Collectable &currentCollectableEntity(dynamic_cast<Collectable &>(**it));
+            Collectable &currentCollectableEntity(**it);
 
             if (glm::abs(currentCollectableEntity.getPosition()[0] - m_player->getPosition()[0]) < m_maxCollideDistance)
             {
@@ -100,12 +100,12 @@ namespace engine
 
         if (!m_obstacles.empty())
         {
-            renderEntitiesList(m_obstacles);
+            renderEntitiesList<Obstacle>(m_obstacles);
         }
 
         if (!m_collectables.empty())
         {
-            renderEntitiesList(m_collectables);
+            renderEntitiesList<Collectable>(m_collectables);
         }
 
         if (pointLights() != nullptr)
@@ -114,7 +114,8 @@ namespace engine
         }
     }
 
-    void Scene::renderEntitiesList(const std::list<std::unique_ptr<Entity>> &entitiesList)
+    template <typename T>
+    void Scene::renderEntitiesList(const std::list<std::unique_ptr<T>> &entitiesList)
     {
         if (!entitiesList.empty())
         {

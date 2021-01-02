@@ -44,10 +44,10 @@ namespace engine
         std::shared_ptr<Scene> load(std::string sceneFilePath);
 
         /// \brief
-        void deserializeObstacles(const tao::json::value &data, std::list<std::unique_ptr<Entity>> &destinationList);
+        void deserializeObstacles(const tao::json::value &data, std::list<std::unique_ptr<Obstacle>> &destinationList);
 
         // /// \brief
-        // void deserializeCollectables(const tao::json::value &data, std::list<std::unique_ptr<Entity>> &destinationList);
+        // void deserializeCollectables(const tao::json::value &data, std::list<std::unique_ptr<Collectable>> &destinationList);
 
         /// \brief
         void deserializePlayer(const tao::json::value &data, std::unique_ptr<Player> &destination);

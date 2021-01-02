@@ -24,9 +24,9 @@ namespace engine
     private:
         std::unique_ptr<Player> m_player;
 
-        std::list<std::unique_ptr<Entity>> m_obstacles;
+        std::list<std::unique_ptr<Obstacle>> m_obstacles;
 
-        std::list<std::unique_ptr<Entity>> m_collectables;
+        std::list<std::unique_ptr<Collectable>> m_collectables;
 
         std::unique_ptr<DirectionalLight> m_directionalLight;
 
@@ -58,14 +58,14 @@ namespace engine
         inline const std::unique_ptr<PointLights> &pointLights() const { return m_pointLigths; };
 
         /// \brief
-        inline std::list<std::unique_ptr<Entity>> &obstacles() { return m_obstacles; };
+        inline std::list<std::unique_ptr<Obstacle>> &obstacles() { return m_obstacles; };
         /// \brief
-        inline const std::list<std::unique_ptr<Entity>> &obstacles() const { return m_obstacles; };
+        inline const std::list<std::unique_ptr<Obstacle>> &obstacles() const { return m_obstacles; };
 
         /// \brief
-        inline std::list<std::unique_ptr<Entity>> &collectables() { return m_collectables; };
+        inline std::list<std::unique_ptr<Collectable>> &collectables() { return m_collectables; };
         /// \brief
-        inline const std::list<std::unique_ptr<Entity>> &collectables() const { return m_collectables; };
+        inline const std::list<std::unique_ptr<Collectable>> &collectables() const { return m_collectables; };
 
         /// \brief
         inline std::unique_ptr<CubeMap> &skybox() { return m_skybox; };
@@ -105,16 +105,17 @@ namespace engine
         void update(const float dt);
 
         /// \brief
-        void updateObstaclesList(std::list<std::unique_ptr<Entity>> &obstaclesList, const float dt);
+        void updateObstaclesList(std::list<std::unique_ptr<Obstacle>> &obstaclesList, const float dt);
 
         /// \brief
-        void updateCollectablesList(std::list<std::unique_ptr<Entity>> &collectablesList, const float dt);
+        void updateCollectablesList(std::list<std::unique_ptr<Collectable>> &collectablesList, const float dt);
 
         /// \brief
         void render();
 
         /// \brief 
-        void renderEntitiesList(const std::list<std::unique_ptr<Entity>> &entitiesList);
+        template <typename T>
+        void renderEntitiesList(const std::list<std::unique_ptr<T>> &entitiesList);
 
         // TO DO: method: clear the scene
     };

@@ -29,6 +29,9 @@ namespace engine
 
         /// \brief Updates the obstacle.
         void update(const float dt);
+
+        /// \brief Renders the obstacle.
+        void render();
     };
 
 } // namespace engine

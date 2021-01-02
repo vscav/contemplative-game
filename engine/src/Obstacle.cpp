@@ -26,4 +26,9 @@ namespace engine
     {
     }
 
+    void Obstacle::render()
+    {
+        Entity::render();
+    }
+
 } // namespace engine

@@ -21,7 +21,7 @@ namespace engine
                     new engine::Model("application/res/models/spaceship/scene.gltf"),
                     new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
                     false,
-                    engine::Transform(glm::vec3(0, 0, -3), glm::vec3(0.5), glm::vec3(0)))));
+                    engine::Transform(glm::vec3(0, 0, -3), glm::vec3(1.0), glm::vec3(0)))));
 
         res->add(std::move(collectable));
 
@@ -73,7 +73,7 @@ namespace engine
         return res;
     }
 
-    void Serializer::deserializeObstacles(const tao::json::value &data, std::list<std::unique_ptr<Entity>> &destinationList)
+    void Serializer::deserializeObstacles(const tao::json::value &data, std::list<std::unique_ptr<Obstacle>> &destinationList)
     {
         std::vector<tao::json::value> obstacles = data.get_array();
 
@@ -82,7 +82,7 @@ namespace engine
         {
             try
             {
-                destinationList.push_back(static_cast<std::unique_ptr<Entity>>(&deserializeObstacle(*it)));
+                destinationList.push_back(static_cast<std::unique_ptr<Obstacle>>(&deserializeObstacle(*it)));
             }
             catch (std::exception &e)
             {
@@ -93,7 +93,7 @@ namespace engine
         }
     }
 
-    // void Serializer::deserializeCollectables(const tao::json::value &data, std::list<std::unique_ptr<Entity>> &destinationList)
+    // void Serializer::deserializeCollectables(const tao::json::value &data, std::list<std::unique_ptr<Collectable>> &destinationList)
     // {
     //     std::vector<tao::json::value> collectables = data.get_array();
 
@@ -102,7 +102,7 @@ namespace engine
     //     {
     //         try
     //         {
-    //             destinationList.push_back(static_cast<std::unique_ptr<Entity>>(&deserializeCollectable(*it)));
+    //             destinationList.push_back(static_cast<std::unique_ptr<Obstacle>>(&deserializeCollectable(*it)));
     //         }
     //         catch (std::exception &e)
     //         {

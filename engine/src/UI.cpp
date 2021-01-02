@@ -1,4 +1,5 @@
 #include <engine/UI.hpp>
+#include <engine/GLWindowUtils.hpp>
 
 #include <GL/glew.h>
 
@@ -10,6 +11,10 @@ namespace engine
 
     UI::UI()
     {
+    }
+
+    UI::~UI(){
+      delete m_textShader;
     }
 
     void UI::initializeText(){
@@ -83,6 +88,10 @@ namespace engine
         mProj=glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
     }
 
+    void UI::updateMatrix(float width, float height){
+      mProj=glm::ortho(0.0f, width, 0.0f, height);
+    }
+
     void UI::render(){
 
       RenderText("Looking for internship. I can do coffee", 0.0, 0.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
@@ -91,13 +100,10 @@ namespace engine
 
     void UI::RenderText(std::string text, float x, float y, float scale, glm::vec3 color)
     {
-      m_textShader->unbind();
       m_textShader->bind();
       glEnable(GL_BLEND);
       glEnable(GL_DEPTH_TEST);
       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-
 
 
       m_textShader->setMat4("uProjection",mProj);

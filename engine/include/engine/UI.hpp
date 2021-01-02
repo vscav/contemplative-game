@@ -35,10 +35,11 @@ namespace engine
         /// \brief
         UI();
         /// \brief
-        ~UI() = default;
+        ~UI();
 
         void RenderText(std::string text, float x, float y, float scale, glm::vec3 color);
         void render();
+        void updateMatrix(float width, float height);
         void initialization();
         void initializeText();
 

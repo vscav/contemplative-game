@@ -68,6 +68,7 @@ namespace engine
         getWindowManager()->update();
         loop();
         getWindowManager()->processInput();
+        getUI()->updateMatrix(getWindowManager()->getWidth(), getWindowManager()->getHeight());
       }
       getUI()->render();
       getWindowManager()->swapBuffers();

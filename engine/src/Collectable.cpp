@@ -1,4 +1,5 @@
 #include <engine/Collectable.hpp>
+#include <engine/TimeManager.hpp>
 #include <engine/utils/common.hpp>
 
 namespace engine
@@ -35,8 +36,10 @@ namespace engine
 
     void Collectable::update(const float dt)
     {
-        m_particleSystem->emit(m_particle);
+        m_position.y += 0.5f * dt * glm::sin(TimeManager::getInstance().getTime() * 0.5f * M_PI);
+        m_rotation.y += 0.75f * dt;
 
+        m_particleSystem->emit(m_particle);
         m_particleSystem->update(dt);
 
         if (m_isTaken && !m_isHidden)

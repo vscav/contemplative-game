@@ -1,6 +1,6 @@
 {
     "player": {
-        "model": "spaceship"
+        "model": "astrovan2"
     },
     "obstacles": [
         {

@@ -14,9 +14,9 @@ namespace engine
 
     constexpr float runSpeed = 0.25f; /*!< */
     constexpr float turnSpeed = 0.05f; /*!< */
-    constexpr float upSpeed = 0.15f; /*!< */
+    constexpr float upSpeed = 0.05f; /*!< */
 
-    constexpr float minimumPlayerUp = 1.0f; /*!< */
+    constexpr float minimumPlayerUp = -10.0f; /*!< */
     constexpr float maximumPlayerUp = 10.0f; /*!< */
 
     class Player : public Entity

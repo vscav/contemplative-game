@@ -18,7 +18,7 @@ namespace engine
         std::unique_ptr<engine::Collectable> collectable(
             new engine::Collectable(
                 engine::Entity(
-                    new engine::Model("application/res/models/spaceship/scene.gltf"),
+                    new engine::Model("application/res/models/gem/scene.gltf"),
                     new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
                     false,
                     engine::Transform(glm::vec3(0, 0, -3), glm::vec3(1.0), glm::vec3(0)))));

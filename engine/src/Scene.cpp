@@ -5,12 +5,12 @@ namespace engine
 {
 
     template <typename T, typename U>
-    void Scene::handleCollision(T &firstObject, U &secondObject)
+    void Scene::handleCollision(T &firstEntity, U &secondEntity)
     {
-        if (firstObject.intersect(secondObject))
+        if (firstEntity.intersect(secondEntity))
         {
-            firstObject.doCollisionWith(secondObject);
-            secondObject.doCollisionWith(firstObject);
+            firstEntity.doCollisionWith(secondEntity);
+            secondEntity.doCollisionWith(firstEntity);
         }
     }
 

@@ -99,7 +99,7 @@ namespace engine
 
         /// \brief
         template <typename T, typename U>
-        void handleCollision(T &firstObject, U &secondObject);
+        void handleCollision(T &firstEntity, U &secondEntity);
 
         /// \brief
         void update(const float dt);

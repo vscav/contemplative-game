@@ -29,13 +29,7 @@ namespace engine
 
     void Model::render(Shader *shader)
     {
-        // glm::vec3 lightDirection(1, 1, 1);
-        // glm::vec3 lightIntensity(1, 1, 1);
-
         shader->bind();
-
-        // const auto uLightDirectionLocation = shader->getUniform("uLightDirection");
-        // const auto uLightIntensity = shader->getUniform("uLightIntensity");
 
         const auto uBaseColorTexture = shader->getUniform("uBaseColorTexture");
         const auto uBaseColorFactor = shader->getUniform("uBaseColorFactor");
@@ -178,24 +172,6 @@ namespace engine
         };
 
         const auto drawModel = [&]() {
-            // glm::mat4 viewMatrix = Renderer::getInstance().getViewMatrix();
-
-            // if (uLightDirectionLocation >= 0)
-            // {
-            //     const auto lightDirectionInViewSpace = glm::normalize(
-            //         glm::vec3(viewMatrix * glm::vec4(lightDirection, 0.)));
-            //     shader->setVec3f("uLightDirection",
-            //                      lightDirectionInViewSpace[0],
-            //                      lightDirectionInViewSpace[1],
-            //                      lightDirectionInViewSpace[2]);
-            // }
-
-            // if (uLightIntensity >= 0)
-            //     shader->setVec3f("uLightIntensity",
-            //                      lightIntensity[0],
-            //                      lightIntensity[1],
-            //                      lightIntensity[2]);
-
             Renderer::getInstance().sendDirectionalLightUniforms(shader);
 
             const std::function<void(int)> drawNode =

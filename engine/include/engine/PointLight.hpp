@@ -13,6 +13,8 @@
 namespace engine
 {
 
+    /// \struct PointLight
+    /// \brief A structure representing a point light and its caracteristics and props.
     struct PointLight
     {
         glm::vec3 position;
@@ -26,30 +28,50 @@ namespace engine
         glm::vec3 diffuseColor;
     };
 
+    /// \class PointLights
+    /// \brief Class used to represent and manage a collection of point lights.
     class PointLights
     {
 
     private:
-        std::vector<PointLight> m_lights;
+        std::vector<PointLight> m_lights; /*!< A collection of point lights */
 
-        std::unique_ptr<Shader> m_shader;
+        std::unique_ptr<Shader> m_shader; /*!< The shader used to render our point lights. */
 
-        std::unique_ptr<Sphere> m_sphere;
+        std::unique_ptr<Sphere> m_sphere; /*!< The sphere used to represent the geometry of the point light.  */
 
     public:
+        /// \brief Default constructor.
         PointLights();
+        /// \brief Default destructor.
         ~PointLights() = default;
 
+        /// \brief Adds a new point light to the collection.
+        /// \param position :
+        /// \param scale :
+        /// \param constant :
+        /// \param linear :
+        /// \param quadratic :
+        /// \param ambientColor :
+        /// \param diffuseColor :
         void addPointLight(const glm::vec3 &position, const glm::vec3 &scale, const float &constant, const float &linear, const float &quadratic, const glm::vec3 &ambientColor, const glm::vec3 &diffuseColor);
 
+        /// \brief Clears the collection of point lights.
         void resetPointLights();
 
+        /// \brief Deletes a specific point light in the collection using its position.
+        /// \param position : The position of the point light in the scene.
         void deletePointLight(const glm::vec3 &position);
 
+        /// \brief Returns the collection of point lights.
+        /// \return A vector containing all the point ligths.
         inline std::vector<PointLight> getLights() { return m_lights; };
 
+        /// \brief Updates the point lights.
+        /// \param dt : The delta time, which describes the time difference between the previous frame that was drawn and the current frame.
         void update(float const dt);
 
+        /// \brief Renders the point lights.
         void render();
     };
 } // namespace engine

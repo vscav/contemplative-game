@@ -68,7 +68,7 @@ namespace engine
         inline void unbind() const { glUseProgram(-1); }
 
         /// \brief Returns the location of a uniform variable.
-        /// \return .
+        /// \return The location of a uniform variable.
         GLint getUniform(const std::string &uniformName);
 
         /// \brief  Specifies the value of an integer uniform variable for the current program object.

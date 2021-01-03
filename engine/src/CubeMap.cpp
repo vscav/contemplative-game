@@ -52,22 +52,22 @@ namespace engine
             -1.0f, -1.0f, 1.0f,
             1.0f, -1.0f, 1.0f};
 
-        Container<GLfloat> dest;
+        std::vector<GLfloat> dest;
 
         for (GLfloat i : vertices)
-            dest.add(i);
+            dest.push_back(i);
 
         m_vertices = dest;
 
         buildVBO();
         buildVAO();
 
-        m_faces.add(cubeRight);
-        m_faces.add(cubeLeft);
-        m_faces.add(cubeTop);
-        m_faces.add(cubeBottom);
-        m_faces.add(cubeFront);
-        m_faces.add(cubeBack);
+        m_faces.push_back(cubeRight);
+        m_faces.push_back(cubeLeft);
+        m_faces.push_back(cubeTop);
+        m_faces.push_back(cubeBottom);
+        m_faces.push_back(cubeFront);
+        m_faces.push_back(cubeBack);
 
         m_cubeMapTexture = ResourceManager::getInstance().loadCubeMapTexture(m_faces);
     }
@@ -104,7 +104,7 @@ namespace engine
 
         m_shader->bind();
 
-        m_shader->setVec3f("uFogColor", 0.0f, 0.0f, 0.0f);
+        // m_shader->setVec3f("uFogColor", 0.0f, 0.0f, 0.0f);
 
         m_vao.bind();
 

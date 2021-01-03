@@ -54,11 +54,16 @@ namespace engine
         /// \return The view projection matrix of the camera.
         virtual glm::mat4 getVPMatrix() const = 0;
 
-        virtual void update(float dt) = 0;
+        /// \brief Updates the camera position.
+        /// \param position : The new position to apply to the camera.
+        virtual void updatePosition(glm::vec3 const position) = 0;
+        /// \brief Gets the position of the camera.
+        /// \return The position of the camera.
+        virtual glm::vec3 getPosition() const = 0;
 
-        // /// \brief Gets the current position of the camera.
-        // /// \return The position of the camera.
-        // virtual glm::vec3 const getPosition() const = 0;
+        /// \brief Updates the camera.
+        /// \param dt : The delta time, which describes the time difference between the previous frame that was drawn and the current frame.
+        virtual void update(const float dt) = 0;
     };
 
 } // namespace engine

@@ -48,6 +48,9 @@ namespace engine
         /// \brief Destructor.
         inline ~GLFWManager() override { destroy(); };
 
+        /// \brief Sets a callback to manage the keys pressed on the keyboard.
+        void setKeyCallback();
+
         /// \brief Initializes the window and creates the OpenGL context.
         /// \return An integer acting as a boolean for success/fail information.
         int initialize() override;
@@ -90,8 +93,8 @@ namespace engine
         /// \brief Returns the window ratio (window width divided by window height).
         /// \return The window ratio (window width divided by window height).
         inline float getWindowRatio() const override { return float(m_width) / float(m_height); };
-        /// \brief Returns a boolean that indicates whether or not the window is in full screen mode.
-        /// \return A boolean that indicates whether or not the window is in full screen mode.
+        /// \brief Returns a boolean that indicates whether the window is in full screen mode.
+        /// \return A boolean that indicates whether the window is in full screen mode.
         inline bool isFullScreen() const override { return m_fullScreen; };
 
         /// \brief Returns the total time elapsed since the GL application was started.

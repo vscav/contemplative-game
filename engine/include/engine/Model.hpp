@@ -4,11 +4,14 @@
 
 #include <engine/Camera.hpp>
 #include <engine/Shader.hpp>
+#include <engine/Collider.hpp>
 #include <engine/VertexArrayObject.hpp>
 #include <engine/utils/filesystem.hpp>
 #include <engine/dependencies/tiny_gltf.h>
 
 #include <GL/glew.h>
+
+#include <memory>
 
 namespace engine
 {
@@ -16,40 +19,10 @@ namespace engine
     /// \brief Class for instanciating 3D model and using gltf file routine (with tiny gltf library).
     class Model
     {
-    public:
-        /// \brief Parameterized constructor.
-        /// \param gltfFilePath : The path to the GLTF file.
-        explicit Model(const std::string &gltfFilePath);
-        /// \brief Default destructor.
-        ~Model() = default;
-
-        /// \brief Loads the GLTF file which describes the 3D model.
-        bool loadGltfFile(tinygltf::Model &model);
-
-        /// \brief Computes a vector of texture objects.
-        /// Each texture object is filled with an image and sampling parameters from the corresponding texture of the glTF file.
-        /// \param model : The 3D model.
-        /// \return A vector of texture objects.
-        std::vector<GLuint> createTextureObjects(const tinygltf::Model &model) const;
-        /// \brief Computes the vector of buffer objects from the 3D model and returns it.
-        /// \param model : The 3D model.
-        /// \return A vector of buffer objects.
-        std::vector<GLuint> createBufferObjects(const tinygltf::Model &model);
-        /// \brief  Takes the 3D model and the vector of buffer objects previously created, creates an array of vertex array objects and returns it.
-        /// It then fills the input vector meshIndexToVaoRange with the range of VAOs for each mesh.
-        /// \param model : The 3D model.
-        /// \param bufferObjects : The vector of buffer objects obtained from the model.
-        /// \param meshToVertexArrays : The vector containing the range of VAOs for each mesh.
-        std::vector<GLuint> createVertexArrayObjects(const tinygltf::Model &model,
-                                                     const std::vector<GLuint> &bufferObjects,
-                                                     std::vector<VertexArrayObject::VaoRange> &meshToVertexArrays);
-
-        /// \brief Renders the model to the screen/window.
-        /// \param shader : The shaders associated to the model and to its entity.
-        void render(Shader *shader);
-
     private:
         tinygltf::Model m_model; /*!< The 3D model. */
+        Collider m_collider;     /*!< The collider of the model. */
+
         fs::path m_gltfFilePath; /*!< The path to the GLTF file which describes the 3D model. */
 
         std::vector<GLuint> m_textureObjects;     /*!< The vector of texture objects obtained from the model. */
@@ -60,8 +33,50 @@ namespace engine
 
         GLuint m_whiteTexture = 0; /*!< This will be used for the base color of objects that have no materials. */
 
-        // bool m_lightFromCamera; /*!< Boolean used to tell whether or not the directionnal light comes from the camera. */
-        // bool m_applyOcclusion;
+    public:
+        /// \brief Parameterized constructor.
+        /// \param gltfFilePath : The path to the GLTF file.
+        explicit Model(const std::string &gltfFilePath);
+        /// \brief Default destructor.
+        ~Model() = default;
+
+        /// \brief Loads the GLTF file which describes the 3D model.
+        bool loadGltfFile(tinygltf::Model &model);
+
+        /// \brief Gets the collider of the model as a const reference.
+        /// \return The collider of the model as a const reference.
+        const Collider &collider() const { return m_collider; };
+        /// \brief Gets the collider of the model.
+        /// \return The collider of the model.
+        Collider &collider() { return m_collider; };
+
+        /// \brief Computes a vector of texture objects.
+        /// Each texture object is filled with an image and sampling parameters from the corresponding texture of the glTF file.
+        /// \param model : The 3D model.
+        /// \return A vector of texture objects.
+        /// \return A vector containing each texture objects.
+        std::vector<GLuint> createTextureObjects(const tinygltf::Model &model) const;
+        /// \brief Computes the vector of buffer objects from the 3D model and returns it.
+        /// \param model : The 3D model.
+        /// \return A vector of buffer objects.
+        /// \return A vector containing each vertex buffer objects.
+        std::vector<GLuint> createBufferObjects(const tinygltf::Model &model);
+        /// \brief  Takes the 3D model and the vector of buffer objects previously created, creates an array of vertex array objects and returns it.
+        /// It then fills the input vector meshIndexToVaoRange with the range of VAOs for each mesh.
+        /// \param model : The 3D model.
+        /// \param bufferObjects : The vector of buffer objects obtained from the model.
+        /// \param meshToVertexArrays : The vector containing the range of VAOs for each mesh.
+        /// \return A vector containing each vertex array objects.
+        std::vector<GLuint> createVertexArrayObjects(const tinygltf::Model &model,
+                                                     const std::vector<GLuint> &bufferObjects,
+                                                     std::vector<VertexArrayObject::VaoRange> &meshToVertexArrays);
+
+        /// \brief Create the default texture to apply in case there are no other textures.
+        void createDefaultTexture();
+
+        /// \brief Renders the model to the screen/window.
+        /// \param shader : The shaders associated to the model and to its entity.
+        void render(Shader *shader);
     };
 
 } // namespace engine

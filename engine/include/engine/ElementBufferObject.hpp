@@ -2,7 +2,6 @@
 #ifndef _ElementBufferObject_HPP_
 #define _ElementBufferObject_HPP_
 
-#include <engine/Container.hpp>
 #include <engine/dependencies/glm.hpp>
 
 #include <vector>
@@ -35,7 +34,7 @@ namespace engine
         /// \param indices : Specifies a pointer to indices that will be copied into the indices store for initialization.
         /// \param drawType : Specifies the expected usage pattern of the data store.
         template <typename T>
-        void setData(const Container<T> &indices, const GLenum &drawType)
+        void setData(const std::vector<T> &indices, const GLenum &drawType)
         {
             bind();
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(T) * indices.size(), indices.data(), drawType);

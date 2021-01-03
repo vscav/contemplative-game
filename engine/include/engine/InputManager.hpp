@@ -12,11 +12,16 @@
 namespace engine
 {
 
-	/// \brief A standardized enum to code for keyboard inputs.
+	/// \enum InputCodes
+	/// \brief An enum for keyboard action inputs.
 	enum InputCodes
 	{
+		Backward,
+		Clear,
 		Down,
+		Forward,
 		Left,
+		Pause,
 		Right,
 		Up
 	};
@@ -38,6 +43,9 @@ namespace engine
 		/// \param mouseX : The X position of the mouse relative to the screen.
 		/// \param mouseY : The Y position of the mouse relative to the screen.
 		static void mouseMoved(float mouseX, float mouseY);
+		/// \brief Sends in an updated wheel direction.
+		/// \param offsetY : The Y direction of the scroll wheel.
+		static void wheelMoved(double offsetY);
 	};
 
 } // namespace engine

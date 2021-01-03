@@ -2,5 +2,6 @@
 
 namespace engine
 {
-    constexpr bool debug = true;
+    constexpr bool applicationDebug = true;
+    constexpr bool physicsDebug = true;
 }

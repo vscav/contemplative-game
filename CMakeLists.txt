@@ -18,11 +18,22 @@ add_subdirectory(lib/glew EXCLUDE_FROM_ALL)
 # glm library subdirectory
 add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
 
+# openal library subdirectory
+add_subdirectory(lib/openal EXCLUDE_FROM_ALL)
+
+# sndfile library subdirectory
+add_subdirectory(lib/sndfile EXCLUDE_FROM_ALL)
+
+# FreeType library subdirectory
+add_subdirectory(lib/freetype2 EXCLUDE_FROM_ALL)
+
+include_directories(lib/tao)
+
 # engine library subdirectory
 add_subdirectory(engine)
 
 # set all libraries
-set(ALL_LIBRARIES engine libglew_static glfw)
+set(ALL_LIBRARIES engine libglew_static glfw OpenAL sndfile freetype)
 
 # change executable files directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR})

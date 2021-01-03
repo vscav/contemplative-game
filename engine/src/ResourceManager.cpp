@@ -43,7 +43,7 @@ namespace engine
         return textureID;
     }
 
-    GLuint ResourceManager::loadCubeMapTexture(Container<std::string> &faces)
+    GLuint ResourceManager::loadCubeMapTexture(std::vector<std::string> &faces)
     {
         unsigned int textureID;
 
@@ -52,8 +52,9 @@ namespace engine
 
         unsigned int x = 0, y = 0, i = 0;
 
-        Iterator<std::string, Container<std::string>> *it = faces.CreateIterator();
-        for (it->first(); !it->isDone(); it->next())
+        // Iterator<std::string, Container<std::string>> *it = faces.CreateIterator();
+        // for (it->first(); !it->isDone(); it->next())
+        for (auto it = faces.begin(); it != faces.end(); ++it)
         {
             std::unique_ptr<Texture> sideTexture = loadImage(faces.at(i));
 
@@ -73,7 +74,7 @@ namespace engine
                          GL_FLOAT,
                          sideTexture->getPixels());
 
-            i++;
+            ++i;
         }
 
         glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

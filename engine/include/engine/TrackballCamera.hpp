@@ -19,6 +19,8 @@ namespace engine
     class TrackballCamera : public Camera
     {
     private:
+        glm::vec3 m_position; /*!< The camera world space position. */
+
         float m_distance; /*!< The camera distance. */
 
         float m_angleX = 0.0f; /*!< The horizontal angle. */
@@ -26,11 +28,11 @@ namespace engine
 
         float m_zoom; /*!< The camera zoom. */
 
-        float m_sensitivity = 0.01f; /*!< The camera sensitivity. */
+        float m_sensitivity = 0.001f; /*!< The camera sensitivity. */
 
         float m_speed = 0.7f; /*!< The camera speed. */
 
-        float m_lerpFactor = 0.995f; /*!< The camera rotation lerp factor. */
+        float m_lerpFactor = 0.9925f; /*!< The camera rotation lerp factor. */
 
         float m_angleXSpeed = 0.0f; /*!< The camera horizontal angle speed. */
         float m_angleYSpeed = 0.0f; /*!< The camera vertical angle speed. */
@@ -51,7 +53,7 @@ namespace engine
         /// \brief Moves the camera to the right or to the left according to the t value.
         /// \param t : The value used to move the camera on the right or on the left.
         // void moveLeft(float t) override;
-        void moveLeft(float t) override;
+        void moveLeft(float t) override{};
 
         /// \brief Rotates the camera on the horizontal axis.
         /// \param degrees : The value of the rotation in degree.
@@ -84,8 +86,16 @@ namespace engine
         /// \return The view projection matrix of the camera.
         glm::mat4 getVPMatrix() const override;
 
-        // /// \brief Updates the camera zoom.
-        void update(float dt);
+        /// \brief Updates the camera position.
+        /// \param position : The new position to apply to the camera.
+        void updatePosition(glm::vec3 const position) override;
+        /// \brief Gets the position of the camera.
+        /// \return The position of the camera.
+        glm::vec3 getPosition() const override { return m_position; };
+
+        /// \brief Updates the camera.
+        /// \param dt : The delta time, which describes the time difference between the previous frame that was drawn and the current frame.
+        void update(const float dt) override;
     };
 
 } // namespace engine

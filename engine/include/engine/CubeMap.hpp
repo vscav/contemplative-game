@@ -7,8 +7,6 @@
 #include <engine/VertexArrayObject.hpp>
 #include <engine/VertexBufferObject.hpp>
 #include <engine/Shader.hpp>
-#include <engine/Container.hpp>
-#include <engine/Iterator.hpp>
 #include <engine/dependencies/glm.hpp>
 
 #include <GL/glew.h>
@@ -26,13 +24,13 @@ namespace engine
     class CubeMap
     {
     private:
-        Container<GLfloat> m_vertices; /*!< Vertices of the cube map. */
+        std::vector<GLfloat> m_vertices; /*!< Vertices of the cube map. */
 
-        Container<std::string> m_faces; /*!< A vector containing all the path to each images used to create the cube map texture. */
+        std::vector<std::string> m_faces; /*!< A vector containing all the path to each images used to create the cube map texture. */
 
         GLuint m_cubeMapTexture; /*!< The texture to apply to the cube map. */
 
-        std::shared_ptr<Shader> m_shader; /*!< The shader to use for the cube map. */
+        std::unique_ptr<Shader> m_shader; /*!< The shader to use for the cube map. */
 
         VertexArrayObject m_vao;  /*!< Vertex Array Object of the cube map. */
         VertexBufferObject m_vbo; /*!< Vertex Buffer Object of the cube map. */
@@ -45,8 +43,6 @@ namespace engine
 
     public:
         /// \brief Constructor.
-        // explicit CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack,
-        //         const char *cubeBottom, const char *cubeRight, const char *cubeTop, Shader *shader);
         explicit CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack,
                  const char *cubeBottom, const char *cubeRight, const char *cubeTop, Shader *shader);
         /// \brief Destructor.
@@ -56,8 +52,8 @@ namespace engine
         void render();
 
         /// \brief Returns the data (vertices) of the cube map.
-        /// \return The container holding the vertices of the cube map.
-        inline Container<GLfloat> getVertices() const { return m_vertices; };
+        /// \return The vector holding the vertices of the cube map.
+        inline std::vector<GLfloat> getVertices() const { return m_vertices; };
     };
 
 } // namespace engine

@@ -14,10 +14,18 @@ namespace engine
     {
     }
 
-    Entity::Entity(const Entity &other)
-        : m_model(other.m_model), m_shader(other.m_shader), m_isStatic(other.m_isStatic),
-          m_position(other.m_position), m_scale(other.m_scale), m_rotation(other.m_rotation)
+    bool Entity::intersect(Entity &other)
     {
+        float selfScale = (glm::abs(m_scale.x) + glm::abs(m_scale.y) + glm::abs(m_scale.z)) / 3.0f;
+        float otherScale = (glm::abs(other.m_scale.x) + glm::abs(other.m_scale.y) + glm::abs(other.m_scale.z)) / 3.0f;
+
+        return (
+            m_model->collider().intersect(
+                other.m_model->collider(),
+                getMatrix(),
+                selfScale,
+                other.getMatrix(),
+                otherScale));
     }
 
     const glm::mat4 Entity::getMatrix()
@@ -29,11 +37,13 @@ namespace engine
 
         glm::mat4 entityMatrix = glm::mat4(1);
 
-        // entityMatrix = glm::rotate(entityMatrix, m_rotation[0], -glm::vec3(0.0f, 0.0f, -1.0f));
-        // entityMatrix = glm::rotate(entityMatrix, m_rotation[1], -glm::vec3(-1.0f, 0.0f, 0.0f));
-        // entityMatrix = glm::rotate(entityMatrix, m_rotation[2], -glm::vec3(0.0f, 1.0f, 0.0f));
-
         entityMatrix = glm::translate(entityMatrix, m_position);
+
+        entityMatrix = glm::rotate(entityMatrix, m_rotation[0], -glm::vec3(1.0f, 0.0f, 0.0f));
+        entityMatrix = glm::rotate(entityMatrix, m_rotation[1], -glm::vec3(0.0f, 1.0f, 0.0f));
+        entityMatrix = glm::rotate(entityMatrix, m_rotation[2], -glm::vec3(0.0f, 0.0f, 1.0f));
+
+        entityMatrix = glm::scale(entityMatrix, m_scale);
 
         if (m_isStatic)
         {
@@ -44,20 +54,9 @@ namespace engine
         return entityMatrix;
     }
 
-    // void Entity::update(float time)
-    // {
-    // }
-
-    // void Entity::moveFront(float dt)
-    // {
-    //     m_position[2] += dt * 0.01;
-    // }
-
-    // void Entity::moveLeft(float dt)
-    // {
-    //     std::cout << dt << std::endl;
-    //     m_position[0] += dt * 0.01;
-    // }
+    void Entity::update(const float dt)
+    {
+    }
 
     void Entity::render()
     {

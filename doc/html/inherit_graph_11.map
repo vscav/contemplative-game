@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classengine_1_1Entity.html" title="Class which represents a general renderable entity." alt="" coords="5,56,117,83"/>
+<area shape="rect" id="node2" href="$classengine_1_1Collectable.html" title="Class that represents an collectable in the application, an interactive entity." alt="" coords="165,5,312,32"/>
+<area shape="rect" id="node3" href="$classengine_1_1Obstacle.html" title="Class that represents an obstacle in the application." alt="" coords="173,56,304,83"/>
+<area shape="rect" id="node4" href="$classengine_1_1Player.html" title="Class that represents the player of the application." alt="" coords="181,107,296,133"/>
+</map>

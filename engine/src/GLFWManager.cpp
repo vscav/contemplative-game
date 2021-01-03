@@ -16,9 +16,29 @@ namespace engine
         initialize();
     }
 
+    void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
+    {
+        if (key == GLFW_KEY_P && action == GLFW_PRESS)
+        {
+            std::cout << "P was pressed" << '\n';
+            ((GLFWManager *)glfwGetWindowUserPointer(window))->getInputManager()->keyPressed(InputCodes::Pause);
+        }
+    }
+
+    void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
+    {
+        ((GLFWManager *)glfwGetWindowUserPointer(window))->getInputManager()->wheelMoved(yoffset);
+    }
+
+    void GLFWManager::setKeyCallback()
+    {
+        glfwSetKeyCallback(m_window, key_callback);
+        glfwPollEvents();
+    }
+
     int GLFWManager::initialize()
     {
-        if (debug)
+        if (applicationDebug)
             std::cout << "[GLFWManager] GLFW initialisation" << std::endl;
 
         if (!glfwInit())
@@ -40,7 +60,7 @@ namespace engine
             glfwTerminate();
             throw EngineException(std::string("[GLFWManager] Could initialize GLEW, error = ") + (const char *)glewGetErrorString(err), __FILE__, __LINE__);
         }
-        else if (debug)
+        else if (applicationDebug)
             std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
 
         // Initialize OpenGL debug
@@ -57,6 +77,12 @@ namespace engine
 
         // opengl configuration : antialiasing
         m_windowUtils->antialias(true);
+
+        //setting key_callback
+        glfwSetKeyCallback(m_window, key_callback);
+
+        //setting scroll callback
+        glfwSetScrollCallback(m_window, scroll_callback);
 
         // Return success
         return 0;
@@ -102,6 +128,8 @@ namespace engine
             centerWindow();
         }
 
+        glfwSetWindowUserPointer(m_window, this);
+
         // Make sure the window is valid, if not, throw an error.
         if (m_window == nullptr)
         {
@@ -145,21 +173,31 @@ namespace engine
     // This function processes all the application's input
     void GLFWManager::processInput()
     {
+        // Escape key pressed
         if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS || glfwWindowShouldClose(m_window) != 0)
         {
             glfwSetWindowShouldClose(m_window, true);
             GLApplication::getInstance().exit();
         }
 
+        // Key pressed
         if (glfwGetKey(m_window, GLFW_KEY_UP) || glfwGetKey(m_window, GLFW_KEY_W))
-            m_inputManager->keyPressed(InputCodes::Up);
+            m_inputManager->keyPressed(InputCodes::Forward);
         if (glfwGetKey(m_window, GLFW_KEY_DOWN) || glfwGetKey(m_window, GLFW_KEY_S))
-            m_inputManager->keyPressed(InputCodes::Down);
+            m_inputManager->keyPressed(InputCodes::Backward);
         if (glfwGetKey(m_window, GLFW_KEY_LEFT) || glfwGetKey(m_window, GLFW_KEY_A))
             m_inputManager->keyPressed(InputCodes::Left);
         if (glfwGetKey(m_window, GLFW_KEY_RIGHT) || glfwGetKey(m_window, GLFW_KEY_D))
             m_inputManager->keyPressed(InputCodes::Right);
+        if (glfwGetKey(m_window, GLFW_KEY_E))
+            m_inputManager->keyPressed(InputCodes::Up);
+        if (glfwGetKey(m_window, GLFW_KEY_Q))
+            m_inputManager->keyPressed(InputCodes::Down);
+        if (applicationDebug)
+            if (glfwGetKey(m_window, GLFW_KEY_C))
+                m_inputManager->keyPressed(InputCodes::Clear);
 
+        // Mouse moved
         double xpos, ypos;
         glfwGetCursorPos(m_window, &xpos, &ypos);
 
@@ -202,16 +240,16 @@ namespace engine
 
     float const GLFWManager::getFrameDeltaTime()
     {
-        m_deltaTime = getTimeElapsed() - m_time;
+        m_deltaTime = (float)glfwGetTime() - m_time;
 
         return m_deltaTime;
     }
 
-    // This destroys the window
     void GLFWManager::destroy()
     {
         glfwDestroyWindow(m_window);
-        if (debug)
+
+        if (applicationDebug)
             std::cout << "[GLFWManager] Destroy GLFW window" << std::endl;
 
         glfwTerminate();

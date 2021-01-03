@@ -1,0 +1,6 @@
+<map id="engine::Entity" name="engine::Entity">
+<area shape="rect" id="node1" title="Class which represents a general renderable entity." alt="" coords="185,5,297,32"/>
+<area shape="rect" id="node2" href="$classengine_1_1Collectable.html" title="Class that represents an collectable in the application, an interactive entity." alt="" coords="5,80,152,107"/>
+<area shape="rect" id="node3" href="$classengine_1_1Obstacle.html" title="Class that represents an obstacle in the application." alt="" coords="176,80,307,107"/>
+<area shape="rect" id="node4" href="$classengine_1_1Player.html" title="Class that represents the player of the application." alt="" coords="331,80,445,107"/>
+</map>

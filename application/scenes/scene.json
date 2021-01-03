@@ -1,0 +1,325 @@
+{
+    "player": {
+        "model": "balloon"
+    },
+    "obstacles": [
+        {
+            "model": "rock1",
+            "static": true,
+            "transform": {
+                "position": [
+                    8.0,
+                    0.0,
+                    2.0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "rock2",
+            "shader": "pbr",
+            "static": true,
+            "transform": {
+                "position": [
+                    -5.0,
+                    1.0,
+                    -3.25
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "rock3",
+            "shader": "pbr",
+            "static": true,
+            "transform": {
+                "position": [
+                    -50.0,
+                    20.0,
+                    -30.25
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "rock4",
+            "shader": "pbr",
+            "static": true,
+            "transform": {
+                "position": [
+                    -30.0,
+                    10.0,
+                    -70
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "rock5",
+            "shader": "pbr",
+            "static": true,
+            "transform": {
+                "position": [
+                    0,
+                    25,
+                    -50
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "island1",
+            "static": true,
+            "transform": {
+                "position": [
+                    45.0,
+                    0.0,
+                    10.0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "island2",
+            "static": true,
+            "transform": {
+                "position": [
+                    10.0,
+                    -25.325,
+                    -32.75
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "rotation": [
+                    0.0,
+                    1.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "island3",
+            "static": true,
+            "transform": {
+                "position": [
+                    20,
+                    35.325,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "rotation": [
+                    0.0,
+                    0.75,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "island4",
+            "static": true,
+            "transform": {
+                "position": [
+                    0,
+                    25,
+                    -40
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "island5",
+            "static": true,
+            "transform": {
+                "position": [
+                    -45,
+                    -25,
+                    -70
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "island1",
+            "static": true,
+            "transform": {
+                "position": [
+                    25.0,
+                    0.0,
+                    -50.0
+                ],
+                "scale": [
+                    0.25,
+                    0.25,
+                    0.25
+                ],
+                "rotation": [
+                    0.0,
+                    -0.5,
+                    0.0
+                ]
+            }
+        }
+    ],
+    "collectables": [
+        {
+            "model": "gem1",
+            "transform": {
+                "position": [
+                    45.0,
+                    0.0,
+                    10.0
+                ],
+                "scale": [
+                    0.35,
+                    0.35,
+                    0.35
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "gem2",
+            "transform": {
+                "position": [
+                    40.0,
+                    -25.325,
+                    -40
+                ],
+                "scale": [
+                    0.65,
+                    0.65,
+                    0.65
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        {
+            "model": "gem3",
+            "transform": {
+                "position": [
+                    0.0,
+                    3.0,
+                    -10.0
+                ],
+                "scale": [
+                    0.4,
+                    0.4,
+                    0.4
+                ],
+                "rotation": [
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        }
+    ],
+    "directionalLight": {
+        "intensity": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "color": [
+            0.5,
+            0.65,
+            1.0
+        ],
+        "direction": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "isStatic": true
+    },
+    "cubemap": {
+        "type": "gradient"
+    }
+}

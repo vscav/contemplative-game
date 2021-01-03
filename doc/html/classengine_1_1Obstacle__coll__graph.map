@@ -1,0 +1,4 @@
+<map id="engine::Obstacle" name="engine::Obstacle">
+<area shape="rect" id="node1" title="Class that represents an obstacle in the application." alt="" coords="5,80,136,107"/>
+<area shape="rect" id="node2" href="$classengine_1_1Entity.html" title="Class which represents a general renderable entity." alt="" coords="15,5,127,32"/>
+</map>

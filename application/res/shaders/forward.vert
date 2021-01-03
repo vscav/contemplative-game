@@ -11,6 +11,8 @@ out vec3 vViewSpacePosition;
 out vec3 vViewSpaceNormal;
 out vec2 vTexCoords;
 
+flat out int InstanceID; 
+
 uniform mat4 uModelViewProjMatrix;
 uniform mat4 uModelViewMatrix;
 uniform mat4 uNormalMatrix;
@@ -21,4 +23,5 @@ void main()
 	vViewSpaceNormal = normalize(vec3(uNormalMatrix * vec4(aNormal, 0)));
 	vTexCoords = aTexCoords;
     gl_Position =  uModelViewProjMatrix * vec4(aPosition, 1);
+    InstanceID = gl_InstanceID;
 }

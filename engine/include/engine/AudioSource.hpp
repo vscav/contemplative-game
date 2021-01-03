@@ -2,6 +2,8 @@
 #ifndef _AudioSource_HPP_
 #define _AudioSource_HPP_
 
+#include <engine/dependencies/glm.hpp>
+
 #include <AL/al.h>
 
 namespace engine
@@ -36,6 +38,8 @@ namespace engine
 
         /// \brief Method to stop the source
         void stop();
+
+        void setPosition(const glm::vec3 newPosition);
     };
 
 } // namespace engine

@@ -7,7 +7,7 @@
 namespace engine
 {
 
-    OpenALManager::OpenALManager():m_audioDevice(new AudioDevice()),m_audioListener(new AudioListener()),m_audioSource(new AudioSource()), m_audioBuffer(new AudioBuffer())
+    OpenALManager::OpenALManager():m_audioDevice(new AudioDevice()),m_audioListener(new AudioListener()),m_audioSource(new AudioSource()), m_audioBuffer(new AudioBuffer()), m_mainSource(new AudioSource()), m_mainSourceBuffer(new AudioBuffer())
     {
         initialize();
     }
@@ -18,6 +18,9 @@ namespace engine
 
       m_audioBuffer->addAudioEffect("application/res/sounds/hwh.wav");
       m_audioSource->setBuffer(m_audioBuffer.get()->m_audioEffectBuffers[0]);
+
+      m_mainSourceBuffer->addAudioEffect("application/res/sounds/m.wav");
+      m_mainSource->setBuffer(m_mainSourceBuffer.get()->m_audioEffectBuffers[0]);
         // Return success
 
         //std::cout << "Testing Calling play sound" << '\n';
@@ -27,6 +30,7 @@ namespace engine
         if (m_isPlaying != AL_PLAYING || alGetError() != AL_NO_ERROR)
         {
             m_audioSource->play();
+            m_mainSource->play();
         }
         return 0;
     }
@@ -40,11 +44,13 @@ namespace engine
 
     void OpenALManager::pause(){
       alGetSourcei(m_audioSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
+      alGetSourcei(m_audioSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
       if(m_isPlaying == AL_PLAYING){
         m_audioSource->pause();
       }
       else{
         m_audioSource->play();
+        m_mainSource->play();
       }
     }
 
@@ -53,6 +59,7 @@ namespace engine
     void OpenALManager::destroy()
     {
       m_audioSource->stop();
+      m_mainSource->stop();
       m_isPlaying=AL_STOPPED;
     }
 

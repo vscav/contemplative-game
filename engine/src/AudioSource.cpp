@@ -51,4 +51,12 @@ namespace engine
       alSourcei(m_source, AL_BUFFER, 0);
     }
 
+    void AudioSource::setPosition(const glm::vec3 newPosition){
+      m_position[0]=newPosition[0];
+      m_position[1]=newPosition[1];
+      m_position[2]=newPosition[2];
+
+      alSourcefv(m_source, AL_POSITION, m_position);
+    }
+
 } // namespace engine

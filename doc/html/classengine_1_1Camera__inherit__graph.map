@@ -1,0 +1,4 @@
+<map id="engine::Camera" name="engine::Camera">
+<area shape="rect" id="node1" title="Class for managing the creation of a camera. This class should be inherited from to create specific i..." alt="" coords="34,5,159,32"/>
+<area shape="rect" id="node2" href="$classengine_1_1TrackballCamera.html" title="Class for creating a trackball camera object, which is an implementation of the abstract base class C..." alt="" coords="5,80,188,107"/>
+</map>

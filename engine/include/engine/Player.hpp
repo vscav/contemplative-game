@@ -12,13 +12,15 @@ namespace engine
 
     constexpr glm::vec3 defaultPlayerPosition = glm::vec3(0.0f, 0.0f, 0.0f);
 
-    constexpr float runSpeed = 0.1f;
+    constexpr float runSpeed = 0.25f;
     constexpr float turnSpeed = 0.025f;
-    constexpr float upSpeed = 0.025f;
+    constexpr float upSpeed = 0.15f;
 
-    constexpr float minimumPlayerUp = -10.0f;
-    constexpr float maximumPlayerUp = 10.0f;
+    constexpr float minimumPlayerUp = -50.0f;
+    constexpr float maximumPlayerUp = 50.0f;
 
+    /// \class Player
+    /// \brief Class that represents the player of the application.
     class Player : public Entity
     {
     protected:

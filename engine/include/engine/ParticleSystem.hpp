@@ -25,7 +25,7 @@ namespace engine
     };
 
     /// \class ParticleSystem
-    /// \brief
+    /// \brief Class that instanciates a particles system, an object that fires particles given various props.
     class ParticleSystem
     {
     private:

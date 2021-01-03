@@ -1,0 +1,4 @@
+<map id="engine::Player" name="engine::Player">
+<area shape="rect" id="node1" title="Class that represents the player of the application." alt="" coords="5,80,120,107"/>
+<area shape="rect" id="node2" href="$classengine_1_1Entity.html" title="Class which represents a general renderable entity." alt="" coords="7,5,119,32"/>
+</map>

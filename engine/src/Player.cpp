@@ -71,7 +71,7 @@ namespace engine
     {
         GLApplication::getInstance().getCamera()->updatePosition(m_position);
 
-        if (m_score == 1)
+        if (m_score == 10)
         {
             GLApplication::getInstance().setState(stateWin);
         }

@@ -1,0 +1,4 @@
+<map id="engine::GLAudioManager" name="engine::GLAudioManager">
+<area shape="rect" id="node1" title="Class for managing the creation of the sound context, inputs This class should be inherited from to c..." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node2" href="$classengine_1_1OpenALManager.html" title=" " alt="" coords="8,80,189,107"/>
+</map>

@@ -17,10 +17,9 @@ namespace engine
     class AudioListener
     {
     private:
-
-      ALfloat m_listenerPos[3]={0.0, 0.0, 0.0}; /*!< An array that represent the position of the listener */
-      ALfloat m_listenerVel[3]={0.0, 0.0, 0.0}; /*!< An array that represent the velocity of the listener */
-      ALfloat m_listenerOri[6]={0.0,0.0,-1.0, 0.0,1.0,0.0}; /*!< An array that represent the orientation of the listener */
+      ALfloat m_listenerPos[3]={0.0, 0.0, 0.0}; /*!< An array that represent the position of the listener. */
+      ALfloat m_listenerVel[3]={0.0, 0.0, 0.0}; /*!< An array that represent the velocity of the listener. */
+      ALfloat m_listenerOri[6]={0.0,0.0,-1.0, 0.0,1.0,0.0}; /*!< An array that represent the orientation of the listener. */
 
 
     public:
@@ -29,9 +28,9 @@ namespace engine
         AudioListener();
 
         /// \brief Destructor.
-        ~AudioListener() noexcept(false);
+        ~AudioListener() = default;
 
-        ///
+        /// \brief Sets the position of the audio listener. 
         void setPosition(const glm::vec3 newPosition);
     };
 

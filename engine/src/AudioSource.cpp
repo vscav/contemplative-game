@@ -17,9 +17,7 @@ namespace engine
 
         alSourcef(m_source, AL_REFERENCE_DISTANCE, 2.5);
         alSourcef(m_source, AL_ROLLOFF_FACTOR, 1.0);
-        //alSourcef(m_source, AL_MAX_DISTANCE, 15.0);
         alSourcei(m_source, AL_LOOPING, m_loopAudio);
-        //alSourcei(m_source, AL_BUFFER, m_buffer);
     }
 
     AudioSource::~AudioSource()

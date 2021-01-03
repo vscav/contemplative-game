@@ -12,7 +12,6 @@ namespace engine
 
     AudioListener::AudioListener()
     {
-
       ALenum error;
 
       // Position ...
@@ -40,11 +39,6 @@ namespace engine
       }
 
       if(applicationDebug) std::cout << COLOR_CYAN << "[AudioListener]"<< COLOR_RESET <<" Created listener" << '\n';
-    }
-
-    AudioListener::~AudioListener() noexcept(false)
-    {
-
     }
 
     void AudioListener::setPosition(const glm::vec3 newPosition){

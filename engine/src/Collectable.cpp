@@ -13,30 +13,29 @@ namespace engine
           m_particleSystem(new ParticleSystem(new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/particle.frag"))),
           m_source(new AudioSource()), m_bufferBuzz(new AudioBuffer()), m_bufferTaken(new AudioBuffer())
     {
-        m_particle.colorBegin = {25 / 255.0f, 25 / 255.0f, 112 / 255.0f, 1.0f};
-        m_particle.colorEnd = {100 / 255.0f, 149 / 255.0f, 237 / 255.0f, 1.0f};
-        m_particle.sizeBegin = 0.5f;
-        m_particle.sizeVariation = 0.3f;
-        m_particle.sizeEnd = 0.0f;
-        m_particle.lifeTime = 10.0f;
-        m_particle.velocity = {0.25f, 0.25f, 0.25f};
-        m_particle.velocityVariation = {3.0f, 1.0f, 1.0f};
+        // m_particle.colorBegin = {25 / 255.0f, 25 / 255.0f, 112 / 255.0f, 1.0f};
+        // m_particle.colorEnd = {100 / 255.0f, 149 / 255.0f, 237 / 255.0f, 1.0f};
+        // m_particle.sizeBegin = 0.5f;
+        // m_particle.sizeVariation = 0.3f;
+        // m_particle.sizeEnd = 0.0f;
+        // m_particle.lifeTime = 10.0f;
+        // m_particle.velocity = {0.25f, 0.25f, 0.25f};
+        // m_particle.velocityVariation = {3.0f, 1.0f, 1.0f};
         // m_particle.position = {0.0f, 0.0f, 0.0f};
-        m_particle.position = m_position;
+        // m_particle.position = m_position;
 
         m_bufferBuzz->addAudioEffect("application/res/sounds/buzz.wav");
         m_bufferTaken->addAudioEffect("application/res/sounds/pickgem.wav");
+
         m_source->setLooping(1);
         m_source->setBuffer(m_bufferBuzz.get()->m_audioEffectBuffers[0]);
         m_source->setPosition(m_position);
-
 
         alGetSourcei(m_source->m_source, AL_SOURCE_STATE, &m_isPlaying);
         if (m_isPlaying != AL_PLAYING || alGetError() != AL_NO_ERROR)
         {
           m_source->play();
         }
-
     }
 
     void Collectable::doCollisionWith(Entity &other)

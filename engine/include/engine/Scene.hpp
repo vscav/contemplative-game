@@ -20,7 +20,7 @@ namespace engine
     constexpr float endlessMaximumCollideDistance = 20.0f;
 
     /// \class Scene
-    /// \brief
+    /// \brief Class that contains and manages the entities and objects of the application.
     class Scene
     {
     private:

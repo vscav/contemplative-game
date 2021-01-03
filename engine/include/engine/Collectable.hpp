@@ -25,12 +25,12 @@ namespace engine
         bool m_isTaken;  /*!< A boolean to tell whether the collectable has been taken by the player. */
         bool m_isHidden; /*!< A boolean to tell whether the collectable was taken and if it has to be rendered to the screen. */
 
-        std::unique_ptr<ParticleSystem> m_particleSystem; /*!< */
-        ParticleProps m_particle;                         /*!< */
+        std::unique_ptr<ParticleSystem> m_particleSystem; /*!< The particle system of the collectable entity. */
+        ParticleProps m_particle;                         /*!< The particle props associate to the particle system of the collectable entity. */
 
-        std::unique_ptr<AudioSource> m_source;
-        std::unique_ptr<AudioBuffer> m_bufferBuzz;
-        std::unique_ptr<AudioBuffer> m_bufferTaken;
+        std::unique_ptr<AudioSource> m_source;      /*!< The source of the collectable entity audio. */
+        std::unique_ptr<AudioBuffer> m_bufferBuzz;  /*!< The audio buffer for a rotating collectable entity. */
+        std::unique_ptr<AudioBuffer> m_bufferTaken; /*!< The audio buffer for a successful collectable entity catch. */
 
         ALint m_isPlaying;
 

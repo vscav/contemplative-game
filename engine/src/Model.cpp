@@ -387,7 +387,7 @@ namespace engine
         glBindVertexArray(0);
 
         if (applicationDebug)
-            std::cout << "Number of VAOs: " << vertexArrayObjects.size() << std::endl;
+            std::cout << "[GLTF Model] Number of VAOs: " << vertexArrayObjects.size() << std::endl;
 
         return vertexArrayObjects;
     }

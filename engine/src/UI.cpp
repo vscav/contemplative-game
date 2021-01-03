@@ -83,9 +83,6 @@ namespace engine
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
-
-    m_wWidth = 800.0f;
-    m_wHeight = 600.0f;
   }
 
   void UI::updateMatrix(float width, float height)
@@ -106,11 +103,11 @@ namespace engine
 
   void UI::render()
   {
-    renderText("Collect the gems", m_wWidth / 2 - 200, m_wHeight - 50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
+    renderText("Collect the gems", m_wWidth / 2 - 200, m_wHeight - 75.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
 
     if (GLApplication::getInstance().getState() == stateWin)
     {
-      renderText("You have collected all the resources", m_wWidth / 2 - 200, m_wHeight - 50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
+      renderText("You have collected all the resources", m_wWidth / 2 - 435, m_wHeight / 2, 1.0, glm::vec3(1.0, 1.0, 1.0));
     }
 
     renderText(m_scoreText + "/10", m_wWidth / 2 - 50, 50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));

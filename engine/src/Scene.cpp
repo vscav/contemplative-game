@@ -14,6 +14,21 @@ namespace engine
         }
     }
 
+    void Scene::clearScene()
+    {
+        skybox().reset();
+
+        player().reset();
+
+        pointLights().reset();
+
+        directionalLight().reset();
+
+        obstacles().clear();
+
+        collectables().clear();
+    }
+
     void Scene::update(const float dt)
     {
         // std::cout << obstacles().size() << std::endl;

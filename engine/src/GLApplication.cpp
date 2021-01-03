@@ -48,6 +48,15 @@ namespace engine
     currentGLApplication = this;
   }
 
+  void GLApplication::loadScene(const std::string sceneFilePath)
+  {
+    m_scene->clearScene();
+
+    setScene(Serializer::getInstance().load(sceneFilePath));
+
+    Renderer::getInstance().setScene(m_scene);
+  }
+
   void GLApplication::exit()
   {
     if (applicationDebug)

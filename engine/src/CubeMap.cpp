@@ -104,7 +104,7 @@ namespace engine
 
         m_shader->bind();
 
-        m_shader->setVec3f("uFogColor", 0.0f, 0.0f, 0.0f);
+        // m_shader->setVec3f("uFogColor", 0.0f, 0.0f, 0.0f);
 
         m_vao.bind();
 

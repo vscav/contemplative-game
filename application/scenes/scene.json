@@ -1,6 +1,6 @@
 {
     "player": {
-        "model": "astrovan2"
+        "model": "balloon"
     },
     "obstacles": [
         {

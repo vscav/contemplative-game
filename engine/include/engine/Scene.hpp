@@ -97,6 +97,9 @@ namespace engine
         template <typename T, typename U>
         void handleCollision(T &firstEntity, U &secondEntity);
 
+        /// \brief Clears the entire scene.
+        void clearScene();
+
         /// \brief Updates the scene.
         /// \param dt : The delta time, which describes the time difference between the previous frame that was drawn and the current frame.
         void update(const float dt);

@@ -71,7 +71,6 @@ namespace engine
 
         m_inputManager = std::make_unique<InputManager>();
         m_windowUtils = std::make_unique<GLWindowUtils>();
-        
 
         // opengl configuration : enable depth test
         m_windowUtils->enableDepthTesting(true);
@@ -194,6 +193,8 @@ namespace engine
             m_inputManager->keyPressed(InputCodes::Up);
         if (glfwGetKey(m_window, GLFW_KEY_Q))
             m_inputManager->keyPressed(InputCodes::Down);
+        if (glfwGetKey(m_window, GLFW_KEY_C))
+            m_inputManager->keyPressed(InputCodes::Clear);
 
         // Mouse moved
         double xpos, ypos;

@@ -17,6 +17,7 @@ namespace engine
 	enum InputCodes
 	{
 		Backward,
+		Clear,
 		Down,
 		Forward,
 		Left,

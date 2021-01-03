@@ -25,6 +25,7 @@ void Application::loop()
   // Get the total time ellapsed since the application was run
   float dt = m_windowManager->getFrameDeltaTime();
 
+  // Get time elapsed
   m_windowManager->getTimeElapsed();
 
   // Update the camera
@@ -35,6 +36,4 @@ void Application::loop()
 
   // Render the entire scene
   m_scene->render();
-
-  // GLFW sleep to call
 }

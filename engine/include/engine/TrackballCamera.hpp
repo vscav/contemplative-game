@@ -87,13 +87,15 @@ namespace engine
         glm::mat4 getVPMatrix() const override;
 
         /// \brief Updates the camera position.
+        /// \param position : The new position to apply to the camera.
         void updatePosition(glm::vec3 const position) override;
         /// \brief Gets the position of the camera.
         /// \return The position of the camera.
         glm::vec3 getPosition() const override { return m_position; };
 
         /// \brief Updates the camera.
-        void update(float dt) override;
+        /// \param dt : The delta time, which describes the time difference between the previous frame that was drawn and the current frame.
+        void update(const float dt) override;
     };
 
 } // namespace engine

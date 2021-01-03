@@ -51,7 +51,7 @@ namespace engine
         ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleX), glm::vec3(1, 0, 0));
         ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleY), glm::vec3(0, 1, 0));
 
-        // Translate from its position
+        // Translate from its current position
         ViewMatrix = glm::translate(ViewMatrix, -m_position);
 
         return ViewMatrix;
@@ -74,7 +74,7 @@ namespace engine
         m_position = position;
     }
 
-    void TrackballCamera::update(float dt)
+    void TrackballCamera::update(const float dt)
     {
         // Update angles
         m_angleX += m_angleXSpeed * dt * 100;

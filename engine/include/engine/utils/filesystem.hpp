@@ -22,12 +22,9 @@ namespace engine
 #else
 #ifdef USE_STD_FILESYSTEM
 #include <filesystem>
-    namespace fs = std::filesystem; // Shorter namespace for experimental
-                                    // filesystem standard library
+    namespace fs = std::filesystem;
 #else
-    namespace fs =
-        std::experimental::filesystem; // Shorter namespace for experimental
-                                       // filesystem standard library
+    namespace fs = std::experimental::filesystem;
 #endif
 #endif
 

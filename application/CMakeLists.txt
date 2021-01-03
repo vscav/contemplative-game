@@ -35,3 +35,5 @@ file(COPY res/models DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)
 file(COPY res/sounds DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)
 # copy scene json files to the build directory
 file(COPY scenes DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+# copy sound files to the build directory
+file(COPY res/fonts DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)

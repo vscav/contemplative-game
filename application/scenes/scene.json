@@ -4,7 +4,7 @@
     },
     "obstacles": [
         {
-            "model": "rock",
+            "model": "rock1",
             "static": true,
             "transform": {
                 "position": [
@@ -13,9 +13,9 @@
                     2.0
                 ],
                 "scale": [
-                    0.001,
-                    0.001,
-                    0.001
+                    1,
+                    1,
+                    1
                 ],
                 "rotation": [
                     0.0,
@@ -25,7 +25,7 @@
             }
         },
         {
-            "model": "rock",
+            "model": "rock2",
             "shader": "pbr",
             "static": true,
             "transform": {
@@ -35,9 +35,9 @@
                     -3.25
                 ],
                 "scale": [
-                    0.001,
-                    0.001,
-                    0.001
+                    1,
+                    1,
+                    1
                 ],
                 "rotation": [
                     0.0,

@@ -1,0 +1,154 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.3.48",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Icosphere.003",
+            "rotation" : [
+                -0.009527357295155525,
+                0.44652649760246277,
+                0.6822977066040039,
+                0.5787858963012695
+            ],
+            "translation" : [
+                5.321213722229004,
+                0,
+                0
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "Material.001",
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 0,
+                    "texCoord" : 0
+                },
+                "metallicFactor" : 0,
+                "metallicRoughnessTexture" : {
+                    "index" : 1,
+                    "texCoord" : 0
+                }
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Icosphere.003",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "source" : 0
+        },
+        {
+            "source" : 1
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "TexturesCom_Rock_CliffMountain_1K_ao",
+            "uri" : "textures/TexturesCom_Rock_CliffMountain_1K_ao.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "TexturesCom_Rock_CliffMountain_1K_roughness",
+            "uri" : "textures/TexturesCom_Rock_CliffMountain_1K_roughness.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 958,
+            "max" : [
+                1.0321348905563354,
+                1,
+                1.146005630493164
+            ],
+            "min" : [
+                -1.252558946609497,
+                -0.8957231640815735,
+                -0.9611860513687134
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 958,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 958,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 960,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 11496,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 11496,
+            "byteOffset" : 11496
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 7664,
+            "byteOffset" : 22992
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1920,
+            "byteOffset" : 30656
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 32576,
+            "uri" : "scene.bin"
+        }
+    ]
+}

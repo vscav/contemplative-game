@@ -43,7 +43,11 @@ namespace engine
 
     void AudioSource::pause()
     {
-      alSourcePause(m_source);
+      ALint isPlaying;
+      alGetSourcei(m_source, AL_SOURCE_STATE, &isPlaying);
+      if(isPlaying){
+          alSourcePause(m_source);
+      }
     }
 
     void AudioSource::stop(){

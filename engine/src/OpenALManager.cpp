@@ -44,10 +44,10 @@ namespace engine
     }
 
     void OpenALManager::pause(){
-      alGetSourcei(m_audioSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
-      alGetSourcei(m_audioSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
+      alGetSourcei(m_mainSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
       if(m_isPlaying == AL_PLAYING){
         m_audioSource->pause();
+        m_mainSource->pause();
       }
       else{
         m_audioSource->play();

@@ -102,11 +102,10 @@ namespace engine
     {
         std::string modelName = deserializeString(data.at("model"));
 
-        destination = std::make_unique<Player>(Player(
-            Entity(
-                new Model("application/res/models/" + modelName + "/scene.gltf"),
-                new Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
-                false)));
+        destination = std::unique_ptr<Player>(new Player(
+            new Model("application/res/models/" + modelName + "/scene.gltf"),
+            new Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
+            false));
     }
 
     void Serializer::deserializeDirectionalLight(const tao::json::value &data, std::unique_ptr<DirectionalLight> &destination)
@@ -117,10 +116,10 @@ namespace engine
 
         bool isStatic = (data.find("isStatic") != nullptr) ? deserializeBoolean(data.at("isStatic")) : true;
 
-        destination = std::make_unique<DirectionalLight>(DirectionalLight(intensity,
-                                                                          color,
-                                                                          direction,
-                                                                          isStatic));
+        destination = std::unique_ptr<DirectionalLight>(new DirectionalLight(intensity,
+                                                                             color,
+                                                                             direction,
+                                                                             isStatic));
     }
 
     void Serializer::deserializePointLights(const tao::json::value &data, std::unique_ptr<PointLights> &destination)

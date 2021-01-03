@@ -3,8 +3,11 @@
 
 namespace engine
 {
-    Player::Player(const Entity &playerEntity)
-        : Entity(playerEntity),
+    Player::Player(Model *model,
+                    Shader *shader,
+                    const bool isStatic,
+                    const Transform &transform)
+        : Entity(model, shader, isStatic, transform),
           m_score(0)
     {
         if (applicationDebug)

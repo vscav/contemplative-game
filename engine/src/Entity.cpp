@@ -14,12 +14,6 @@ namespace engine
     {
     }
 
-    Entity::Entity(const Entity &other)
-        : m_model(other.m_model), m_shader(other.m_shader), m_isStatic(other.m_isStatic),
-          m_position(other.m_position), m_scale(other.m_scale), m_rotation(other.m_rotation)
-    {
-    }
-
     bool Entity::intersect(Entity &other)
     {
         float selfScale = (glm::abs(m_scale.x) + glm::abs(m_scale.y) + glm::abs(m_scale.z)) / 3.0f;

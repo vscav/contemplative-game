@@ -86,6 +86,8 @@ namespace engine
         /// \return The skybox of the scene as a const reference.
         inline const std::unique_ptr<CubeMap> &skybox() const { return m_skybox; };
 
+        /// \brief Add a player to be rendered in the scene.
+        inline void add(std::unique_ptr<Player> player) { m_player = std::move(player); };
         /// \brief Add a skybox to be rendered in the scene.
         inline void add(std::unique_ptr<CubeMap> skybox) { m_skybox = std::move(skybox); };
 

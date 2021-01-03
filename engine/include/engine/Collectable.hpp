@@ -50,6 +50,7 @@ namespace engine
         };
 
         /// \brief Implements the collision behavior when colliding an entity.
+        /// \param other : An entity.
         void doCollisionWith(Entity &other);
 
         /// \brief Implements the collision behavior when colliding the player.
@@ -57,16 +58,18 @@ namespace engine
         void doCollisionWith(Player &other);
 
         /// \brief Updates the collectable entity.
-        /// \param dt : .
+        /// \param dt : The delta time, which describes the time difference between the previous frame that was drawn and the current frame.
         void update(const float dt);
 
-        /// \brief Renders the obstacle.
+        /// \brief Renders the obstacle entity.
         void render();
 
-        /// \brief
+        /// \brief Returns a boolean to tell whether the collectable entity was taken by the player.
+        /// \return A boolean to tell whether the collectable entity was taken by the player.
         inline const bool isTaken() const { return m_isTaken; }
 
-        /// \brief
+        /// \brief Returns a boolean to tell whether the collectable entity is hidden.
+        /// \return A boolean to tell whether the collectable entity is hidden.
         inline const bool isHidden() const { return m_isHidden; }
     };
 

@@ -43,8 +43,6 @@ namespace engine
 
     public:
         /// \brief Constructor.
-        // explicit CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack,
-        //         const char *cubeBottom, const char *cubeRight, const char *cubeTop, Shader *shader);
         explicit CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack,
                  const char *cubeBottom, const char *cubeRight, const char *cubeTop, Shader *shader);
         /// \brief Destructor.

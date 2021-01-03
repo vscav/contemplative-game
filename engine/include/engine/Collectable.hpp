@@ -42,12 +42,7 @@ namespace engine
                     const Transform &transform = Transform());
 
         /// \brief Destructor.
-        virtual ~Collectable()
-        {
-            if (applicationDebug)
-                std::cout << "[Collectable] Delete collectable" << std::endl;
-
-        };
+        ~Collectable() = default;
 
         /// \brief Implements the collision behavior when colliding an entity.
         /// \param other : An entity.

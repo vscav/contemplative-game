@@ -3,8 +3,11 @@
 namespace engine
 {
 
-    Obstacle::Obstacle(const Entity &obstacleEntity)
-        : Entity(obstacleEntity)
+    Obstacle::Obstacle(Model *model,
+                       Shader *shader,
+                       const bool isStatic,
+                       const Transform &transform)
+        : Entity(model, shader, isStatic, transform)
     {
         if (applicationDebug)
             std::cout << "[Obstacle] Obstacle created" << std::endl;

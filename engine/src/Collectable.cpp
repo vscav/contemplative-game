@@ -5,8 +5,11 @@
 namespace engine
 {
 
-    Collectable::Collectable(const Entity &collectableEntity)
-        : Entity(collectableEntity), m_isTaken(false), m_isHidden(false),
+    Collectable::Collectable(Model *model,
+                             Shader *shader,
+                             const bool isStatic,
+                             const Transform &transform)
+        : Entity(model, shader, isStatic, transform), m_isTaken(false), m_isHidden(false),
           m_particleSystem(new ParticleSystem(new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/particle.frag")))
     {
         m_particle.colorBegin = {25 / 255.0f, 25 / 255.0f, 112 / 255.0f, 1.0f};
@@ -31,6 +34,7 @@ namespace engine
     {
         if (physicsDebug)
             std::cout << "[Collectable] Collectable collided with the player entity" << std::endl;
+
         m_isTaken = true;
     }
 
@@ -39,8 +43,8 @@ namespace engine
         m_position.y += 0.5f * dt * glm::sin(TimeManager::getInstance().getTime() * 0.5f * M_PI);
         m_rotation.y += 0.75f * dt;
 
-        m_particleSystem->emit(m_particle);
-        m_particleSystem->update(dt);
+        // m_particleSystem->emit(m_particle);
+        // m_particleSystem->update(dt);
 
         if (m_isTaken && !m_isHidden)
         {

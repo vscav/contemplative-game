@@ -16,6 +16,8 @@ namespace engine
 
     void Scene::update(const float dt)
     {
+        // std::cout << obstacles().size() << std::endl;
+
         if (player() != nullptr)
         {
             player()->update(dt);
@@ -42,13 +44,13 @@ namespace engine
         }
     }
 
-    void Scene::updateObstaclesList(std::list<std::unique_ptr<Obstacle>> &obstaclesList, const float dt)
+    void Scene::updateObstaclesList(std::list<std::unique_ptr<Entity>> &obstaclesList, const float dt)
     {
         if (player() != nullptr)
         {
-            for (typename std::list<std::unique_ptr<Obstacle>>::iterator it = obstaclesList.begin(); it != obstaclesList.end(); ++it)
+            for (typename std::list<std::unique_ptr<Entity>>::iterator it = obstaclesList.begin(); it != obstaclesList.end(); ++it)
             {
-                Obstacle &currentEntity(**it);
+                Obstacle &currentEntity(dynamic_cast<Obstacle &>(**it));
 
                 if (glm::abs(currentEntity.getPosition()[0] - m_player->getPosition()[0]) < m_maxCollideDistance)
                 {
@@ -63,13 +65,13 @@ namespace engine
         }
     }
 
-    void Scene::updateCollectablesList(std::list<std::unique_ptr<Collectable>> &collectablesList, const float dt)
+    void Scene::updateCollectablesList(std::list<std::unique_ptr<Entity>> &collectablesList, const float dt)
     {
-        std::list<std::unique_ptr<Collectable>>::iterator it = collectablesList.begin();
+        std::list<std::unique_ptr<Entity>>::iterator it = collectablesList.begin();
 
         while (it != collectablesList.end())
         {
-            Collectable &currentCollectableEntity(**it);
+            Collectable &currentCollectableEntity(dynamic_cast<Collectable &>(**it));
 
             if (glm::abs(currentCollectableEntity.getPosition()[0] - m_player->getPosition()[0]) < m_maxCollideDistance)
             {
@@ -94,9 +96,15 @@ namespace engine
 
     void Scene::render()
     {
-        skybox()->render();
+        if (skybox() != nullptr)
+        {
+            skybox()->render();
+        }
 
-        player()->render();
+        if (player() != nullptr)
+        {
+            player()->render();
+        }
 
         if (!m_obstacles.empty())
         {
@@ -115,17 +123,16 @@ namespace engine
     }
 
     template <typename T>
-    void Scene::renderEntitiesList(const std::list<std::unique_ptr<T>> &entitiesList)
+    void Scene::renderEntitiesList(const std::list<std::unique_ptr<Entity>> &entitiesList)
     {
         if (!entitiesList.empty())
         {
             auto it = entitiesList.begin();
             for (it = entitiesList.begin(); it != entitiesList.end(); ++it)
             {
-                if (it->get() != nullptr)
-                {
-                    it->get()->render();
-                }
+                T &currentEntity(dynamic_cast<T &>(**it));
+
+                currentEntity.render();
             }
         }
     }

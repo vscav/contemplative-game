@@ -25,7 +25,10 @@ namespace engine
 
     public:
         /// \brief Constructor.
-        Collectable(const Entity &collectableEntity);
+        Collectable(Model *model,
+                    Shader *shader,
+                    const bool isStatic = false,
+                    const Transform &transform = Transform());
 
         /// \brief Destructor.
         virtual ~Collectable()

@@ -44,10 +44,10 @@ namespace engine
         std::shared_ptr<Scene> load(std::string sceneFilePath);
 
         /// \brief
-        void deserializeObstacles(const tao::json::value &data, std::list<std::unique_ptr<Obstacle>> &destinationList);
+        void deserializeObstacles(const tao::json::value &data, std::list<std::unique_ptr<Entity>> &destinationList);
 
-        // /// \brief
-        // void deserializeCollectables(const tao::json::value &data, std::list<std::unique_ptr<Collectable>> &destinationList);
+        /// \brief
+        void deserializeCollectables(const tao::json::value &data, std::list<std::unique_ptr<Entity>> &destinationList);
 
         /// \brief
         void deserializePlayer(const tao::json::value &data, std::unique_ptr<Player> &destination);
@@ -61,8 +61,8 @@ namespace engine
         /// \brief
         Obstacle &deserializeObstacle(const tao::json::value &data);
 
-        // /// \brief
-        // Collectable &deserializeCollectable(const tao::json::value &data);
+        /// \brief
+        Collectable &deserializeCollectable(const tao::json::value &data);
 
         /// \brief
         void deserializeCubeMap(const tao::json::value &data, std::shared_ptr<Scene> &destination);
@@ -80,14 +80,7 @@ namespace engine
         inline std::string deserializeString(const tao::json::value &data) { return format(data.get_string()); }
 
         /// \brief
-        Transform &deserializeTransform(const tao::json::value &data)
-        {
-            glm::vec3 position = (nullptr != data.find("position")) ? deserializeVector3(data.at("position")) : glm::vec3(0.0f);
-            glm::vec3 rotation = (nullptr != data.find("rotation")) ? deserializeVector3(data.at("rotation")) : glm::vec3(0.0f);
-            glm::vec3 scale = (nullptr != data.find("scale")) ? deserializeVector3(data.at("scale")) : glm::vec3(1.0f);
-
-            return *new Transform(position, scale, rotation);
-        }
+        Transform &deserializeTransform(const tao::json::value &data);
     };
 
 } // namespace engine

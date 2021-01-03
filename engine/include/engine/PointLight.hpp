@@ -47,13 +47,13 @@ namespace engine
         ~PointLights() = default;
 
         /// \brief Adds a new point light to the collection.
-        /// \param position :
-        /// \param scale :
-        /// \param constant :
-        /// \param linear :
-        /// \param quadratic :
-        /// \param ambientColor :
-        /// \param diffuseColor :
+        /// \param position : A 3 floats vector representing the position of the new point light.
+        /// \param scale : A 3 floats vector representing the scale of the new point light.
+        /// \param constant : A float representing the constant of the new point light.
+        /// \param linear : A float representing the linear of the new point light.
+        /// \param quadratic : A float the quadratic of the new point light.
+        /// \param ambientColor : A 3 floats vector representing the ambient color of the new point light.
+        /// \param diffuseColor : A 3 floats vector representing the color of the new point light.
         void addPointLight(const glm::vec3 &position, const glm::vec3 &scale, const float &constant, const float &linear, const float &quadratic, const glm::vec3 &ambientColor, const glm::vec3 &diffuseColor);
 
         /// \brief Clears the collection of point lights.

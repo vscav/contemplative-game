@@ -17,11 +17,12 @@ namespace engine
       throw EngineException("[GLApplication] There is no current GLApplication", __FILE__, __LINE__);
   }
 
-  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager)
+  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager, UI *ui)
       : m_state(stateReady),
         m_windowManager(manager),
         m_audioManager(a_manager),
-        m_camera(camera)
+        m_camera(camera),
+        m_UI(ui)
   {
     setScene(Serializer::getInstance().load("application/scenes/scene.json"));
 
@@ -31,12 +32,13 @@ namespace engine
     currentGLApplication = this;
   }
 
-  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager,
+  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager, UI *ui,
                                std::string title, int width, int height, bool fullScreen)
       : m_state(stateReady),
         m_windowManager(manager),
         m_audioManager(a_manager),
-        m_camera(camera)
+        m_camera(camera),
+        m_UI(ui)
   {
     setScene(Serializer::getInstance().load("application/scenes/scene.json"));
 
@@ -66,7 +68,9 @@ namespace engine
         getWindowManager()->update();
         loop();
         getWindowManager()->processInput();
+        getUI()->updateMatrix(getWindowManager()->getWidth(), getWindowManager()->getHeight());
       }
+      getUI()->render();
       getWindowManager()->swapBuffers();
       getWindowManager()->setKeyCallback();
     }

@@ -71,6 +71,7 @@ namespace engine
 
         m_inputManager = std::make_unique<InputManager>();
         m_windowUtils = std::make_unique<GLWindowUtils>();
+        
 
         // opengl configuration : enable depth test
         m_windowUtils->enableDepthTesting(true);

@@ -15,6 +15,6 @@ float max3 (vec3 v) {
 }
 
 void main() {
-    
-    FragColor = vec4(pointsLightsAmbiantColor[InstanceID] / max3(pointsLightsAmbiantColor[InstanceID]), 1.0); 
+
+    FragColor = vec4(pointsLightsAmbiantColor[InstanceID] / max3(pointsLightsAmbiantColor[InstanceID]), 1.0);
 }

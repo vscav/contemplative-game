@@ -7,6 +7,7 @@
 #include <engine/GLAudioManager.hpp>
 #include <engine/Camera.hpp>
 #include <engine/Scene.hpp>
+#include <engine/UI.hpp>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -40,6 +41,7 @@ namespace engine
         std::unique_ptr<GLAudioManager> m_audioManager;
         std::shared_ptr<Camera> m_camera;                 /*!< A shared pointer to the camera used by the application and shared with the renderer. */
         std::shared_ptr<Scene> m_scene;                   /*!< A unique pointer to the scene (collection of graphical objects to display). */
+        std::shared_ptr<UI> m_UI;
 
         /// \brief The GL application loop (run until the user asks to quit).
         virtual void loop();
@@ -49,7 +51,7 @@ namespace engine
         /// \param camera : The camera which will be used by the application.
         /// \param manager : The window manager which will be used by the application.
         /// \param scene : The scene which will be displayed by the application.
-        GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager);
+        GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager, UI *ui);
 
         /// \brief Detailed parameterized constructor.
         /// \param camera : The camera which will be used by the application.
@@ -59,7 +61,7 @@ namespace engine
         /// \param width : The GL application width value.
         /// \param height : The GL application height value.
         /// \param fullScreen : A boolean to determine if the GL application window is in full screen mode.
-        explicit GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager,
+        explicit GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager,  UI *ui,
                                std::string title, int width, int height, bool fullScreen);
 
         /// \brief Copy constructor.
@@ -94,6 +96,9 @@ namespace engine
         /// \brief Returns the window manager (pointer) of the GL application.
         /// \return A pointer to the window manager of the GL application.
         inline GLWindowManager *getWindowManager() const { return m_windowManager.get(); }
+
+
+        inline UI *getUI() const { return m_UI.get(); }
 
         /// \brief Returns the camera (pointer) of the GL application.
         /// \return A pointer to the camera of the GL application.

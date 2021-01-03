@@ -40,6 +40,10 @@ namespace engine
         void stop();
 
         void setPosition(const glm::vec3 newPosition);
+
+        void setLooping(ALint isLooping);
+
+        void setGain(float gain);
     };
 
 } // namespace engine

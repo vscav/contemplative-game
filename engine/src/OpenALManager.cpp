@@ -19,20 +19,21 @@ namespace engine
       m_audioBuffer->addAudioEffect("application/res/sounds/hwh.wav");
       m_audioSource->setBuffer(m_audioBuffer.get()->m_audioEffectBuffers[0]);
 
-      m_mainSourceBuffer->addAudioEffect("application/res/sounds/m.wav");
+      m_mainSourceBuffer->addAudioEffect("application/res/sounds/main.wav");
+      m_mainSource->setLooping(1);
       m_mainSource->setBuffer(m_mainSourceBuffer.get()->m_audioEffectBuffers[0]);
-        // Return success
 
-        //std::cout << "Testing Calling play sound" << '\n';
-        alGetSourcei(m_audioSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
-        //std::cout << m_isPlaying << '\n';
 
-        if (m_isPlaying != AL_PLAYING || alGetError() != AL_NO_ERROR)
-        {
-            m_audioSource->play();
-            m_mainSource->play();
-        }
-        return 0;
+      //std::cout << "Testing Calling play sound" << '\n';
+      alGetSourcei(m_audioSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
+      //std::cout << m_isPlaying << '\n';
+
+      if (m_isPlaying != AL_PLAYING || alGetError() != AL_NO_ERROR)
+      {
+          //m_audioSource->play();
+          //m_mainSource->play();
+      }
+      return 0;
     }
 
 

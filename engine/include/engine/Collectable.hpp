@@ -4,6 +4,11 @@
 
 #include <engine/Entity.hpp>
 #include <engine/ParticleSystem.hpp>
+#include <engine/AudioSource.hpp>
+#include <engine/AudioBuffer.hpp>
+#include <engine/utils/common.hpp>
+
+#include <AL/al.h>
 
 const float collectableRotationSpeed = 2.f;
 
@@ -23,6 +28,12 @@ namespace engine
         std::shared_ptr<ParticleSystem> m_particleSystem; /*!< */
         ParticleProps m_particle;                         /*!< */
 
+        std::unique_ptr<AudioSource> m_source;
+        std::unique_ptr<AudioBuffer> m_bufferBuzz;
+        std::unique_ptr<AudioBuffer> m_bufferTaken;
+
+        ALint m_isPlaying;
+
     public:
         /// \brief Constructor.
         Collectable(Model *model,
@@ -35,6 +46,7 @@ namespace engine
         {
             if (applicationDebug)
                 std::cout << "[Collectable] Delete collectable" << std::endl;
+
         };
 
         /// \brief Implements the collision behavior when colliding an entity.

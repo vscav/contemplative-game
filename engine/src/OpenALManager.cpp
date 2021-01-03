@@ -7,7 +7,7 @@
 namespace engine
 {
 
-    OpenALManager::OpenALManager():m_audioDevice(new AudioDevice()),m_audioListener(new AudioListener()),m_audioSource(new AudioSource()), m_audioBuffer(new AudioBuffer()), m_mainSource(new AudioSource()), m_mainSourceBuffer(new AudioBuffer())
+    OpenALManager::OpenALManager():m_audioDevice(new AudioDevice()),m_audioListener(new AudioListener()), m_mainSource(new AudioSource()), m_mainSourceBuffer(new AudioBuffer())
     {
         initialize();
     }
@@ -16,22 +16,16 @@ namespace engine
     {
       alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
 
-      m_audioBuffer->addAudioEffect("application/res/sounds/hwh.wav");
-      m_audioSource->setBuffer(m_audioBuffer.get()->m_audioEffectBuffers[0]);
-
       m_mainSourceBuffer->addAudioEffect("application/res/sounds/main.wav");
       m_mainSource->setLooping(1);
       m_mainSource->setBuffer(m_mainSourceBuffer.get()->m_audioEffectBuffers[0]);
 
 
-      //std::cout << "Testing Calling play sound" << '\n';
-      alGetSourcei(m_audioSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
-      //std::cout << m_isPlaying << '\n';
+      alGetSourcei(m_mainSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
 
       if (m_isPlaying != AL_PLAYING || alGetError() != AL_NO_ERROR)
       {
-          //m_audioSource->play();
-          //m_mainSource->play();
+          m_mainSource->play();
       }
       return 0;
     }
@@ -47,11 +41,9 @@ namespace engine
     void OpenALManager::pause(){
       alGetSourcei(m_mainSource->m_source, AL_SOURCE_STATE, &m_isPlaying);
       if(m_isPlaying == AL_PLAYING){
-        m_audioSource->pause();
         m_mainSource->pause();
       }
       else{
-        m_audioSource->play();
         m_mainSource->play();
       }
     }
@@ -60,7 +52,6 @@ namespace engine
     // This destroys the window
     void OpenALManager::destroy()
     {
-      m_audioSource->stop();
       m_mainSource->stop();
       m_isPlaying=AL_STOPPED;
     }

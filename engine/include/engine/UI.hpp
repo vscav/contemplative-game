@@ -13,43 +13,45 @@
 
 namespace engine
 {
-  struct Character {
-      unsigned int TextureID;  // ID handle of the glyph texture
-      glm::ivec2   Size;       // Size of glyph
-      glm::ivec2   Bearing;    // Offset from baseline to left/top of glyph
-      unsigned int Advance;    // Offset to advance to next glyph
+  struct Character
+  {
+    unsigned int textureID; // ID handle of the glyph texture
+    glm::ivec2 size;        // Size of glyph
+    glm::ivec2 bearing;     // Offset from baseline to left/top of glyph
+    unsigned int advance;   // Offset to advance to next glyph
   };
+  /// \brief
+  class UI
+  {
+  private:
+    FT_Library m_ft;
+    FT_Face m_face;
+    std::map<char, Character> m_characters;
+    Shader *m_textShader;
+
+    GLuint m_vbo, m_vao;
+
+    std::string m_scoreText = "0";
+
+    float m_wWidth;
+    float m_wHeight;
+
+  public:
     /// \brief
-    class UI
-    {
-    private :
-      FT_Library m_ft;
-      FT_Face m_face;
-      std::map<char, Character> Characters;
-      Shader *m_textShader;
+    UI() = default;
+    /// \brief
+    ~UI();
 
-      GLuint m_vbo,m_vao;
-	    //glm::mat4 m_proj;
+    void updateMatrix(float width, float height);
 
-      std::string m_scoreText="0";
+    void initialize();
+    void initializeText();
 
-      float m_wWidth;
-      float m_wHeight;
+    void updateScore(unsigned int score);
 
-    public:
-        /// \brief
-        UI();
-        /// \brief
-        ~UI();
-
-        void RenderText(std::string text, float x, float y, float scale, glm::vec3 color);
-        void render();
-        void updateMatrix(float width, float height);
-        void initialization();
-        void initializeText();
-        void updateScore(unsigned int score);
-
-    };
+    void renderText(std::string text, float x, float y, float scale, glm::vec3 color);
+    void render();
+  };
 
 } // namespace engine
 

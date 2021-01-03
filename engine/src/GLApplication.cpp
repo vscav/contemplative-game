@@ -45,6 +45,9 @@ namespace engine
     Renderer::getInstance().setCamera(m_camera);
     Renderer::getInstance().setScene(m_scene);
 
+    m_UI->initializeText();
+    m_UI->initialize();
+
     currentGLApplication = this;
   }
 
@@ -53,6 +56,9 @@ namespace engine
     m_scene->clearScene();
 
     setScene(Serializer::getInstance().load(sceneFilePath));
+
+    m_UI->initializeText();
+    m_UI->initialize();
 
     Renderer::getInstance().setScene(m_scene);
   }

@@ -42,7 +42,7 @@ namespace engine
         /// \brief Destroys the window and the OpenGL context.
         virtual void destroy() = 0;
 
-        /// 
+        /// \brief Sets a callback to manage the keys pressed on the keyboard.
         virtual void setKeyCallback() = 0;
 
         /// \brief Returns the window/application title.
@@ -68,15 +68,9 @@ namespace engine
         /// \return The time elapsed since the last frame.
         virtual float const getFrameDeltaTime() = 0;
 
-        /// \brief Sets the application's inputs manager.
-        /// \param inputManager : A pointer to the inputManager of the application.
-        // inline void setInputManager(std::shared_ptr<InputManager> inputManager) { m_inputManager = std::move(inputManager); };
         /// \brief Returns the application's inputs manager.
         /// \return A pointer to the application's inputs manager.
         inline InputManager *getInputManager() const { return m_inputManager.get(); };
-        /// \brief Sets the application's window utility.
-        /// \param windowUtils : A pointer to the window utility of the application.
-        // inline void setWindowUtils(std::shared_ptr<GLWindowUtils> windowUtils) { m_windowUtils = std::move(windowUtils); };
         /// \brief Returns the application's window utility.
         /// \return A pointer to the window utility of the application.
         inline GLWindowUtils *getWindowUtils() const { return m_windowUtils.get(); };

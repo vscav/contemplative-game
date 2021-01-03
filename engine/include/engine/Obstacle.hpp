@@ -16,7 +16,11 @@ namespace engine
     class Obstacle : public Entity
     {
     public:
-        /// \brief Constructor.
+        /// \brief Parameterized constructor.
+        /// \param model : The GLTF model of the obstacle.
+        /// \param shader : The shader to use for the obstacle.
+        /// \param isStatic : Whether the obstacle is able to move.
+        /// \param transform : The initial transformation to apply to the obstacle.
         Obstacle(Model *model,
                  Shader *shader,
                  const bool isStatic = false,
@@ -25,12 +29,15 @@ namespace engine
         ~Obstacle() = default;
 
         /// \brief Implements the collision behavior when colliding with an entity.
+        /// \param other : An entity.
         void doCollisionWith(Entity &other);
 
         /// \brief Implements the collision behavior when colliding with the player.
+        /// \param other : The player entity.
         void doCollisionWith(Player &other);
 
         /// \brief Updates the obstacle.
+        /// \param dt : The delta time, which describes the time difference between the previous frame that was drawn and the current frame.
         void update(const float dt);
 
         /// \brief Renders the obstacle.

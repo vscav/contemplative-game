@@ -48,7 +48,7 @@ namespace engine
         /// \brief Destructor.
         inline ~GLFWManager() override { destroy(); };
 
-        /// \brief Sets a callback to manage the keys pressed on the keyboard
+        /// \brief Sets a callback to manage the keys pressed on the keyboard.
         void setKeyCallback();
 
         /// \brief Initializes the window and creates the OpenGL context.

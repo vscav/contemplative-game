@@ -12,6 +12,7 @@
 namespace engine
 {
 
+	/// \enum InputCodes
 	/// \brief An enum for keyboard action inputs.
 	enum InputCodes
 	{

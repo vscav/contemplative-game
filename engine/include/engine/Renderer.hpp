@@ -13,6 +13,8 @@
 namespace engine
 {
 
+    /// \class Renderer
+    /// \brief Class used to easily manage the graphics render.
     class Renderer
     {
     private:

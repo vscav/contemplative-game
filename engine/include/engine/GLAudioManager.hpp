@@ -30,8 +30,6 @@ namespace engine
         /// \brief Destroys the audio context.
         virtual void destroy() = 0;
 
-
-
     };
 
 } // namespace engine

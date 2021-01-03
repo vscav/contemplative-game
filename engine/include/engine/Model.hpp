@@ -43,25 +43,30 @@ namespace engine
         /// \brief Loads the GLTF file which describes the 3D model.
         bool loadGltfFile(tinygltf::Model &model);
 
-        /// \brief
+        /// \brief Gets the collider of the model as a const reference.
+        /// \return The collider of the model as a const reference.
         const Collider &collider() const { return m_collider; };
-        /// \brief
+        /// \brief Gets the collider of the model.
+        /// \return The collider of the model.
         Collider &collider() { return m_collider; };
 
         /// \brief Computes a vector of texture objects.
         /// Each texture object is filled with an image and sampling parameters from the corresponding texture of the glTF file.
         /// \param model : The 3D model.
         /// \return A vector of texture objects.
+        /// \return A vector containing each texture objects.
         std::vector<GLuint> createTextureObjects(const tinygltf::Model &model) const;
         /// \brief Computes the vector of buffer objects from the 3D model and returns it.
         /// \param model : The 3D model.
         /// \return A vector of buffer objects.
+        /// \return A vector containing each vertex buffer objects.
         std::vector<GLuint> createBufferObjects(const tinygltf::Model &model);
         /// \brief  Takes the 3D model and the vector of buffer objects previously created, creates an array of vertex array objects and returns it.
         /// It then fills the input vector meshIndexToVaoRange with the range of VAOs for each mesh.
         /// \param model : The 3D model.
         /// \param bufferObjects : The vector of buffer objects obtained from the model.
         /// \param meshToVertexArrays : The vector containing the range of VAOs for each mesh.
+        /// \return A vector containing each vertex array objects.
         std::vector<GLuint> createVertexArrayObjects(const tinygltf::Model &model,
                                                      const std::vector<GLuint> &bufferObjects,
                                                      std::vector<VertexArrayObject::VaoRange> &meshToVertexArrays);

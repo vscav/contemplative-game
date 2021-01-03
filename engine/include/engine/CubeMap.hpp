@@ -30,7 +30,7 @@ namespace engine
 
         GLuint m_cubeMapTexture; /*!< The texture to apply to the cube map. */
 
-        std::shared_ptr<Shader> m_shader; /*!< The shader to use for the cube map. */
+        std::unique_ptr<Shader> m_shader; /*!< The shader to use for the cube map. */
 
         VertexArrayObject m_vao;  /*!< Vertex Array Object of the cube map. */
         VertexBufferObject m_vbo; /*!< Vertex Buffer Object of the cube map. */

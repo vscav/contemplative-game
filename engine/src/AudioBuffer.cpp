@@ -14,7 +14,6 @@
 namespace engine
 {
 
-
     ALuint AudioBuffer::addAudioEffect(const char *filename)
     {
 
@@ -33,7 +32,7 @@ namespace engine
         //f_perror(sndfile); To get a verbose error from sndfile
         if (!sndfile)
         {
-            std::cerr << COLOR_RED << "[AudioBuffer] sndfile : Could not open audio in " << filename << COLOR_RESET <<std::endl;
+            std::cerr << COLOR_RED << "[AudioBuffer] sndfile : Could not open audio in " << filename << COLOR_RESET << std::endl;
             return 0;
         }
         if (sfinfo.frames < 1 || sfinfo.frames > (sf_count_t)(INT_MAX / sizeof(short)) / sfinfo.channels)
@@ -60,7 +59,7 @@ namespace engine
         }
         if (!format)
         {
-            std::cerr << COLOR_RED <<"[AudioBuffer] Unsupported channel count: " << sfinfo.channels << COLOR_RESET << std::endl;
+            std::cerr << COLOR_RED << "[AudioBuffer] Unsupported channel count: " << sfinfo.channels << COLOR_RESET << std::endl;
             sf_close(sndfile);
             return 0;
         }
@@ -90,7 +89,7 @@ namespace engine
         err = alGetError();
         if (err != AL_NO_ERROR)
         {
-            std::cerr << COLOR_RED << "[OpenAL] Error: " << alGetString(err) << COLOR_RESET <<std::endl;
+            std::cerr << COLOR_RED << "[OpenAL] Error: " << alGetString(err) << COLOR_RESET << std::endl;
             if (buffer && alIsBuffer(buffer))
                 alDeleteBuffers(1, &buffer);
             return 0;
@@ -131,7 +130,8 @@ namespace engine
 
     AudioBuffer::~AudioBuffer()
     {
-        if(applicationDebug) std::cout << COLOR_CYAN << "[AudioBuffer]" << COLOR_RESET << " Delete the main audio buffer" << std::endl;
+        if (applicationDebug)
+            std::cout << COLOR_CYAN << "[AudioBuffer]" << COLOR_RESET << " Delete the main audio buffer" << std::endl;
 
         alDeleteBuffers(m_audioEffectBuffers.size(), m_audioEffectBuffers.data());
 

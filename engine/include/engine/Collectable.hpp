@@ -18,14 +18,14 @@ namespace engine
     class Player;
 
     /// \class Collectable
-    /// \brief Class that represents an obstacle in the application, an interactive entity.
+    /// \brief Class that represents an collectable in the application, an interactive entity.
     class Collectable : public Entity
     {
     private:
         bool m_isTaken;  /*!< A boolean to tell whether the collectable has been taken by the player. */
         bool m_isHidden; /*!< A boolean to tell whether the collectable was taken and if it has to be rendered to the screen. */
 
-        std::shared_ptr<ParticleSystem> m_particleSystem; /*!< */
+        std::unique_ptr<ParticleSystem> m_particleSystem; /*!< */
         ParticleProps m_particle;                         /*!< */
 
         std::unique_ptr<AudioSource> m_source;
@@ -35,7 +35,11 @@ namespace engine
         ALint m_isPlaying;
 
     public:
-        /// \brief Constructor.
+        /// \brief Parameterized constructor.
+        /// \param model : The GLTF model of the collectable.
+        /// \param shader : The shader to use for the collectable.
+        /// \param isStatic : Whether the collectable is able to move.
+        /// \param transform : The initial transformation to apply to the collectable.
         Collectable(Model *model,
                     Shader *shader,
                     const bool isStatic = false,
@@ -56,7 +60,7 @@ namespace engine
         /// \param dt : The delta time, which describes the time difference between the previous frame that was drawn and the current frame.
         void update(const float dt);
 
-        /// \brief Renders the obstacle entity.
+        /// \brief Renders the collectable entity.
         void render();
 
         /// \brief Returns a boolean to tell whether the collectable entity was taken by the player.

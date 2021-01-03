@@ -78,6 +78,9 @@ namespace engine
         /// \return The instance of the current application.
         static GLApplication &getInstance();
 
+        ///\brief Loads a new scene based on a json scene file path.
+        void loadScene(const std::string sceneFilePath);
+
         /// \brief Exits the GL application by changing the current state.
         void exit();
 

@@ -46,7 +46,7 @@ namespace engine
 			GLApplication::getInstance().getAudioManager()->pause();
 			break;
 		case Clear:
-			GLApplication::getInstance().getScene()->clearScene();
+			GLApplication::getInstance().loadScene("application/scenes/scene.json");
 			break;
 		default:
 			break;

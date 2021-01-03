@@ -386,7 +386,8 @@ namespace engine
         }
         glBindVertexArray(0);
 
-        std::cout << "Number of VAOs: " << vertexArrayObjects.size() << std::endl;
+        if (applicationDebug)
+            std::cout << "Number of VAOs: " << vertexArrayObjects.size() << std::endl;
 
         return vertexArrayObjects;
     }

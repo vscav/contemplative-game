@@ -193,8 +193,9 @@ namespace engine
             m_inputManager->keyPressed(InputCodes::Up);
         if (glfwGetKey(m_window, GLFW_KEY_Q))
             m_inputManager->keyPressed(InputCodes::Down);
-        if (glfwGetKey(m_window, GLFW_KEY_C))
-            m_inputManager->keyPressed(InputCodes::Clear);
+        if (applicationDebug)
+            if (glfwGetKey(m_window, GLFW_KEY_C))
+                m_inputManager->keyPressed(InputCodes::Clear);
 
         // Mouse moved
         double xpos, ypos;

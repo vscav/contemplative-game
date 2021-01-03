@@ -49,6 +49,8 @@ namespace engine
         entityMatrix = glm::rotate(entityMatrix, m_rotation[1], -glm::vec3(0.0f, 1.0f, 0.0f));
         entityMatrix = glm::rotate(entityMatrix, m_rotation[2], -glm::vec3(0.0f, 0.0f, 1.0f));
 
+        entityMatrix = glm::scale(entityMatrix, m_scale);
+
         if (m_isStatic)
         {
             m_transformMatrix = entityMatrix;

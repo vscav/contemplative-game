@@ -17,7 +17,10 @@ namespace engine
     {
     public:
         /// \brief Constructor.
-        Obstacle(const Entity &obstacleEntity);
+        Obstacle(Model *model,
+                 Shader *shader,
+                 const bool isStatic = false,
+                 const Transform &transform = Transform());
         /// \brief Destructor.
         ~Obstacle() = default;
 
@@ -29,6 +32,9 @@ namespace engine
 
         /// \brief Updates the obstacle.
         void update(const float dt);
+
+        /// \brief Renders the obstacle.
+        void render();
     };
 
 } // namespace engine

@@ -5,17 +5,19 @@ namespace engine
 {
 
     template <typename T, typename U>
-    void Scene::handleCollision(T &firstObject, U &secondObject)
+    void Scene::handleCollision(T &firstEntity, U &secondEntity)
     {
-        if (firstObject.intersect(secondObject))
+        if (firstEntity.intersect(secondEntity))
         {
-            firstObject.doCollisionWith(secondObject);
-            secondObject.doCollisionWith(firstObject);
+            firstEntity.doCollisionWith(secondEntity);
+            secondEntity.doCollisionWith(firstEntity);
         }
     }
 
     void Scene::update(const float dt)
     {
+        // std::cout << obstacles().size() << std::endl;
+
         if (player() != nullptr)
         {
             player()->update(dt);
@@ -94,18 +96,24 @@ namespace engine
 
     void Scene::render()
     {
-        skybox()->render();
+        if (skybox() != nullptr)
+        {
+            skybox()->render();
+        }
 
-        player()->render();
+        if (player() != nullptr)
+        {
+            player()->render();
+        }
 
         if (!m_obstacles.empty())
         {
-            renderEntitiesList(m_obstacles);
+            renderEntitiesList<Obstacle>(m_obstacles);
         }
 
         if (!m_collectables.empty())
         {
-            renderEntitiesList(m_collectables);
+            renderEntitiesList<Collectable>(m_collectables);
         }
 
         if (pointLights() != nullptr)
@@ -114,6 +122,7 @@ namespace engine
         }
     }
 
+    template <typename T>
     void Scene::renderEntitiesList(const std::list<std::unique_ptr<Entity>> &entitiesList)
     {
         if (!entitiesList.empty())
@@ -121,10 +130,9 @@ namespace engine
             auto it = entitiesList.begin();
             for (it = entitiesList.begin(); it != entitiesList.end(); ++it)
             {
-                if (it->get() != nullptr)
-                {
-                    it->get()->render();
-                }
+                T &currentEntity(dynamic_cast<T &>(**it));
+
+                currentEntity.render();
             }
         }
     }

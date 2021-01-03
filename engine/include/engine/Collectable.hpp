@@ -3,6 +3,7 @@
 #define _Collectable_HPP_
 
 #include <engine/Entity.hpp>
+#include <engine/ParticleSystem.hpp>
 
 const float collectableRotationSpeed = 2.f;
 
@@ -19,9 +20,15 @@ namespace engine
         bool m_isTaken;  /*!< A boolean to tell whether the collectable has been taken by the player. */
         bool m_isHidden; /*!< A boolean to tell whether the collectable was taken and if it has to be rendered to the screen. */
 
+        std::shared_ptr<ParticleSystem> m_particleSystem; /*!< */
+        ParticleProps m_particle;                         /*!< */
+
     public:
         /// \brief Constructor.
-        Collectable(const Entity &collectableEntity);
+        Collectable(Model *model,
+                    Shader *shader,
+                    const bool isStatic = false,
+                    const Transform &transform = Transform());
 
         /// \brief Destructor.
         virtual ~Collectable()
@@ -41,7 +48,10 @@ namespace engine
         /// \param dt : .
         void update(const float dt);
 
-        /// \brief Implements the collision behavior when colliding an entity.
+        /// \brief Renders the obstacle.
+        void render();
+
+        /// \brief
         inline const bool isTaken() const { return m_isTaken; }
 
         /// \brief

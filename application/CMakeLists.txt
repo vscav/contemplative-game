@@ -28,7 +28,7 @@ target_link_libraries(${OUTPUT} ${ALL_LIBRARIES})
 # copy shaders to the bin directory
 file(COPY res/shaders DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)
 # copy texture images to the build directory
-file(COPY res/textures/skybox/space DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/textures/skybox)
+file(COPY res/textures DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)
 # copy gltf file and its texture images to the build directory
 file(COPY res/models DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res)
 # copy sound files to the build directory

@@ -6,33 +6,10 @@ namespace engine
 {
 
     ParticleSystem::ParticleSystem(Shader *shader)
-        : m_shader(shader)
+        : m_shader(shader),
+          m_sphere(new Sphere(1, 32, 16))
     {
         m_particlePool.resize(1000);
-
-        float vertices[] = {
-            -1.0f, -1.0f, 0.0f,
-            1.0f, -1.0f, 0.0f,
-            1.0f, 1.0f, 0.0f,
-            -1.0f, 1.0f, 0.0f};
-
-        glCreateVertexArrays(1, &m_quadVA);
-        glBindVertexArray(m_quadVA);
-
-        GLuint quadVB, quadIB;
-        glCreateBuffers(1, &quadVB);
-        glBindBuffer(GL_ARRAY_BUFFER, quadVB);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-        glEnableVertexAttribArray(0);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
-
-        uint32_t indices[] = {
-            0, 1, 2, 2, 3, 0};
-
-        glCreateBuffers(1, &quadIB);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, quadIB);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     }
 
     void ParticleSystem::update(const float dt)
@@ -51,6 +28,8 @@ namespace engine
             particle.lifeRemaining -= dt;
             particle.position += particle.velocity * dt;
             particle.rotation += 0.01f * dt;
+
+            // particle.velocity += particle.velocity * 0.1f * dt;
         }
     }
 
@@ -68,13 +47,12 @@ namespace engine
 
             float size = glm::lerp(particle.sizeEnd, particle.sizeBegin, life);
 
-            glm::mat4 transform = glm::scale(glm::mat4(1.0f), glm::vec3(0.2f)) * glm::translate(glm::mat4(1.0f), {particle.position.x, particle.position.y, particle.position.z}) * glm::rotate(glm::mat4(1.0f), particle.rotation, {0.0f, 0.0f, 1.0f}) * glm::scale(glm::mat4(1.0f), {size, size, 1.0f});
+            glm::mat4 transform = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f)) * glm::translate(glm::mat4(1.0f), {particle.position.x, particle.position.y, particle.position.z}) * glm::rotate(glm::mat4(1.0f), particle.rotation, {0.0f, 0.0f, 1.0f}) * glm::scale(glm::mat4(1.0f), {size, size, size});
 
             Renderer::getInstance().sendModelMatrixUniforms(transform, m_shader.get());
             glUniform4fv(m_shader->getUniform("uColor"), 1, glm::value_ptr(color));
 
-            glBindVertexArray(m_quadVA);
-            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+            m_sphere->render();
         }
 
         m_shader->unbind();

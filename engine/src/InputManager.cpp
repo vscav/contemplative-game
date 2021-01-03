@@ -14,13 +14,13 @@ namespace engine
 		case Forward:
 			if (GLApplication::getInstance().getScene()->player() != nullptr)
 			{
-				GLApplication::getInstance().getScene()->player()->moveForward(-1);
+				GLApplication::getInstance().getScene()->player()->moveForward(1);
 			}
 			break;
 		case Backward:
 			if (GLApplication::getInstance().getScene()->player() != nullptr)
 			{
-				GLApplication::getInstance().getScene()->player()->moveForward(1);
+				GLApplication::getInstance().getScene()->player()->moveForward(-1);
 			}
 			break;
 		case Left:

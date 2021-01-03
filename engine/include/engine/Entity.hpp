@@ -15,9 +15,9 @@ namespace engine
     struct Transform
     {
     public:
-        const glm::vec3 &m_position;
-        const glm::vec3 &m_scale;
-        const glm::vec3 &m_rotation;
+        const glm::vec3 m_position;
+        const glm::vec3 m_scale;
+        const glm::vec3 m_rotation;
         Transform(
             const glm::vec3 &position = glm::vec3(0.0f),
             const glm::vec3 &scale = glm::vec3(1.0f),

@@ -3,6 +3,7 @@
 #define _ParticleSystem_HPP_
 
 #include <engine/Shader.hpp>
+#include <engine/Sphere.hpp>
 #include <engine/dependencies/glm.hpp>
 
 #include <GL/glew.h>
@@ -39,16 +40,18 @@ namespace engine
         };
 
         std::vector<Particle> m_particlePool;
-        uint32_t m_poolIndex = 999;
 
-        GLuint m_quadVA = 0;
+        unsigned int m_poolIndex = 999;
+
         std::unique_ptr<Shader> m_shader;
+
+        std::unique_ptr<Sphere> m_sphere;
 
     public:
         ParticleSystem(Shader *shader);
         ~ParticleSystem() = default;
 
-        void update(const float ts);
+        void update(const float dt);
         void render();
 
         void emit(const ParticleProps &particleProps);

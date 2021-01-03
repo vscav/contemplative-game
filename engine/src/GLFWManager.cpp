@@ -128,6 +128,8 @@ namespace engine
             centerWindow();
         }
 
+        glfwSetWindowUserPointer(m_window, this);
+
         // Make sure the window is valid, if not, throw an error.
         if (m_window == nullptr)
         {

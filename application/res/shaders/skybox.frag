@@ -19,5 +19,6 @@ void main()
     float factor = (vTexCoords.y - lowerLimit) / (upperLimit - lowerLimit);
     factor = clamp(factor, 0.0, 1.0);
 
-    fColor = mix(vec4(uFogColor, 1.0), skyboxFColor, factor);
+    // fColor = mix(vec4(uFogColor, 1.0), skyboxFColor, factor);
+    fColor = skyboxFColor;
 }

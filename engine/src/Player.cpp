@@ -32,10 +32,10 @@ namespace engine
     {
         m_currentUpspeed = delta * upSpeed;
 
-        if (m_currentUpspeed > maximumPlayerUp)
-            m_currentUpspeed = maximumPlayerUp;
-        else if (m_currentUpspeed < minimumPlayerUp)
-            m_currentUpspeed = minimumPlayerUp;
+        if (m_position.y > maximumPlayerUp)
+            m_position.y = maximumPlayerUp;
+        else if (m_position.y < minimumPlayerUp)
+            m_position.y = minimumPlayerUp;
 
         setPosition(glm::vec3(m_position.x, m_currentUpspeed + m_position.y, m_position.z));
     }

@@ -28,8 +28,13 @@ namespace engine
       std::map<char, Character> Characters;
       Shader *m_textShader;
 
-      GLuint mVbo,mVao;
-	    glm::mat4 mProj;
+      GLuint m_vbo,m_vao;
+	    //glm::mat4 m_proj;
+
+      std::string m_scoreText="0";
+
+      float m_wWidth;
+      float m_wHeight;
 
     public:
         /// \brief
@@ -42,6 +47,7 @@ namespace engine
         void updateMatrix(float width, float height);
         void initialization();
         void initializeText();
+        void updateScore(unsigned int score);
 
     };
 

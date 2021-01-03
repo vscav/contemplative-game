@@ -26,13 +26,13 @@ namespace engine
           std::cout << "ERROR::FREETYPE: Could not init FreeType Library" << std::endl;
       }
 
-      if (FT_New_Face(m_ft, "application/res/fonts/Montserrat-Regular.ttf", 0, &m_face))
+      if (FT_New_Face(m_ft, "application/res/fonts/CarterOne-Regular.ttf", 0, &m_face))
       {
           std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
       }
 
       else {
-          FT_Set_Pixel_Sizes(m_face, 0, 60);
+          FT_Set_Pixel_Sizes(m_face, 0, 50);
           glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // disable byte-alignment restriction
 
           for (unsigned char c = 0; c < 128; c++)
@@ -72,29 +72,40 @@ namespace engine
 
     void UI::initialization()
     {
-        glGenBuffers(1, &mVbo);
-        glBindBuffer(GL_ARRAY_BUFFER, mVbo);
+        glGenBuffers(1, &m_vbo);
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
         glBufferData(GL_ARRAY_BUFFER, 6 * 4 * sizeof(float), NULL, GL_DYNAMIC_DRAW);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-        glGenVertexArrays(1, &mVao);
-        glBindVertexArray(mVao);
-        glBindBuffer(GL_ARRAY_BUFFER, mVbo);
+        glGenVertexArrays(1, &m_vao);
+        glBindVertexArray(m_vao);
+        glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
 
-        mProj=glm::ortho(0.0f, 800.0f, 0.0f, 600.0f);
+        m_wWidth=800.0f;
+        m_wHeight=600.0f;
+
+        //m_proj=glm::ortho(0.0f, m_wWidth, 0.0f, m_wHeight);
+
     }
 
     void UI::updateMatrix(float width, float height){
-      mProj=glm::ortho(0.0f, width, 0.0f, height);
+      m_wWidth=width;
+      m_wHeight=height;
+      //m_proj=glm::ortho(0.0f, m_wWidth, 0.0f, m_wHeight);
+    }
+
+    void UI::updateScore(unsigned int score){
+      m_scoreText=std::to_string(score);
     }
 
     void UI::render(){
 
-      RenderText("Looking for internship. I can do coffee", 0.0, 0.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
+      RenderText("Collect the gems", m_wWidth/2-200, m_wHeight-50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
+      RenderText(m_scoreText + "/10", m_wWidth/2-15, 15.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
 
     }
 
@@ -106,7 +117,7 @@ namespace engine
       glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
-      m_textShader->setMat4("uProjection",mProj);
+      m_textShader->setMat4("uProjection",glm::ortho(0.0f, m_wWidth, 0.0f, m_wHeight));
       m_textShader->setVec3f("uTextColor",color);
 
 
@@ -116,7 +127,7 @@ namespace engine
       //  glUniform3fv(glGetUniformLocation(m_textShader->getID(), "uTextColor"), 1, glm::value_ptr(color));
 
       glActiveTexture(GL_TEXTURE0);
-      glBindVertexArray(mVao);
+      glBindVertexArray(m_vao);
 
       // iterate through all characters
       std::string::const_iterator c;
@@ -142,7 +153,7 @@ namespace engine
           // render glyph texture over quad
           glBindTexture(GL_TEXTURE_2D, ch.TextureID);
           // update content of VBO memory
-          glBindBuffer(GL_ARRAY_BUFFER, mVbo);
+          glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
           glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
           glBindBuffer(GL_ARRAY_BUFFER, 0);
           // render quad

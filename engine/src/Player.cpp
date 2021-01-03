@@ -60,6 +60,7 @@ namespace engine
         if (!other.isTaken())
         {
             m_score += 1;
+            GLApplication::getInstance().getUI()->updateScore(m_score);
         }
     };
 

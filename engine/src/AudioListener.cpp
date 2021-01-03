@@ -47,7 +47,7 @@ namespace engine
 
     }
 
-    void AudioListener::updatePosition(const glm::vec3 newPosition){
+    void AudioListener::setPosition(const glm::vec3 newPosition){
       m_listenerPos[0]=newPosition[0];
       m_listenerPos[1]=newPosition[1];
       m_listenerPos[2]=newPosition[2];

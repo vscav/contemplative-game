@@ -32,7 +32,7 @@ namespace engine
         ~AudioListener() noexcept(false);
 
         ///
-        void updatePosition(const glm::vec3 newPosition);
+        void setPosition(const glm::vec3 newPosition);
     };
 
 } // namespace engine

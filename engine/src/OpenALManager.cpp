@@ -39,7 +39,8 @@ namespace engine
     void OpenALManager::update()
     {
       glm::vec3 cameraPosition = GLApplication::getInstance().getCamera()->getPosition();
-      m_audioListener->updatePosition(cameraPosition);
+      m_audioListener->setPosition(cameraPosition);
+      m_mainSource->setPosition(cameraPosition);
     }
 
     void OpenALManager::pause(){

@@ -96,10 +96,15 @@ namespace engine
     m_scoreText = std::to_string(score);
   }
 
+  void UI::reset()
+  {
+    m_scoreText = "0";
+  }
+
   void UI::render()
   {
     renderText("Collect the gems", m_wWidth / 2 - 200, m_wHeight - 50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
-    renderText(m_scoreText + "/10", m_wWidth / 2 - 15, 15.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
+    renderText(m_scoreText + "/10", m_wWidth / 2 - 50, 50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
   }
 
   void UI::renderText(std::string text, float x, float y, float scale, glm::vec3 color)

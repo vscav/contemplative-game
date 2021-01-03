@@ -81,6 +81,9 @@ namespace engine
         ///\brief Loads a new scene based on a json scene file path.
         void loadScene(const std::string sceneFilePath);
 
+        /// \brief Initialize the GLApplication.
+        void initialize();
+
         /// \brief Exits the GL application by changing the current state.
         void exit();
 

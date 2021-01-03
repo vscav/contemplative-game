@@ -47,6 +47,8 @@ namespace engine
     void initialize();
     void initializeText();
 
+    void reset();
+
     void updateScore(unsigned int score);
 
     void renderText(std::string text, float x, float y, float scale, glm::vec3 color);

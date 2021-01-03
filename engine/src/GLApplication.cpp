@@ -24,12 +24,7 @@ namespace engine
         m_camera(camera),
         m_UI(ui)
   {
-    setScene(Serializer::getInstance().load("application/scenes/scene.json"));
-
-    Renderer::getInstance().setCamera(m_camera);
-    Renderer::getInstance().setScene(m_scene);
-
-    currentGLApplication = this;
+    initialize();
   }
 
   GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager, UI *ui,
@@ -40,6 +35,22 @@ namespace engine
         m_camera(camera),
         m_UI(ui)
   {
+    initialize();
+  }
+
+  void GLApplication::loadScene(const std::string sceneFilePath)
+  {
+    m_scene->clearScene();
+
+    setScene(Serializer::getInstance().load(sceneFilePath));
+
+    m_UI->reset();
+
+    Renderer::getInstance().setScene(m_scene);
+  }
+
+  void GLApplication::initialize()
+  {
     setScene(Serializer::getInstance().load("application/scenes/scene.json"));
 
     Renderer::getInstance().setCamera(m_camera);
@@ -49,18 +60,6 @@ namespace engine
     m_UI->initialize();
 
     currentGLApplication = this;
-  }
-
-  void GLApplication::loadScene(const std::string sceneFilePath)
-  {
-    m_scene->clearScene();
-
-    setScene(Serializer::getInstance().load(sceneFilePath));
-
-    m_UI->initializeText();
-    m_UI->initialize();
-
-    Renderer::getInstance().setScene(m_scene);
   }
 
   void GLApplication::exit()
@@ -81,11 +80,15 @@ namespace engine
       {
         m_audioManager->update();
         getWindowManager()->update();
+
         loop();
+
         getWindowManager()->processInput();
         getUI()->updateMatrix(getWindowManager()->getWidth(), getWindowManager()->getHeight());
       }
+
       getUI()->render();
+
       getWindowManager()->swapBuffers();
       getWindowManager()->setKeyCallback();
     }

@@ -74,17 +74,19 @@ namespace engine
   {
     m_state = stateRun;
 
-    while (m_state == stateRun || m_state == statePause)
+    while (m_state == stateRun || m_state == statePause || m_state == stateWin)
     {
-      if (m_state == stateRun)
+      if (m_state == stateRun || m_state == stateWin)
       {
         m_audioManager->update();
+
         getWindowManager()->update();
+
+        getUI()->updateMatrix(getWindowManager()->getWidth(), getWindowManager()->getHeight());
 
         loop();
 
         getWindowManager()->processInput();
-        getUI()->updateMatrix(getWindowManager()->getWidth(), getWindowManager()->getHeight());
       }
 
       getUI()->render();

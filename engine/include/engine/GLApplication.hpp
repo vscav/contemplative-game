@@ -27,6 +27,7 @@ namespace engine
         stateReady,
         stateRun,
         statePause,
+        stateWin,
         stateExit
     };
 

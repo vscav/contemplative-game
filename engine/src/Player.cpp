@@ -4,9 +4,9 @@
 namespace engine
 {
     Player::Player(Model *model,
-                    Shader *shader,
-                    const bool isStatic,
-                    const Transform &transform)
+                   Shader *shader,
+                   const bool isStatic,
+                   const Transform &transform)
         : Entity(model, shader, isStatic, transform),
           m_score(0)
     {
@@ -70,6 +70,11 @@ namespace engine
     void Player::update(float dt)
     {
         GLApplication::getInstance().getCamera()->updatePosition(m_position);
+
+        if (m_score == 1)
+        {
+            GLApplication::getInstance().setState(stateWin);
+        }
     }
 
 } // namespace engine

@@ -1,3 +1,4 @@
+#include <engine/GLApplication.hpp>
 #include <engine/UI.hpp>
 #include <engine/GLWindowUtils.hpp>
 
@@ -43,6 +44,7 @@ namespace engine
         }
 
         unsigned int texture;
+
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, m_face->glyph->bitmap.width, m_face->glyph->bitmap.rows, 0, GL_RED, GL_UNSIGNED_BYTE, m_face->glyph->bitmap.buffer);
@@ -53,6 +55,7 @@ namespace engine
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
         Character character;
+
         character.textureID = texture;
         character.size = glm::ivec2(m_face->glyph->bitmap.width, m_face->glyph->bitmap.rows);
         character.bearing = glm::ivec2(m_face->glyph->bitmap_left, m_face->glyph->bitmap_top);
@@ -104,6 +107,12 @@ namespace engine
   void UI::render()
   {
     renderText("Collect the gems", m_wWidth / 2 - 200, m_wHeight - 50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
+
+    if (GLApplication::getInstance().getState() == stateWin)
+    {
+      renderText("You have collected all the resources", m_wWidth / 2 - 200, m_wHeight - 50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
+    }
+
     renderText(m_scoreText + "/10", m_wWidth / 2 - 50, 50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
   }
 

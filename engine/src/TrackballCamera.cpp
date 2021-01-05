@@ -26,7 +26,7 @@ namespace engine
 
     void TrackballCamera::rotateLeft(const float degrees)
     {
-        m_angleYSpeed += m_sensitivity * degrees;
+        m_angleYSpeed += m_sensitivity * degrees * 1.75f;
 
         // To avoid free movement
         // m_angleY = glm::clamp(m_angleY, -90.0f, 90.0f);

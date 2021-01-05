@@ -2,7 +2,7 @@
 
 int main()
 {
-  Application app("Custom application", 1280, 720, false);
+  Application app("Custom application", 1280, 720, true);
 
   app.run();
 

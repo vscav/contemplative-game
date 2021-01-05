@@ -30,7 +30,7 @@ namespace engine
 
         float m_sensitivity = 0.001f; /*!< The camera sensitivity. */
 
-        float m_speed = 0.7f; /*!< The camera speed. */
+        float m_speed = 1.0f; /*!< The camera speed. */
 
         float m_lerpFactor = 0.9925f; /*!< The camera rotation lerp factor. */
 

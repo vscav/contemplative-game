@@ -121,8 +121,7 @@ namespace engine
         /// \param entitiesList : The list of entities to be rendered.
         template <typename T>
         void renderEntitiesList(const std::list<std::unique_ptr<Entity>> &entitiesList);
-
-        // TO DO: method: clear the scene
+        
     };
 
 } // namespace engine

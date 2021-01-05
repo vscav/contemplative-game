@@ -105,7 +105,8 @@ namespace engine
         destination = std::unique_ptr<Player>(new Player(
             new Model("application/res/models/" + modelName + "/scene.gltf"),
             new Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
-            false));
+            false,
+            Transform(glm::vec3(0.0f), glm::vec3(1.0f), glm::vec3(0.0f, -1.5f, 0.0f))));
     }
 
     void Serializer::deserializeDirectionalLight(const tao::json::value &data, std::unique_ptr<DirectionalLight> &destination)

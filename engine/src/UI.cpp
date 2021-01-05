@@ -110,7 +110,7 @@ namespace engine
       renderText("You have collected all the resources", m_wWidth / 2 - 435, m_wHeight / 2, 1.0, glm::vec3(1.0, 1.0, 1.0));
     }
 
-    renderText(m_scoreText + "/10", m_wWidth / 2 - 50, 50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
+    renderText(m_scoreText + "/5", m_wWidth / 2 - 50, 50.0, 1.0, glm::vec3(1.0, 1.0, 1.0));
   }
 
   void UI::renderText(std::string text, float x, float y, float scale, glm::vec3 color)

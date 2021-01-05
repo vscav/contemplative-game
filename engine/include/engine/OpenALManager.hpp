@@ -30,6 +30,9 @@ namespace engine
 
         std::unique_ptr<AudioSource> m_mainSource;
         std::unique_ptr<AudioBuffer> m_mainSourceBuffer;
+
+        std::unique_ptr<AudioSource> m_boatSource;
+        std::unique_ptr<AudioBuffer> m_boatBuffer;
         ALint m_isPlaying=AL_STOPPED;
 
 

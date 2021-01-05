@@ -13,7 +13,7 @@ Application::Application()
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
-    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), new engine::OpenALManager(), new engine::UI(), title, width, height, fullScreen)
+    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(title, width, height, fullScreen), new engine::OpenALManager(), new engine::UI())
 {
 }
 

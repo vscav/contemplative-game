@@ -55,17 +55,6 @@ namespace engine
         /// \param scene : The scene which will be displayed by the application.
         GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager, UI *ui);
 
-        /// \brief Detailed parameterized constructor.
-        /// \param camera : The camera which will be used by the application.
-        /// \param manager : The window manager which will be used by the application.
-        /// \param scene : The scene which will be displayed by the application.
-        /// \param title : The GL application title (string).
-        /// \param width : The GL application width value.
-        /// \param height : The GL application height value.
-        /// \param fullScreen : A boolean to determine if the GL application window is in full screen mode.
-        explicit GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager, UI *ui,
-                               std::string title, int width, int height, bool fullScreen);
-
         /// \brief Copy constructor.
         GLApplication(GLApplication const &) = delete;
 

@@ -27,17 +27,6 @@ namespace engine
     initialize();
   }
 
-  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, GLAudioManager *a_manager, UI *ui,
-                               std::string title, int width, int height, bool fullScreen)
-      : m_state(stateReady),
-        m_windowManager(manager),
-        m_audioManager(a_manager),
-        m_camera(camera),
-        m_UI(ui)
-  {
-    initialize();
-  }
-
   void GLApplication::loadScene(const std::string sceneFilePath)
   {
     m_scene->clearScene();

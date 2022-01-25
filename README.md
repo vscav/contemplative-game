@@ -2,6 +2,8 @@
 
 > A contemplative game using OpenGL, GLFW, Glew and glm.
 
+![image](misc/preview.png)
+
 ## Table of Contents
 
 * [Get started](#get-started)
